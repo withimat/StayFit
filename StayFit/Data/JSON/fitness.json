@@ -1,0 +1,43 @@
+ [
+    {
+      "id": 1,
+      "title": "Başlangıç Seviyesi Kardiyo",
+      "description": "Haftada en az 3 gün, 30 dakika yürüyüş veya hafif tempolu koşu yaparak kardiyo yapmaya başlayabilirsiniz.",
+      "category": "Kardiyo",
+      "duration": "30 dakika"
+    },
+    {
+      "id": 2,
+      "title": "Kas Gelişimi İçin Protein",
+      "description": "Antrenman sonrası kas onarımını hızlandırmak için 20-30 gram kaliteli protein tüketmek önemlidir.",
+      "category": "Beslenme",
+      "recommendedFoods": ["Tavuk göğsü", "Yumurta", "Yoğurt"]
+    },
+    {
+      "id": 3,
+      "title": "Esneme Hareketlerinin Önemi",
+      "description": "Antrenmandan önce ve sonra 5-10 dakika esneme hareketleri yaparak sakatlanma riskini azaltabilirsiniz.",
+      "category": "Esneme",
+      "duration": "10 dakika"
+    },
+    {
+      "id": 4,
+      "title": "HIIT Antrenmanı",
+      "description": "Yüksek yoğunluklu aralıklı antrenman (HIIT), kısa sürede yağ yakımını artırır. 20 saniye yoğun efor, 10 saniye dinlenme şeklinde yapılabilir.",
+      "category": "Kardiyo",
+      "duration": "15-20 dakika"
+    },
+    {
+      "id": 5,
+      "title": "Suyun Önemi",
+      "description": "Günlük su tüketimini artırmak metabolizmayı hızlandırır ve antrenman performansını artırır.",
+      "category": "Beslenme",
+      "recommendedIntake": "2-3 litre"
+    },
+    {
+      "id": 6,
+      "title": "Motivasyon Sözü",
+      "description": "\"Bugün ne yaparsan, yarın onun karşılığını alırsın.\"",
+      "category": "Motivasyon"
+    }
+  ]

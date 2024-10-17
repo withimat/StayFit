@@ -1,0 +1,19 @@
+
+[
+  {
+    "id" : "1",
+    "name" : "Esneme ve Isınma",
+    "headline" : "İhtiyacın olduğunda tıkla"
+  },
+  {
+    "id" : "2",
+    "name" : "Full Body Antrenmanı",
+    "headline" : "İhtiyacın olduğunda tıkla"
+  },
+  {
+    "id" : "3",
+    "name" : "Yağ yakma Antrenmanı",
+    "headline" : "İhtiyacın olduğunda tıkla"
+  }
+  
+]

@@ -1,0 +1,163 @@
+[
+    {
+      "id": "protein-tozu",
+      "name": "Protein Tozu",
+      "headline": "Protein tozu, sporcular ve aktif yaşam tarzı benimseyen kişiler arasında popüler bir besin takviyesidir.",
+      "description": "Protein tozu, genellikle peynir altı suyu, kazein, soya, bezelye gibi çeşitli kaynaklardan elde edilen bir besin takviyesidir. Protein, kasların onarımı ve büyümesi için gerekli olan temel bir makro besindir. Sporcularda ve egzersiz yapan bireylerde, özellikle yoğun antrenman dönemlerinde protein ihtiyacını karşılamak için sıkça kullanılır. Protein tozları, su, süt veya başka sıvılarla karıştırılarak tüketilebilir ve ayrıca smoothie, yoğurt veya çeşitli tariflerde de kullanılabilir. Her ne kadar protein tozu sağlıklı bir diyetin parçası olabilir, aşırı kullanımında böbrek fonksiyonları üzerinde olumsuz etkiler yaratabileceği için dikkatli tüketilmelidir.",
+      "link": "https://api.whatsapp.com/send/?phone=905075201706&text&type=phone_number&app_absent=0",
+      "image": "protein-tozu",
+      "fact": [
+        "Protein tozu, spor sonrası kas onarımını hızlandırmak için yaygın olarak kullanılır.",
+        "Peynir altı suyu proteini, en yaygın ve hızlı sindirilen protein tozu türlerinden biridir.",
+        "Fazla protein tozu tüketimi, böbrekler üzerinde olumsuz etkiler yaratabilir, bu yüzden dozajına dikkat edilmelidir."
+      ]
+    },
+    {
+      "id": "kreatin",
+      "name": "Kreatin",
+      "headline": "Kreatin, egzersiz performansını artırmak ve kas kütlesini artırmak için bilinen popüler bir takviyedir.",
+      "description": "Kreatin, bazı yiyeceklerde küçük miktarlarda bulunan ve vücut tarafından sentezlenen doğal bir bileşiktir. Kaslarda depolanır ve ağırlık kaldırma veya sprint gibi yüksek yoğunluklu, kısa süreli aktiviteler sırasında hızlı bir enerji kaynağı olarak kullanılır. Kreatin takviyesinin, gücü artırdığı, yağsız kas kütlesini artırdığı ve egzersiz sırasında kasların daha hızlı toparlanmasına yardımcı olduğu gösterilmiştir. Fitness dünyasında en çok araştırılan ve yaygın olarak kullanılan takviyelerden biridir. Kreatin genellikle toz formunda, su veya spor içeceği ile karıştırılarak tüketilir ve genellikle döngüler halinde veya yoğun antrenman dönemlerinde kullanılır.",
+      "link": "https://api.whatsapp.com/send/?phone=905075201706&text&type=phone_number&app_absent=0",
+      "image": "kreatin",
+      "fact": [
+        "Kreatin, vücuttaki ATP üretimini artırarak egzersiz performansını destekler.",
+        "Kreatin takviyesi, kas hacmini ve gücünü artırmak isteyen sporcular arasında yaygın olarak kullanılır.",
+        "Kreatin, özellikle yüksek yoğunluklu antrenmanlar sırasında kas yorgunluğunu azaltmaya yardımcı olabilir."
+      ]
+    },
+    {
+      "id": "pre-workout",
+      "name": "Pre-Workout",
+      "headline": "Pre-workout takviyeleri, antrenman öncesinde enerji ve performansı artırmak için kullanılır.",
+      "description": "Pre-workout, genellikle antrenmandan önce alınan ve enerji seviyelerini artırmayı, odaklanmayı iyileştirmeyi ve egzersiz performansını desteklemeyi amaçlayan bir takviyedir. İçeriğinde kafein, beta-alanin, kreatin, BCAA'lar ve çeşitli vitaminler gibi bileşenler bulunur. Bu bileşenler, daha yoğun antrenman yapmanızı sağlayarak, yorgunluğu azaltır ve dayanıklılığı artırır. Pre-workout takviyeleri genellikle toz formunda olup, suyla karıştırılarak tüketilir. Özellikle yüksek yoğunluklu antrenmanlar veya uzun süreli egzersizler öncesinde tercih edilir.",
+      "link": "https://api.whatsapp.com/send/?phone=905075201706&text&type=phone_number&app_absent=0",
+      "image": "pre-workout",
+      "fact": [
+        "Pre-workout takviyeleri, genellikle antrenmandan 20-30 dakika önce alınır.",
+        "İçeriğindeki kafein, antrenman sırasında daha fazla enerji ve odaklanma sağlar.",
+        "Pre-workout takviyeleri, kaslardaki kan akışını artırarak egzersiz performansını destekler."
+      ]
+    },
+    {
+      "id": "bcaa",
+      "name": "BCAA",
+      "headline": "BCAA, kas protein sentezini destekleyen ve egzersiz performansını artıran önemli amino asitlerdir.",
+      "description": "BCAA (Dallı Zincirli Amino Asitler), lösin, izolösin ve valin olmak üzere üç temel amino asitten oluşur. Bu amino asitler, kasların onarımı ve büyümesi için kritik öneme sahiptir. BCAA takviyeleri, özellikle yoğun egzersiz yapan sporcular tarafından kas yıkımını azaltmak, yorgunluğu geciktirmek ve toparlanmayı hızlandırmak amacıyla kullanılır. BCAA'lar, egzersiz sırasında enerji kaynağı olarak da kullanılabilir. Toz veya kapsül formunda bulunur ve genellikle antrenman öncesinde, sırasında veya sonrasında tüketilir.",
+      "link": "https://api.whatsapp.com/send/?phone=905075201706&text&type=phone_number&app_absent=0",
+      "image": "bcaa",
+      "fact": [
+        "BCAA'lar, kas protein sentezini artırarak kas büyümesine katkı sağlar.",
+        "Egzersiz sırasında alınan BCAA, yorgunluğu geciktirir ve performansı artırır.",
+        "BCAA takviyeleri, özellikle direnç antrenmanları sonrasında kasların daha hızlı toparlanmasına yardımcı olur."
+      ]
+    },
+    {
+      "id": "beta-alanin",
+      "name": "Beta-Alanin",
+      "headline": "Beta-alanin, egzersiz performansını ve dayanıklılığı artıran bir amino asit takviyesidir.",
+      "description": "Beta-alanin, özellikle yüksek yoğunluklu antrenmanlar sırasında kas yorgunluğunu geciktirmek için kullanılan bir amino asittir. Vücutta karnozin seviyelerini artırarak, kaslarda asit birikimini azaltır ve böylece daha uzun süre yoğun egzersiz yapabilmenizi sağlar. Beta-alanin takviyesi, özellikle dayanıklılık sporları ve ağırlık antrenmanları ile uğraşan sporcular arasında yaygındır. Genellikle antrenmandan önce alınır ve ciltte hafif karıncalanma hissi yaratabilir, bu durum normaldir ve geçicidir.",
+      "link": "https://api.whatsapp.com/send/?phone=905075201706&text&type=phone_number&app_absent=0",
+      "image": "beta-alanin",
+      "fact": [
+        "Beta-alanin, kaslarda karnozin seviyelerini artırarak yorgunluğu geciktirir.",
+        "Düzenli kullanım, özellikle dayanıklılık sporlarında performans artışı sağlayabilir.",
+        "Beta-alanin takviyesi, ciltte hafif karıncalanma hissi yaratabilir; bu, yaygın ve zararsız bir etkidir."
+      ]
+    },
+    {
+      "id": "citrulin-malat",
+      "name": "Citrülin Malat",
+      "headline": "Citrülin malat, egzersiz performansını ve kan akışını artıran bir takviyedir.",
+      "description": "Citrülin malat, sitrülin adlı bir amino asit ile malat (elma asidi) bileşiğinin kombinasyonudur. Bu takviye, vücutta nitrik oksit üretimini artırarak kan damarlarını genişletir, böylece kaslara daha fazla oksijen ve besin taşınmasını sağlar. Sonuç olarak, egzersiz performansı ve dayanıklılığı artırır, yorgunluğu geciktirir. Citrülin malat ayrıca, kas ağrısını azaltarak toparlanmayı hızlandırabilir. Genellikle toz formunda olup, suyla karıştırılarak antrenmandan önce veya sırasında tüketilir.",
+      "link": "https://api.whatsapp.com/send/?phone=905075201706&text&type=phone_number&app_absent=0",
+      "image": "citrulin-malat",
+      "fact": [
+        "Citrülin malat, nitrik oksit üretimini artırarak kan akışını iyileştirir ve kaslara daha fazla oksijen taşınmasını sağlar.",
+        "Yorgunluğu geciktirir ve dayanıklılığı artırarak daha uzun süre yüksek yoğunluklu antrenman yapmanıza yardımcı olur.",
+        "Citrülin malat, antrenman sonrası kas ağrısını azaltarak toparlanmayı hızlandırabilir."
+      ]
+    },
+    {
+      "id": "gainer",
+      "name": "Gainer",
+      "headline": "Gainer, kilo almak ve kas kütlesi artırmak isteyenler için yüksek kalorili bir besin takviyesidir.",
+      "description": "Gainer, yüksek miktarda protein, karbonhidrat ve bazı durumlarda yağ içeren bir takviyedir. Özellikle kilo almakta zorlanan veya yoğun antrenman yapan kişiler tarafından kullanılır. Gainer'lar, kas kütlesi kazanımını desteklemek ve günlük kalori ihtiyacını karşılamak için tasarlanmıştır. Genellikle toz formunda olup, su veya süt ile karıştırılarak tüketilir. Yüksek kalorili içeriği sayesinde, hem enerji ihtiyacını karşılar hem de kas onarımı ve büyümesini destekler.",
+      "link": "https://tr.wikipedia.org/wiki/Gainer",
+      "image": "gainer",
+      "fact": [
+        "Gainer'lar, genellikle yüksek miktarda protein ve karbonhidrat içerir, bu da kilo alımını destekler.",
+        "Yoğun antrenmanlar sırasında enerji ihtiyacını karşılamak ve kas kütlesini artırmak için kullanılır.",
+        "Gainer takviyeleri, kilo almakta zorlanan veya yüksek kalori ihtiyacı olan sporcular arasında yaygındır."
+      ]
+    },
+    {
+      "id": "glutamin",
+      "name": "Glutamin",
+      "headline": "Glutamin, kas onarımı, bağışıklık sistemi desteği ve sindirim sağlığı için önemli bir amino asittir.",
+      "description": "Glutamin, vücutta bol miktarda bulunan bir amino asittir ve protein sentezinin önemli bir parçasıdır. Yoğun egzersizler veya hastalık dönemlerinde glutamin seviyeleri düşebilir, bu nedenle takviye edilmesi gerekebilir. Glutamin, kas onarımını destekler, bağışıklık sistemini güçlendirir ve sindirim sağlığını iyileştirebilir. Ayrıca, glutamin, beyin fonksiyonlarını destekleyebilir ve stresle başa çıkmanıza yardımcı olabilir. Glutamin takviyeleri genellikle toz formunda olup, su veya başka sıvılarla karıştırılarak tüketilir. Ayrıca kapsül veya tablet formunda da bulunabilir. Takviye edilmesi, özellikle yoğun antrenman yapan sporcular ve bağışıklık sistemi desteğine ihtiyaç duyan kişiler için faydalı olabilir.",
+      "link": "https://api.whatsapp.com/send/?phone=905075201706&text&type=phone_number&app_absent=0",
+      "image": "glutamin",
+      "fact": [
+        "Glutamin, kas onarımını hızlandırır ve kas kütlesinin korunmasına yardımcı olur.",
+        "Bağışıklık sisteminin düzgün çalışmasına katkıda bulunur.",
+        "Sindirim sağlığını destekleyerek bağırsak fonksiyonlarını iyileştirir.",
+        "Glutamin, stresle başa çıkma ve beyin fonksiyonlarını destekleme konusunda yardımcı olabilir.",
+        "Yoğun egzersizler veya hastalık dönemlerinde vücudun glutamin ihtiyacı artar."
+      ]
+    }
+,
+{
+  "id": "omega-3",
+  "name": "Omega-3",
+  "headline": "Omega-3 yağ asitleri, kalp sağlığı ve iltihaplanmayı azaltmada önemli rol oynayan sağlıklı yağlardır.",
+  "description": "Omega-3 yağ asitleri, vücutta iltihaplanmayı azaltan ve kalp sağlığını destekleyen temel yağlardır. Genellikle balık yağı veya alg yağı formunda bulunur. Omega-3 takviyeleri, kalp hastalıkları riskini azaltabilir, beyin fonksiyonlarını destekleyebilir ve eklem sağlığını iyileştirebilir.",
+  "link": "https://api.whatsapp.com/send/?phone=905075201706&text&type=phone_number&app_absent=0",
+  "image": "omega-3",
+  "fact": [
+    "Omega-3 yağ asitleri kalp sağlığını destekler ve iltihaplanmayı azaltır.",
+    "Beyin fonksiyonlarını ve eklem sağlığını iyileştirebilir.",
+    "Genellikle balık yağı veya alg yağı formunda tüketilir."
+  ]
+},
+{
+  "id": "kafein",
+  "name": "Kafein",
+  "headline": "Kafein, enerji seviyelerini artırmak ve performansı iyileştirmek için yaygın olarak kullanılan bir uyarıcıdır.",
+  "description": "Kafein, merkezi sinir sistemini uyararak uyanıklığı artırır ve yorgunluğu azaltır. Genellikle egzersiz öncesi performans artırıcı olarak kullanılır. Kafein, toz, kapsül veya içecek formunda bulunur ve genellikle antrenmandan önce alınır. Performans artışı ve odaklanma sağlamak için yaygın bir takviyedir.",
+  "link": "https://api.whatsapp.com/send/?phone=905075201706&text&type=phone_number&app_absent=0",
+  "image": "kafein",
+  "fact": [
+    "Kafein, enerji seviyelerini artırır ve yorgunluğu azaltır.",
+    "Egzersiz performansını iyileştirmek için kullanılır.",
+    "Genellikle antrenman öncesinde tüketilir."
+  ]
+},
+{
+  "id": "zma",
+  "name": "ZMA",
+  "headline": "ZMA, uyku kalitesini artırmak ve hormon seviyelerini desteklemek için kullanılan bir mineral takviyesidir.",
+  "description": "ZMA, çinko (Zn), magnezyum (Mg) ve B6 vitamininden oluşan bir takviyedir. Bu üç bileşen birlikte, uyku kalitesini artırabilir, hormon seviyelerini düzenleyebilir ve kas onarımını destekleyebilir. ZMA, özellikle sporcular ve egzersiz yapan kişiler tarafından kullanılır, çünkü bu takviye kas gelişimini ve toparlanmayı desteklemeye yardımcı olabilir. Genellikle gece yatmadan önce alınır ve vücudun mineral dengesini sağlamada yardımcı olabilir.",
+  "link": "https://api.whatsapp.com/send/?phone=905075201706&text&type=phone_number&app_absent=0",
+  "image": "zma",
+  "fact": [
+    "ZMA, çinko, magnezyum ve B6 vitaminini içerir.",
+    "Uyku kalitesini artırabilir ve hormon seviyelerini destekleyebilir.",
+    "Kas onarımı ve toparlanmayı iyileştirebilir.",
+    "Genellikle gece yatmadan önce alınır."
+  ]
+},
+{
+  "id": "l-karnitin",
+  "name": "L-Karnitin",
+  "headline": "L-Karnitin, yağ asitlerinin enerjiye dönüşümünü destekleyen bir amino asittir.",
+  "description": "L-Karnitin, yağ asitlerinin mitokondrilere taşınmasına yardımcı olarak enerji üretimini destekleyen bir amino asittir. Bu, özellikle yağ yakımını artırmak ve egzersiz performansını iyileştirmek amacıyla kullanılır. L-Karnitin takviyeleri, genellikle sporcular ve kilo kontrolü yapmak isteyen kişiler tarafından kullanılır. Ayrıca, enerji seviyelerini artırabilir ve fiziksel performansı destekleyebilir. L-Karnitin genellikle sıvı, kapsül veya toz formunda bulunur ve egzersiz öncesinde veya sonrasında alınabilir.",
+  "link": "https://api.whatsapp.com/send/?phone=905075201706&text&type=phone_number&app_absent=0",
+  "image": "karnitin",
+  "fact": [
+    "L-Karnitin, yağ asitlerinin enerjiye dönüşümünü destekler.",
+    "Yağ yakımını artırabilir ve egzersiz performansını iyileştirebilir.",
+    "Enerji seviyelerini artırabilir ve fiziksel performansı destekleyebilir.",
+    "Genellikle egzersiz öncesi veya sonrası alınır."
+  ]
+}
+]
