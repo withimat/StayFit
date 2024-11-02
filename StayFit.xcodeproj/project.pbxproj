@@ -89,6 +89,8 @@
 		31E66E4B2CB7060E00E0F16A /* Suplementler.json in Resources */ = {isa = PBXBuildFile; fileRef = 31E66E4A2CB7060E00E0F16A /* Suplementler.json */; };
 		31E66E4D2CB7063300E0F16A /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E66E4C2CB7063300E0F16A /* Bundle.swift */; };
 		31F22A9A2CD4E9F10073C27F /* AntrenorSecim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F22A992CD4E9F10073C27F /* AntrenorSecim.swift */; };
+		31F22A9E2CD510390073C27F /* AntrenorAnasayfaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F22A9D2CD510390073C27F /* AntrenorAnasayfaViewModel.swift */; };
+		31F22AA12CD512710073C27F /* StudentDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F22AA02CD512710073C27F /* StudentDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -97,7 +99,7 @@
 		310071A02CC439DE0011F6AC /* AntrenorLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AntrenorLoginView.swift; sourceTree = "<group>"; };
 		310071A22CC43E640011F6AC /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		310071A42CC445D70011F6AC /* AntrenorTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AntrenorTabView.swift; sourceTree = "<group>"; };
-		310071A62CC4464C0011F6AC /* AntrenorAnasayfa.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AntrenorAnasayfa.swift; sourceTree = "<group>"; };
+		310071A62CC4464C0011F6AC /* AntrenorAnasayfa.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AntrenorAnasayfa.swift; path = ../AntrenorAnasayfa.swift; sourceTree = "<group>"; };
 		310071A82CC446720011F6AC /* AntrenorProfil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AntrenorProfil.swift; sourceTree = "<group>"; };
 		311111CD2CB57A1C00BA2EF7 /* CustomText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomText.swift; sourceTree = "<group>"; };
 		311111CF2CB57EEA00BA2EF7 /* CoverImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverImageView.swift; sourceTree = "<group>"; };
@@ -174,6 +176,8 @@
 		31E66E4A2CB7060E00E0F16A /* Suplementler.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Suplementler.json; sourceTree = "<group>"; };
 		31E66E4C2CB7063300E0F16A /* Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bundle.swift; sourceTree = "<group>"; };
 		31F22A992CD4E9F10073C27F /* AntrenorSecim.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AntrenorSecim.swift; sourceTree = "<group>"; };
+		31F22A9D2CD510390073C27F /* AntrenorAnasayfaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AntrenorAnasayfaViewModel.swift; sourceTree = "<group>"; };
+		31F22AA02CD512710073C27F /* StudentDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -386,7 +390,7 @@
 				3100719C2CC40BFD0011F6AC /* AntrenorRegisterView.swift */,
 				310071A02CC439DE0011F6AC /* AntrenorLoginView.swift */,
 				310071A42CC445D70011F6AC /* AntrenorTabView.swift */,
-				310071A62CC4464C0011F6AC /* AntrenorAnasayfa.swift */,
+				31F22A9F2CD5123E0073C27F /* New Group */,
 				310071A82CC446720011F6AC /* AntrenorProfil.swift */,
 				316A95C02CC55BF4004BC12E /* OgrenciDetay.swift */,
 			);
@@ -400,6 +404,7 @@
 				316A95C22CC56C09004BC12E /* AntrenorListViewModel.swift */,
 				315260772CCF74A70042EB47 /* AntrenorProfilModelView.swift */,
 				315260862CD4E4020042EB47 /* AntrenorSecimModelView.swift */,
+				31F22A9D2CD510390073C27F /* AntrenorAnasayfaViewModel.swift */,
 			);
 			path = Antrenor;
 			sourceTree = "<group>";
@@ -476,6 +481,15 @@
 				317E59A52CBC536F00CFAA6B /* MotivasyonVideoları */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		31F22A9F2CD5123E0073C27F /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				310071A62CC4464C0011F6AC /* AntrenorAnasayfa.swift */,
+				31F22AA02CD512710073C27F /* StudentDetailView.swift */,
+			);
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -570,6 +584,7 @@
 				317C44982CB4700C001D5F21 /* Calendarr.swift in Sources */,
 				310071A32CC43E640011F6AC /* AuthManager.swift in Sources */,
 				31E66E482CB705CF00E0F16A /* SuplementModel.swift in Sources */,
+				31F22A9E2CD510390073C27F /* AntrenorAnasayfaViewModel.swift in Sources */,
 				31901D0C2CBA75DE00427F0A /* diyet.swift in Sources */,
 				317C44962CB46FFF001D5F21 /* Beslenme.swift in Sources */,
 				316C96382CABF59A00D78A51 /* CustomTextField.swift in Sources */,
@@ -607,6 +622,7 @@
 				317E59952CBB8E2A00CFAA6B /* SecimEkrani.swift in Sources */,
 				316C963A2CABF5B700D78A51 /* BigButton.swift in Sources */,
 				316C96432CABF65B00D78A51 /* AntrenorListesi.swift in Sources */,
+				31F22AA12CD512710073C27F /* StudentDetailView.swift in Sources */,
 				315E19FE2CB7293900B4E81D /* HeadingView.swift in Sources */,
 				3100719F2CC430CF0011F6AC /* AntrenorRegisterViewModel.swift in Sources */,
 				310071A52CC445D70011F6AC /* AntrenorTabView.swift in Sources */,

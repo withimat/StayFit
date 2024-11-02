@@ -6,60 +6,92 @@
 
 import Foundation
 
-struct Person : Identifiable, Decodable ,Encodable{
-    let id: UUID
-    let createdDate: String // String olarak al, UI'de formatla
-    let firstName: String
-    let lastName: String
-    let email: String
-    let phone: String
-    let photoPath: String?
-    let bio: String
-    let monthlyRate: Int
-    let rate: Int
-    let yearsOfExperience: Int
-    let birthDate: String // String olarak al, UI'de formatla
-    let gender: String
+struct Person: Identifiable, Decodable ,Encodable{
+    var id: String
+    var createdDate: String // String olarak al, UI'de formatla
+    var firstName: String
+    var lastName: String
+    var email: String
+    var phone: String
+    var photoPath: String?
+    var bio: String
+    var monthlyRate: Int
+    var rate: Int
+    var yearsOfExperience: Int
+    var birthDate: String // String olarak al, UI'de formatla
+    var gender: String
 }
 
-import Foundation
-
 class AntrenorListViewModel: ObservableObject {
-        @Published var persons: [Person] = []
+    @Published var persons: [Person] = []
 
-        init() {
-            fetchPersons()
+    init() {
+        fetchPersons()
+    }
+
+    func fetchPersons() {
+        guard let url = URL(string: "http://localhost:5200/api/Trainers/GetAllTrainersIncludeUser") else {
+            print("Geçersiz URL")
+            return
         }
 
-        func fetchPersons() {
-            guard let url = URL(string: "http://localhost:5200/api/Trainers/GetAllTrainersIncludeUser") else {
-                print("Geçersiz URL")
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            if let error = error {
+                print("İstek hatası: \(error)")
                 return
             }
 
-            let task = URLSession.shared.dataTask(with: url) { data, response, error in
-                if let error = error {
-                    print("İstek hatası: \(error)")
-                    return
-                }
-
-                guard let data = data else {
-                    print("Boş veri döndü.")
-                    return
-                }
-
-                do {
-                    let decoder = JSONDecoder()
-                    let decodedPersons = try decoder.decode([Person].self, from: data)
-
-                    DispatchQueue.main.async {
-                        self.persons = decodedPersons
-                    }
-                } catch {
-                    print("Veri çözümleme hatası: \(error)")
-                }
+            guard let data = data else {
+                print("Boş veri döndü.")
+                return
             }
 
-            task.resume()
+            do {
+                let decoder = JSONDecoder()
+                let decodedPersons = try decoder.decode([Person].self, from: data)
+
+                DispatchQueue.main.async {
+                    self.persons = decodedPersons
+                }
+            } catch {
+                print("Veri çözümleme hatası: \(error)")
+            }
         }
+
+        task.resume()
     }
+    
+    func sendSubscriptionRequest(personID: String) {
+        guard let token = UserDefaults.standard.string(forKey: "jwt") else {
+            print("Token bulunamadı.")
+            return
+        }
+
+        guard let url = URL(string: "http://localhost:5200/api/Subscriptions/CreateSubscription?trainerId=\(personID)") else {
+            print("Geçersiz URL")
+            return
+        }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print("İstek hatası: \(error.localizedDescription)")
+                return
+            }
+
+            if let httpResponse = response as? HTTPURLResponse {
+                print("HTTP Durum Kodu: \(httpResponse.statusCode)")
+            }
+
+            if let data = data {
+                let responseString = String(data: data, encoding: .utf8)
+                print("Dönen veri: \(responseString ?? "Veri yok")")
+            }
+        }
+
+        task.resume()
+    }
+}

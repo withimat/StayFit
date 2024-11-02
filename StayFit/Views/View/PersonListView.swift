@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct PersonListView: View {
-    @StateObject private var viewModel = AntrenorListViewModel() // ViewModel'i izliyoruz
+    @StateObject private var viewModel = AntrenorListViewModel()
     @State private var odemetiklandi: Bool = false
     @Environment(\.dismiss) var dismiss
     init() {
@@ -71,17 +71,15 @@ struct PersonListView: View {
 #Preview {
     PersonListView()
 }
+
+
+
 struct PersonDetailView: View {
     let person: Person
     @State private var showAlert = false  // Alert kontrolü
     @State private var navigateToMainTab = false
     @Environment(\.dismiss) var dismiss
-    func saveTrainerToUserDefaults(_ person:Person) {
-        let encoder = JSONEncoder()
-        if let encoded = try? encoder.encode(person) {
-            UserDefaults.standard.set(encoded, forKey: "selectedPerson")
-        }
-    }
+    @ObservedObject var viewModel = AntrenorListViewModel()
     
     var body: some View {
         NavigationStack{
@@ -89,12 +87,42 @@ struct PersonDetailView: View {
                         VStack(alignment: .leading, spacing: 20) {
                             // Üst Başlık ve Fotoğraf
                             VStack(spacing: 12) {
-                                Image(person.photoPath ?? "hoca")
-                                    .resizable()
-                                    .scaledToFill()
-                                    .frame(width: 120, height: 120)
-                                    .clipShape(Circle())
-                                    .shadow(radius: 8)
+                                if let photoPath = person.photoPath, let url = URL(string: photoPath) {
+                                    AsyncImage(url: url) { phase in
+                                        switch phase {
+                                        case .empty:
+                                            ProgressView() // Yükleme sırasında gösterilecek
+                                        case .success(let image):
+                                            image
+                                                .resizable()
+                                                .scaledToFill()
+                                                .frame(width: 120, height: 120)
+                                                .clipShape(Circle())
+                                                .shadow(radius: 8)
+                                        case .failure(_):
+                                            Image("hoca") // Hata durumunda yedek görsel
+                                                .resizable()
+                                                .scaledToFill()
+                                                .frame(width: 120, height: 120)
+                                                .clipShape(Circle())
+                                                .shadow(radius: 8)
+                                        @unknown default:
+                                            Image("hoca") // Beklenmedik durumlarda yedek görsel
+                                                .resizable()
+                                                .scaledToFill()
+                                                .frame(width: 120, height: 120)
+                                                .clipShape(Circle())
+                                                .shadow(radius: 8)
+                                        }
+                                    }
+                                } else {
+                                    Image("hoca") // Eğer photoPath boşsa yedek görsel
+                                        .resizable()
+                                        .scaledToFill()
+                                        .frame(width: 120, height: 120)
+                                        .clipShape(Circle())
+                                        .shadow(radius: 8)
+                                }
 
                                 Text("\(person.firstName) \(person.lastName)")
                                     .font(.largeTitle)
@@ -131,6 +159,7 @@ struct PersonDetailView: View {
                                 HStack {
                                     Image(systemName: "person.fill")
                                     Text("Cinsiyet: \(person.gender)")
+                                    
                                 }
 
                                 if let birthDate = formatDate(person.birthDate) {
@@ -166,7 +195,7 @@ struct PersonDetailView: View {
                                     HStack {
                                         Text("Biyografi")
                                             .font(.title2)
-                                        .fontWeight(.semibold)
+                                            .fontWeight(.semibold)
                                         Spacer()
                                     }
 
@@ -178,7 +207,7 @@ struct PersonDetailView: View {
                                 
                                 Spacer()
                                 Button(action: {
-                                    saveTrainerToUserDefaults(person)
+                                    viewModel.sendSubscriptionRequest(personID: person.id)
                                     showAlert = true
                                 }) {
                                     Text("Ödeme Yap")
@@ -192,37 +221,34 @@ struct PersonDetailView: View {
                             }
                             .padding(.horizontal)
 
-                            // Biyografi
-                           
-
                             Spacer()
                         }
                         .padding(.bottom, 20)
                     }
-            .navigationTitle("Kişi Detayı")
-            .navigationBarTitleDisplayMode(.inline)
-            .alert(isPresented: $showAlert) {
-                Alert(
-                    title: Text("Seçim Yapıldı"),
-                    message: Text("Seçiminiz kaydedilmiştir.\(person.firstName.uppercased()) Hoca ile devam edeceksinzi.. Şimdi ana menüye yönlendirileceksiniz."),
-                    dismissButton: .default(Text("Tamam"), action: {
-                        navigateToMainTab = true  // Ana menüye geçiş başlat
-                    })
-                )
-            }
-            .navigationDestination(isPresented: $navigateToMainTab) {
-                MainTabView()  // Ana menüye geçiş
-            }
-            .toolbar{
-                ToolbarItem(placement: .topBarLeading) {
-                    Image(systemName: "chevron.left")
-                        .imageScale(.large)
-                        .foregroundColor(.white)
-                        .onTapGesture {
-                            dismiss()
+                    .navigationTitle("Kişi Detayı")
+                    .navigationBarTitleDisplayMode(.inline)
+                    .alert(isPresented: $showAlert) {
+                        Alert(
+                            title: Text("Seçim Yapıldı"),
+                            message: Text("Seçiminiz kaydedilmiştir. \(person.firstName.uppercased()) Hoca ile devam edeceksiniz. Şimdi ana menüye yönlendirileceksiniz."),
+                            dismissButton: .default(Text("Tamam"), action: {
+                                navigateToMainTab = true  // Ana menüye geçiş başlat
+                            })
+                        )
+                    }
+                    .navigationDestination(isPresented: $navigateToMainTab) {
+                        MainTabView()  // Ana menüye geçiş
+                    }
+                    .toolbar {
+                        ToolbarItem(placement: .topBarLeading) {
+                            Image(systemName: "chevron.left")
+                                .imageScale(.large)
+                                .foregroundColor(.white)
+                                .onTapGesture {
+                                    dismiss()
+                                }
                         }
-                }
-            }
+                    }
         }
     }
 
@@ -238,29 +264,62 @@ struct PersonDetailView: View {
     }
 }
 
-
 struct PersonRowView: View {
     let person: Person
-
+    @ObservedObject var viewmodel = AntrenorListViewModel()
+    
     var body: some View {
         HStack(spacing: 16) {
-            Image(person.photoPath ?? "hoca")
-                .resizable()
-                .scaledToFill()
-                .frame(width: 70, height: 70)
-                .clipShape(Circle()) // Fotoğrafı yuvarlak yapar
-                .shadow(radius: 5) // Gölge ekler
-
+            if let photoPath = person.photoPath, let url = URL(string: photoPath) {
+                AsyncImage(url: url) { phase in
+                    switch phase {
+                    case .empty:
+                        ProgressView() // Yükleme sırasında gösterilecek
+                    case .success(let image):
+                        image
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 70, height: 70)
+                            .clipShape(Circle())
+                            .shadow(radius: 5)
+                    case .failure(_):
+                        Image("hoca") // Hata durumunda yedek görsel
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 70, height: 70)
+                            .clipShape(Circle())
+                            .shadow(radius: 5)
+                    @unknown default:
+                        Image("hoca") // Beklenmedik durumlarda yedek görsel
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 70, height: 70)
+                            .clipShape(Circle())
+                            .shadow(radius: 5)
+                    }
+                }
+            } else {
+                Image("hoca") // Eğer photoPath boşsa yedek görsel
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 70, height: 70)
+                    .clipShape(Circle())
+                    .shadow(radius: 5)
+            }
+            
             VStack(alignment: .leading, spacing: 4) {
                 Text("\(person.firstName) \(person.lastName)")
                     .font(.headline)
-                    .foregroundColor(.primary) // Varsayılan metin rengi
+                    .foregroundColor(.primary)
                 Text(person.bio)
                     .font(.subheadline)
-                    .foregroundColor(.secondary) // Daha açık bir metin rengi
-                    .lineLimit(2) // Maksimum 2 satırda sınırlandırma
+                    .foregroundColor(.secondary)
+                    .lineLimit(2)
             }
-            Spacer() // HStack içeriğini sola yaslar
+            Spacer()
+        }
+        .onAppear {
+            viewmodel.fetchPersons()
         }
         .padding(12)
         .padding(.horizontal, 16)

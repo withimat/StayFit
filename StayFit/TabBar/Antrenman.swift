@@ -1,7 +1,7 @@
 //
 //  Antrenman.swift
 //  StayFit
-//
+//cscs
 //  Created by İmat Gökaslan on 9.10.2024.
 //sdscscs
 
@@ -60,68 +60,3 @@ struct Antrenman: View {
     Antrenman()
 }
 
-
-/*
- 
- struct AnterorSecim: View {
-     func loadTrainerFromUserDefaults() -> Person? {
-         if let savedTrainer = UserDefaults.standard.data(forKey: "selectedPerson") {
-             let decoder = JSONDecoder()
-             if let loadedTrainer = try? decoder.decode(Person.self, from: savedTrainer) {
-                 return loadedTrainer
-             }
-         }
-         return nil
-     }
-
-     @State private var person : Person?
-     @State private var isNavigatingToList: Bool = false  // Antrenor listesine geçiş kontrolü
-
-     var body: some View {
-         VStack {
-             if let person = person {
-                 Text("Seçilen Antrenör: \(person.firstName) \(person.lastName)")
-                     .font(.title)
-                     .padding()
-
-                 Button(action: {
-                     deleteTrainerFromUserDefaults()  // Silme işlemi
-                     self.person = nil  // Ekranı güncelle
-                 }) {
-                     Text("Antrenörü Sil")
-                         .foregroundColor(.white)
-                         .padding()
-                         .background(Color.red)
-                         .cornerRadius(10)
-                 }
-                 .padding()
-             } else {
-                 Text("Lütfen aşağıdan bir antrenör seçin")
-                 Button(action: {
-                     isNavigatingToList = true
-                 }) {
-                 
-                     Text("Antrenör Seç")
-                         .foregroundColor(.white)
-                         .padding()
-                         .background(Color.blue)
-                         .cornerRadius(10)
-                 }
-                 .fullScreenCover(isPresented: $isNavigatingToList) {
-                     PersonListView()  // AntrenorListesi sayfası
-                 }
-             }
-         }
-         .onAppear {
-             person = loadTrainerFromUserDefaults()  // Trainer'ı yükle
-         }
-     }
-
-     // Trainer'ı UserDefaults'tan silmek için fonksiyon
-     func deleteTrainerFromUserDefaults() {
-         UserDefaults.standard.removeObject(forKey: "selectedPerson")
-     }
- }
-
- 
- */
