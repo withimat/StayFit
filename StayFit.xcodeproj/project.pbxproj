@@ -24,12 +24,10 @@
 		315260782CCF74A70042EB47 /* AntrenorProfilModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315260772CCF74A70042EB47 /* AntrenorProfilModelView.swift */; };
 		315260832CD0DADF0042EB47 /* YararliBilgiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315260822CD0DADF0042EB47 /* YararliBilgiler.swift */; };
 		315260852CD0DDFB0042EB47 /* fitness.json in Resources */ = {isa = PBXBuildFile; fileRef = 315260842CD0DDFB0042EB47 /* fitness.json */; };
-		315260872CD4E4020042EB47 /* AntrenorSecimModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315260862CD4E4020042EB47 /* AntrenorSecimModelView.swift */; };
 		315E19F82CB726AD00B4E81D /* InsetFactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315E19F72CB726AD00B4E81D /* InsetFactView.swift */; };
 		315E19FA2CB7278100B4E81D /* SuplementDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315E19F92CB7278100B4E81D /* SuplementDetailView.swift */; };
 		315E19FC2CB727AD00B4E81D /* SuplementListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315E19FB2CB727AD00B4E81D /* SuplementListItemView.swift */; };
 		315E19FE2CB7293900B4E81D /* HeadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315E19FD2CB7293900B4E81D /* HeadingView.swift */; };
-		316A95C12CC55BF4004BC12E /* OgrenciDetay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A95C02CC55BF4004BC12E /* OgrenciDetay.swift */; };
 		316A95C32CC56C09004BC12E /* AntrenorListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A95C22CC56C09004BC12E /* AntrenorListViewModel.swift */; };
 		316A95C52CC56CDB004BC12E /* PersonListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A95C42CC56CDB004BC12E /* PersonListView.swift */; };
 		316C95FE2CABF27800D78A51 /* StayFitApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316C95FD2CABF27800D78A51 /* StayFitApp.swift */; };
@@ -51,9 +49,6 @@
 		316C963A2CABF5B700D78A51 /* BigButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316C96392CABF5B700D78A51 /* BigButton.swift */; };
 		316C963D2CABF5EB00D78A51 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316C963C2CABF5EB00D78A51 /* LoginView.swift */; };
 		316C963F2CABF62500D78A51 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316C963E2CABF62500D78A51 /* RegisterView.swift */; };
-		316C96412CABF63E00D78A51 /* OgrenciListesi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316C96402CABF63E00D78A51 /* OgrenciListesi.swift */; };
-		316C96432CABF65B00D78A51 /* AntrenorListesi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316C96422CABF65B00D78A51 /* AntrenorListesi.swift */; };
-		316C96452CABF80F00D78A51 /* AntrenorDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316C96442CABF80F00D78A51 /* AntrenorDetailView.swift */; };
 		317B4A812CB72D65003A0874 /* SuplementList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317B4A802CB72D65003A0874 /* SuplementList.swift */; };
 		317C448B2CB31D88001D5F21 /* Lottie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317C448A2CB31D88001D5F21 /* Lottie.swift */; };
 		317C448D2CB3C8DF001D5F21 /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317C448C2CB3C8DF001D5F21 /* Tab.swift */; };
@@ -91,6 +86,11 @@
 		31F22A9A2CD4E9F10073C27F /* AntrenorSecim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F22A992CD4E9F10073C27F /* AntrenorSecim.swift */; };
 		31F22A9E2CD510390073C27F /* AntrenorAnasayfaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F22A9D2CD510390073C27F /* AntrenorAnasayfaViewModel.swift */; };
 		31F22AA12CD512710073C27F /* StudentDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F22AA02CD512710073C27F /* StudentDetailView.swift */; };
+		31F22AA32CD5F9B70073C27F /* AntrenorSecimViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F22AA22CD5F9B70073C27F /* AntrenorSecimViewModel.swift */; };
+		31F22AA52CD5FFF90073C27F /* EditProfilViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F22AA42CD5FFF90073C27F /* EditProfilViewModel.swift */; };
+		31F22AA72CD67BC90073C27F /* AntrenorListesiSayfasi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F22AA62CD67BC90073C27F /* AntrenorListesiSayfasi.swift */; };
+		31F22AAB2CD67C5A0073C27F /* AntrenorListesiRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F22AAA2CD67C5A0073C27F /* AntrenorListesiRow.swift */; };
+		31F22AAD2CD681550073C27F /* SecilenAntrenorDetaySayfasi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F22AAC2CD681550073C27F /* SecilenAntrenorDetaySayfasi.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -99,7 +99,7 @@
 		310071A02CC439DE0011F6AC /* AntrenorLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AntrenorLoginView.swift; sourceTree = "<group>"; };
 		310071A22CC43E640011F6AC /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		310071A42CC445D70011F6AC /* AntrenorTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AntrenorTabView.swift; sourceTree = "<group>"; };
-		310071A62CC4464C0011F6AC /* AntrenorAnasayfa.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AntrenorAnasayfa.swift; path = ../AntrenorAnasayfa.swift; sourceTree = "<group>"; };
+		310071A62CC4464C0011F6AC /* AntrenorAnasayfa.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AntrenorAnasayfa.swift; sourceTree = "<group>"; };
 		310071A82CC446720011F6AC /* AntrenorProfil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AntrenorProfil.swift; sourceTree = "<group>"; };
 		311111CD2CB57A1C00BA2EF7 /* CustomText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomText.swift; sourceTree = "<group>"; };
 		311111CF2CB57EEA00BA2EF7 /* CoverImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverImageView.swift; sourceTree = "<group>"; };
@@ -111,12 +111,10 @@
 		315260772CCF74A70042EB47 /* AntrenorProfilModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AntrenorProfilModelView.swift; sourceTree = "<group>"; };
 		315260822CD0DADF0042EB47 /* YararliBilgiler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YararliBilgiler.swift; sourceTree = "<group>"; };
 		315260842CD0DDFB0042EB47 /* fitness.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = fitness.json; sourceTree = "<group>"; };
-		315260862CD4E4020042EB47 /* AntrenorSecimModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AntrenorSecimModelView.swift; sourceTree = "<group>"; };
 		315E19F72CB726AD00B4E81D /* InsetFactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetFactView.swift; sourceTree = "<group>"; };
 		315E19F92CB7278100B4E81D /* SuplementDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplementDetailView.swift; sourceTree = "<group>"; };
 		315E19FB2CB727AD00B4E81D /* SuplementListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplementListItemView.swift; sourceTree = "<group>"; };
 		315E19FD2CB7293900B4E81D /* HeadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadingView.swift; sourceTree = "<group>"; };
-		316A95C02CC55BF4004BC12E /* OgrenciDetay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OgrenciDetay.swift; sourceTree = "<group>"; };
 		316A95C22CC56C09004BC12E /* AntrenorListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AntrenorListViewModel.swift; sourceTree = "<group>"; };
 		316A95C42CC56CDB004BC12E /* PersonListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonListView.swift; sourceTree = "<group>"; };
 		316C95FA2CABF27800D78A51 /* StayFit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StayFit.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -140,9 +138,6 @@
 		316C96392CABF5B700D78A51 /* BigButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigButton.swift; sourceTree = "<group>"; };
 		316C963C2CABF5EB00D78A51 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		316C963E2CABF62500D78A51 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
-		316C96402CABF63E00D78A51 /* OgrenciListesi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OgrenciListesi.swift; sourceTree = "<group>"; };
-		316C96422CABF65B00D78A51 /* AntrenorListesi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AntrenorListesi.swift; sourceTree = "<group>"; };
-		316C96442CABF80F00D78A51 /* AntrenorDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AntrenorDetailView.swift; sourceTree = "<group>"; };
 		317B4A802CB72D65003A0874 /* SuplementList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplementList.swift; sourceTree = "<group>"; };
 		317C448A2CB31D88001D5F21 /* Lottie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lottie.swift; sourceTree = "<group>"; };
 		317C448C2CB3C8DF001D5F21 /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
@@ -177,7 +172,12 @@
 		31E66E4C2CB7063300E0F16A /* Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bundle.swift; sourceTree = "<group>"; };
 		31F22A992CD4E9F10073C27F /* AntrenorSecim.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AntrenorSecim.swift; sourceTree = "<group>"; };
 		31F22A9D2CD510390073C27F /* AntrenorAnasayfaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AntrenorAnasayfaViewModel.swift; sourceTree = "<group>"; };
-		31F22AA02CD512710073C27F /* StudentDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentDetailView.swift; sourceTree = "<group>"; };
+		31F22AA02CD512710073C27F /* StudentDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StudentDetailView.swift; path = "New Group/StudentDetailView.swift"; sourceTree = "<group>"; };
+		31F22AA22CD5F9B70073C27F /* AntrenorSecimViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AntrenorSecimViewModel.swift; sourceTree = "<group>"; };
+		31F22AA42CD5FFF90073C27F /* EditProfilViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfilViewModel.swift; sourceTree = "<group>"; };
+		31F22AA62CD67BC90073C27F /* AntrenorListesiSayfasi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AntrenorListesiSayfasi.swift; sourceTree = "<group>"; };
+		31F22AAA2CD67C5A0073C27F /* AntrenorListesiRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AntrenorListesiRow.swift; sourceTree = "<group>"; };
+		31F22AAC2CD681550073C27F /* SecilenAntrenorDetaySayfasi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecilenAntrenorDetaySayfasi.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -366,11 +366,8 @@
 			children = (
 				315260812CD0DACE0042EB47 /* YararliBilgiler */,
 				31901D0F2CBA8A7400427F0A /* Suplement */,
-				316C96402CABF63E00D78A51 /* OgrenciListesi.swift */,
-				316C96422CABF65B00D78A51 /* AntrenorListesi.swift */,
-				316C96442CABF80F00D78A51 /* AntrenorDetailView.swift */,
 				317E59942CBB8E2A00CFAA6B /* SecimEkrani.swift */,
-				316A95C42CC56CDB004BC12E /* PersonListView.swift */,
+				31F22AA92CD67BFB0073C27F /* AntrenorListesiBilesenleri */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -390,9 +387,10 @@
 				3100719C2CC40BFD0011F6AC /* AntrenorRegisterView.swift */,
 				310071A02CC439DE0011F6AC /* AntrenorLoginView.swift */,
 				310071A42CC445D70011F6AC /* AntrenorTabView.swift */,
-				31F22A9F2CD5123E0073C27F /* New Group */,
+				310071A62CC4464C0011F6AC /* AntrenorAnasayfa.swift */,
+				31F22AA02CD512710073C27F /* StudentDetailView.swift */,
 				310071A82CC446720011F6AC /* AntrenorProfil.swift */,
-				316A95C02CC55BF4004BC12E /* OgrenciDetay.swift */,
+				31F22AAC2CD681550073C27F /* SecilenAntrenorDetaySayfasi.swift */,
 			);
 			path = Antrenor;
 			sourceTree = "<group>";
@@ -403,7 +401,6 @@
 				3100719E2CC430CF0011F6AC /* AntrenorRegisterViewModel.swift */,
 				316A95C22CC56C09004BC12E /* AntrenorListViewModel.swift */,
 				315260772CCF74A70042EB47 /* AntrenorProfilModelView.swift */,
-				315260862CD4E4020042EB47 /* AntrenorSecimModelView.swift */,
 				31F22A9D2CD510390073C27F /* AntrenorAnasayfaViewModel.swift */,
 			);
 			path = Antrenor;
@@ -420,6 +417,8 @@
 				31901D0D2CBA7A8C00427F0A /* BeslenmeViewModel.swift */,
 				317E59A02CBBB71100CFAA6B /* AntrenmanViewModel.swift */,
 				310071A22CC43E640011F6AC /* AuthManager.swift */,
+				31F22AA22CD5F9B70073C27F /* AntrenorSecimViewModel.swift */,
+				31F22AA42CD5FFF90073C27F /* EditProfilViewModel.swift */,
 			);
 			path = Ogrenci;
 			sourceTree = "<group>";
@@ -483,13 +482,14 @@
 			path = Data;
 			sourceTree = "<group>";
 		};
-		31F22A9F2CD5123E0073C27F /* New Group */ = {
+		31F22AA92CD67BFB0073C27F /* AntrenorListesiBilesenleri */ = {
 			isa = PBXGroup;
 			children = (
-				310071A62CC4464C0011F6AC /* AntrenorAnasayfa.swift */,
-				31F22AA02CD512710073C27F /* StudentDetailView.swift */,
+				316A95C42CC56CDB004BC12E /* PersonListView.swift */,
+				31F22AA62CD67BC90073C27F /* AntrenorListesiSayfasi.swift */,
+				31F22AAA2CD67C5A0073C27F /* AntrenorListesiRow.swift */,
 			);
-			path = "New Group";
+			name = AntrenorListesiBilesenleri;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -592,6 +592,7 @@
 				316C96002CABF27800D78A51 /* ContentView.swift in Sources */,
 				316C960D2CABF2EE00D78A51 /* LoginViewViewModel.swift in Sources */,
 				311111CE2CB57A1C00BA2EF7 /* CustomText.swift in Sources */,
+				31F22AAD2CD681550073C27F /* SecilenAntrenorDetaySayfasi.swift in Sources */,
 				311111D22CB5822700BA2EF7 /* DiyetItem.swift in Sources */,
 				316C960F2CABF30900D78A51 /* RegisterViewViewModel.swift in Sources */,
 				315E19FC2CB727AD00B4E81D /* SuplementListItemView.swift in Sources */,
@@ -602,7 +603,6 @@
 				315E19F82CB726AD00B4E81D /* InsetFactView.swift in Sources */,
 				316C96322CABF52B00D78A51 /* ProfileView.swift in Sources */,
 				316C96112CABF32E00D78A51 /* MainViewViewModel.swift in Sources */,
-				315260872CD4E4020042EB47 /* AntrenorSecimModelView.swift in Sources */,
 				315E19FA2CB7278100B4E81D /* SuplementDetailView.swift in Sources */,
 				31E66E422CB6E5FA00E0F16A /* LottieItem.swift in Sources */,
 				317E59B32CBC55C400CFAA6B /* VideoListItemView.swift in Sources */,
@@ -610,9 +610,11 @@
 				316C962F2CABF4E300D78A51 /* MainTabView.swift in Sources */,
 				317E599F2CBBB6A100CFAA6B /* Workout.swift in Sources */,
 				316A95C52CC56CDB004BC12E /* PersonListView.swift in Sources */,
+				31F22AAB2CD67C5A0073C27F /* AntrenorListesiRow.swift in Sources */,
 				317B4A812CB72D65003A0874 /* SuplementList.swift in Sources */,
 				316C963F2CABF62500D78A51 /* RegisterView.swift in Sources */,
 				318368F82CB989C30056CF59 /* VideoPlayerHelper.swift in Sources */,
+				31F22AA72CD67BC90073C27F /* AntrenorListesiSayfasi.swift in Sources */,
 				311111D02CB57EEA00BA2EF7 /* CoverImageView.swift in Sources */,
 				311111D42CB5886C00BA2EF7 /* TrainersItem.swift in Sources */,
 				310071A72CC4464C0011F6AC /* AntrenorAnasayfa.swift in Sources */,
@@ -621,11 +623,12 @@
 				315260782CCF74A70042EB47 /* AntrenorProfilModelView.swift in Sources */,
 				317E59952CBB8E2A00CFAA6B /* SecimEkrani.swift in Sources */,
 				316C963A2CABF5B700D78A51 /* BigButton.swift in Sources */,
-				316C96432CABF65B00D78A51 /* AntrenorListesi.swift in Sources */,
+				31F22AA32CD5F9B70073C27F /* AntrenorSecimViewModel.swift in Sources */,
 				31F22AA12CD512710073C27F /* StudentDetailView.swift in Sources */,
 				315E19FE2CB7293900B4E81D /* HeadingView.swift in Sources */,
 				3100719F2CC430CF0011F6AC /* AntrenorRegisterViewModel.swift in Sources */,
 				310071A52CC445D70011F6AC /* AntrenorTabView.swift in Sources */,
+				31F22AA52CD5FFF90073C27F /* EditProfilViewModel.swift in Sources */,
 				317C44942CB46FF3001D5F21 /* Anasayfa.swift in Sources */,
 				311111D62CB5D12800BA2EF7 /* TrainerDetailView.swift in Sources */,
 				31F22A9A2CD4E9F10073C27F /* AntrenorSecim.swift in Sources */,
@@ -638,9 +641,7 @@
 				313B7D072CCD37B8005C64A5 /* EditProfileView.swift in Sources */,
 				317C44922CB41CA9001D5F21 /* ExtensionsTab.swift in Sources */,
 				317C448F2CB3CA92001D5F21 /* CustomTabBar.swift in Sources */,
-				316C96412CABF63E00D78A51 /* OgrenciListesi.swift in Sources */,
 				31901D0E2CBA7A8C00427F0A /* BeslenmeViewModel.swift in Sources */,
-				316C96452CABF80F00D78A51 /* AntrenorDetailView.swift in Sources */,
 				316C95FE2CABF27800D78A51 /* StayFitApp.swift in Sources */,
 				318368FA2CB989F20056CF59 /* VideoModel.swift in Sources */,
 				316C96132CABF35000D78A51 /* ProfileViewViewModel.swift in Sources */,
@@ -649,7 +650,6 @@
 				3100719D2CC40BFD0011F6AC /* AntrenorRegisterView.swift in Sources */,
 				31E66E442CB6F6B800E0F16A /* Antrenman.swift in Sources */,
 				316C96162CABF38300D78A51 /* User.swift in Sources */,
-				316A95C12CC55BF4004BC12E /* OgrenciDetay.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -63,8 +63,8 @@ struct ProfileDetailsView: View {
                     profileInfoRow(label: "Telefon Numarası", value: profile.phone)
                     profileInfoRow(label: "Kayıt Tarihi", value: profile.createdDate)
                     profileInfoRow(label: "Doğum Tarihi", value: profile.birthDate)
-                    profileInfoRow(label: "Boy", value: String(profile.height!))
-                    profileInfoRow(label: "Kilo", value: String(profile.weight!))
+                    profileInfoRow(label: "Boy", value: String(profile.height))
+                    profileInfoRow(label: "Kilo", value: String(profile.weight))
                     profileInfoRow(label: "Cinsiyet", value: profile.gender)
                     
                 }
@@ -115,9 +115,20 @@ struct ProfileDetailsView: View {
 
 
 #Preview {
-    AntrenorProfileDetailsView(profile: AntrenorProfile(id: "", createdDate: "", firstName: "imat", lastName: "gokaslan", email: "ayhan@gmail.com", phone: "5380354884", birthDate: "dscc", gender: "erkek", monthlyRate: 4000, bio: "yoga egitmeni"))
+    ProfileDetailsView(profile: UserProfile(
+        id: "1234",
+        createdDate: "2023-01-01",
+        firstName: "İmat",
+        lastName: "Gökaslan",
+        email: "imattgokk@example.com",
+        phone: "11234567890",
+        photoPath: nil,
+        height: 180,  // Varsayılan height değeri eklendi
+        weight: 75,   // Varsayılan weight değeri eklendi
+        birthDate: "1990-01-01",
+        gender: "Erkek"
+    ))
 }
-
 
 struct AntrenorProfileDetailsView: View {
     @State var profile: AntrenorProfile  // Kullanıcı profilini parametre olarak alıyoruz

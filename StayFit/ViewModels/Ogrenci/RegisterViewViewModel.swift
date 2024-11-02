@@ -31,6 +31,8 @@ class RegisterViewViewModel: ObservableObject {
         get { Int(weight) }
         set { weight = Double(newValue) }
     }
+    
+  
 
     init() {}
 
@@ -42,7 +44,6 @@ class RegisterViewViewModel: ObservableObject {
         password = ""
         phone = ""
         birthDate = Calendar.current.date(from: DateComponents(year: 1973, month: 1, day: 2)) ?? Date()
-        gender = nil
         height = 180.0
         weight = 80.0
     }

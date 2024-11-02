@@ -7,35 +7,55 @@
 
 import SwiftUI
 
-
 struct EditProfileView: View {
-    @Binding var profile: UserProfile  // Binding kullanarak bilgileri geri döndürüyoruz
-    @Environment(\.presentationMode) var presentationMode  // Sayfayı kapatmak için
+    @Binding var profile: UserProfile
+    @Environment(\.presentationMode) var presentationMode
+    @StateObject private var viewModel = EditProfileViewModel()
     
     var body: some View {
-        VStack{
+        VStack {
             Fotoyukleme()
+            
             Form {
                 Section(header: Text("Kişisel Bilgiler")) {
-                    TextField("Ad", text: $profile.firstName)
-                    TextField("Soyad", text: $profile.lastName)
-                    TextField("Telefon", text: $profile.phone)
+                    HStack{
+                        Image(systemName: "pencil.and.scribble")
+                            .frame(width: 15)
+                        TextField("Ad", text: $profile.firstName)
+                    }
+                  
+                       
+                    HStack{
+                        Image(systemName: "pencil.and.scribble")
+                            .frame(width: 15)
+                        TextField("Soyad", text: $profile.lastName)
+                    }
+                    
+                        
+                    Text("Email: \(profile.email)")  // Yalnızca görüntülenebilir alan
+                    Text("Telefon: \(profile.phone)")
                 }
                 
                 Section(header: Text("Fiziksel Bilgiler")) {
-                    TextField("Boy (cm)", value: $profile.height, format: .number)
-                    TextField("Kilo (kg)", value: $profile.weight, format: .number)
-                    TextField("Doğum Tarihi", text: $profile.birthDate)
-                    Picker("Cinsiyet", selection: $profile.gender) {
-                        Text("Erkek").tag("Erkek")
-                        Text("Kadın").tag("Kadın")
-                        Text("Diğer").tag("Diğer")
+                    HStack{
+                        Image(systemName: "pencil.and.scribble")
+                            .frame(width: 15)
+                        TextField("Boy (cm)", value: $profile.height, format: .number)
                     }
-                    .pickerStyle(SegmentedPickerStyle())
+                   
+                    HStack{
+                     Image(systemName: "pencil.and.scribble")
+                            .frame(width: 15)
+                      TextField("Kilo (kg)", value: $profile.weight, format: .number)
+                    }
+                
+                        
+                    Text("Doğum Tarihi: \(profile.birthDate)")
+                    Text("Cinsiyet: \(profile.gender)")
                 }
                 
                 Button("Kaydet") {
-                    // Güncellemeyi kaydet ve geri dön
+                    viewModel.updateProfile(profile)
                     presentationMode.wrappedValue.dismiss()
                 }
             }
@@ -45,6 +65,7 @@ struct EditProfileView: View {
         .navigationBarTitleDisplayMode(.inline)
     }
 }
+
 
 
 

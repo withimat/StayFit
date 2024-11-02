@@ -7,16 +7,16 @@
 
 import Foundation
 
-struct UserProfile: Codable , Identifiable {
+struct UserProfile : Codable {
     var id: String
     var createdDate: String
     var firstName: String
     var lastName: String
-    let email: String
+    var email: String
     var phone: String
     var photoPath: String?
-    var height: Int?
-    var weight: Int?
+    var height: Int
+    var weight: Int
     var birthDate: String
     var gender: String
 }
