@@ -10,7 +10,7 @@ import Foundation
 import SwiftUI
 import Combine
 
-class GelenAntrenor: Codable, Identifiable {
+struct GelenAntrenor: Codable {
     var subscriptionId: String
     var trainerId: String
     var firstName: String

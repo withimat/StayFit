@@ -26,8 +26,8 @@ struct ContentView2: View {
        var body: some View {
            VStack {
                if authManager.userRole == "trainer" {
-                   // Trainer'a özel görünüm
-                   AntrenorTabView()  // Trainer görünümünü burada tanımlayabilirsin
+                
+                   AntrenorTabView()
                } else if authManager.userRole == "student" {
                   MainTabView()
                } else {

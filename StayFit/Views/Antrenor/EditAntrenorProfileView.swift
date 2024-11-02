@@ -1,21 +1,19 @@
 //
-//  EditProfileView.swift
+//  EditAntrenorProfileView.swift
 //  StayFit
 //
-//  Created by İmat Gökaslan on 26.10.2024.
+//  Created by İmat Gökaslan on 2.11.2024.
 //
 
 import SwiftUI
 
-struct EditProfileView: View {
-    @Binding var profile: UserProfile
-    @Environment(\.presentationMode) var presentationMode
-    @StateObject private var viewModel = EditProfileViewModel()
-    
+struct EditAntrenorProfileView: View {
+    @Binding var profile:  AntrenorProfile  // Binding kullanarak bilgileri geri döndürüyoruz
+    @Environment(\.dismiss) var dismiss
+    @StateObject private var viewModel = AntrenorEditProfileViewModel()
     var body: some View {
-        VStack {
+        VStack{
             Fotoyukleme()
-            
             Form {
                 Section(header: Text("Kişisel Bilgiler")) {
                     HStack{
@@ -23,48 +21,47 @@ struct EditProfileView: View {
                             .frame(width: 15)
                         TextField("Ad", text: $profile.firstName)
                     }
-                  
-                       
                     HStack{
                         Image(systemName: "pencil.and.scribble")
                             .frame(width: 15)
                         TextField("Soyad", text: $profile.lastName)
                     }
-                    
-                        
                     Text("Email: \(profile.email)")  // Yalnızca görüntülenebilir alan
                     Text("Telefon: \(profile.phone)")
                 }
-                
-                Section(header: Text("Fiziksel Bilgiler")) {
+                Section(header: Text("Diğer Bilgiler")){
                     HStack{
                         Image(systemName: "pencil.and.scribble")
                             .frame(width: 15)
-                        TextField("Boy (cm)", value: $profile.height, format: .number)
+                        TextField("Bio", text: $profile.bio)
                     }
-                   
                     HStack{
-                     Image(systemName: "pencil.and.scribble")
+                        Image(systemName: "pencil.and.scribble")
                             .frame(width: 15)
-                      TextField("Kilo (kg)", value: $profile.weight, format: .number)
+                        TextField("Aylık Ücret : ", value: $profile.monthlyRate, format: .number)
                     }
-                
-                        
+                    
                     Text("Doğum Tarihi: \(profile.birthDate)")
                     Text("Cinsiyet: \(profile.gender)")
                 }
-                
                 Button("Kaydet") {
                     viewModel.updateProfile(profile)
-                    presentationMode.wrappedValue.dismiss()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { // 0.1 saniye bekle
+                       dismiss()
+                    }
                 }
+
             }
             
         }
-        .navigationTitle("Profili Düzenle")
+        .navigationTitle("Antrenor Profili Düzenle")
         .navigationBarTitleDisplayMode(.inline)
     }
 }
 
 
 
+
+#Preview {
+    EditAntrenorProfileView(profile: .constant(AntrenorProfile(id: "12", createdDate: "11/22/23", firstName: "İmat", lastName: "GÖKASLAN", email: "imattgokk@gmail.com", phone: "5380354884", birthDate: "15/08/2000", gender: "Erkek", monthlyRate: 4000, bio: "Vücut Geliştirme Antrenörü")))
+}

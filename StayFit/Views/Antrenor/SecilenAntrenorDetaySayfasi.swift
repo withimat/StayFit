@@ -7,10 +7,8 @@
 
 import SwiftUI
 
-
 struct SecilenAntrenorDetaySayfasi: View {
     let person: GelenAntrenor
-
     var body: some View {
         VStack(spacing: 20) {
             if let photoPath = person.photoPath, let url = URL(string: photoPath) {
@@ -51,4 +49,6 @@ struct SecilenAntrenorDetaySayfasi: View {
     }
 }
 
-
+#Preview {
+    SecilenAntrenorDetaySayfasi(person: GelenAntrenor(subscriptionId: "12", trainerId: "121", firstName: "İmat", lastName: "GÖKASLAN", amount: 4000, endDate: "11/12/2024",photoPath: "https://minieticaretdodo.blob.core.windows.net/user-images/selectedImage-10.jpg"))
+}
