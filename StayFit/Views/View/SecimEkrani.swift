@@ -1,7 +1,7 @@
 //
 //  SecimEkrani.swift
 //  StayFit
-//......
+//......swxw
 //  Created by İmat Gökaslan on 13.10.2024.
 //
 
