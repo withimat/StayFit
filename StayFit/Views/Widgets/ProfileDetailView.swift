@@ -80,7 +80,7 @@ struct ProfileDetailsView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink {
-                        EditProfileView(profile: $profile)  // Fotoğraf yükleme sayfasına geçiş
+                        EditProfileView(profile: $profile) 
                     } label: {
                         Text("Düzenle")
                     }
@@ -213,7 +213,8 @@ struct AntrenorProfileDetailsView: View {
                 }
             }
             .navigationDestination(isPresented: $isEditViewActive) {
-                EditAntrenorProfileView(profile: $profile)  // Düzenleme ekranına geçiş
+                EditAntrenorProfileView(profile: $profile)
+                   
             }
             .navigationTitle("Antrenör Profilim")
             .navigationBarTitleDisplayMode(.inline)

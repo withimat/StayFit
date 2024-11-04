@@ -18,6 +18,7 @@ struct Student: Identifiable, Decodable {
     let lastName: String
     let gender: Int
     let birthDate: String
+    let photoPath : String?
 }
 
 class AntrenorAnasayfaViewModel : ObservableObject {

@@ -12,7 +12,20 @@ struct StudentDetailView: View {
     let student: Student
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .center, spacing: 8) {
+            if let photoPath = student.photoPath, let url = URL(string: photoPath) {
+                AsyncImage(url: url) { image in
+                    image
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 150, height: 150)
+                        .clipShape(Circle())
+                } placeholder: {
+                    ProgressView()
+                }
+            }
+            
+            
             Text("\(student.firstName) \(student.lastName)")
                 .font(.title)
                 .fontWeight(.bold)

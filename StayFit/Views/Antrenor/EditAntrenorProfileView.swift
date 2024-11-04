@@ -9,7 +9,7 @@ import SwiftUI
 
 struct EditAntrenorProfileView: View {
     @Binding var profile:  AntrenorProfile  // Binding kullanarak bilgileri geri döndürüyoruz
-    @Environment(\.dismiss) var dismiss
+    @Environment(\.presentationMode) var presentationMode
     @StateObject private var viewModel = AntrenorEditProfileViewModel()
     var body: some View {
         VStack{
@@ -47,7 +47,7 @@ struct EditAntrenorProfileView: View {
                 Button("Kaydet") {
                     viewModel.updateProfile(profile)
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { // 0.1 saniye bekle
-                       dismiss()
+                        presentationMode.wrappedValue.dismiss()
                     }
                 }
 

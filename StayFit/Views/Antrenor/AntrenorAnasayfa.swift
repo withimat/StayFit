@@ -15,6 +15,7 @@ struct AntrenorAnasayfa: View {
             List(viewModel.students) { student in
                 NavigationLink(destination: StudentDetailView(student: student)) {
                     StudentRowView(student: student)
+                       
                 }
             }
             .navigationTitle("Öğrencilerim")
@@ -30,14 +31,30 @@ struct StudentRowView: View {
     let student: Student
     
     var body: some View {
-        VStack(alignment: .leading,spacing: 15) {
-            HStack{
-                Text("\(student.firstName) \(student.lastName)")
-                    .font(.headline)
+        
+        
+        HStack(spacing: 20) {
+            if let photoPath = student.photoPath, let url = URL(string: photoPath) {
+                AsyncImage(url: url) { image in
+                    image
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 70, height: 70)
+                        .clipShape(Circle())
+                } placeholder: {
+                    ProgressView()
+                }
             }
             
-            HStack{
-                Text("Boy: \(student.height) cm \t Kilo: \(student.weight) kg")
+            VStack(alignment: .leading,spacing: 15) {
+                HStack{
+                    Text("\(student.firstName) \(student.lastName)")
+                        .font(.headline)
+                }
+                
+                HStack{
+                    Text("Boy: \(student.height) cm \t Kilo: \(student.weight) kg")
+                }
             }
         }
     }

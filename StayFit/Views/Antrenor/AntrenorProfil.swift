@@ -18,6 +18,7 @@ struct AntrenorProfil: View {
                     ScrollView {
                         VStack(alignment: .center, spacing: 10) {
                             AntrenorProfileDetailsView(profile: profile)
+                                
                             HStack {
                                 Button("Çıkış Yap") {
                                     authManager.logout()
