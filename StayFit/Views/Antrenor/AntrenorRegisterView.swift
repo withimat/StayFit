@@ -13,7 +13,7 @@ struct AntrenorRegisterView: View {
     @ObservedObject var viewmodel = AntrenorRegisterViewModel()
     @State private var showingAlert: Bool = false
     @State private var isSuccess: Bool = false
-    
+    @State private var navigateToLogin: Bool = false
     
     var body: some View {
         NavigationStack{
@@ -167,10 +167,10 @@ struct AntrenorRegisterView: View {
                         return Alert(
                             title: Text("Başarılı"),
                             message: Text("Kayıt başarıyla tamamlandı!"),
-                            dismissButton: .default(Text("Tamam")
-                                
-                                                   
-                                                   
+                            dismissButton: .default(Text("Tamam"),action: {
+                                navigateToLogin = true
+                            }
+                          
             )
                         )
                     } else {
@@ -181,13 +181,7 @@ struct AntrenorRegisterView: View {
                         )
                     }
                 }
-                
-                
-                
-                
-                
-                
-               
+    
             }
                 
                     }
@@ -196,9 +190,12 @@ struct AntrenorRegisterView: View {
                
             
             .background(Color("BG").opacity(0.7))
-            .navigationTitle("Kayıt Formu")
+            .navigationTitle("Antrenor Kayıt Formu")
             .navigationBarTitleDisplayMode(.inline)
-            
+            .navigationDestination(isPresented: $navigateToLogin) {
+                AntrenorLoginView()
+                    .navigationBarBackButtonHidden(true)
+            }
         }
     }
     

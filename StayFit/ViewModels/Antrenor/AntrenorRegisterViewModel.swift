@@ -127,6 +127,11 @@ class AntrenorRegisterViewModel: ObservableObject {
             return false
         }
         
+        if bio.isEmpty {
+            errorMessage = "Lütfen bio bilgisi giriniz."
+        }
+        
+        
         return true
     }
 

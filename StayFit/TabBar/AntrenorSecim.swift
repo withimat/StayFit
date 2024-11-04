@@ -7,35 +7,39 @@
 
 import SwiftUI
 import SwiftUI
-
 struct AntrenorSecim: View {
-    @StateObject private var viewModel = AntrenorSecimViewModel()
-    @State private var isNavigatingToDetail: Bool = false // Detay sayfasına geçiş kontrolü
+    @ObservedObject var viewmodel = AntrenorSecimViewModel()
+    @State private var isNavigatingToList: Bool = false  // Antrenor listesine geçiş kontrolü
 
     var body: some View {
         VStack {
-            if let person = viewModel.person {
-                SecilenAntrenorDetaySayfasi(person: person)
+            if let person = viewmodel.person {
+               SecilenAntrenorDetaySayfasi(person: person)
+
+                
             } else {
                 Text("Lütfen aşağıdan bir antrenör seçin")
-                    .padding()
-
                 Button(action: {
-                    viewModel.fetchPerson()  // Antrenör bilgilerini yükler
+                    isNavigatingToList = true
                 }) {
+                
                     Text("Antrenör Seç")
                         .foregroundColor(.white)
                         .padding()
                         .background(Color.blue)
                         .cornerRadius(10)
-                        
+                }
+                .fullScreenCover(isPresented: $isNavigatingToList) {
+                    AntrenorListesiSayfasi()  // AntrenorListesi sayfası
                 }
             }
         }
         .onAppear {
-            viewModel.fetchPerson()  // Sayfa açıldığında antrenör bilgilerini yükler
+           
         }
     }
+
+    
 }
 
 #Preview {
