@@ -1,45 +1,19 @@
 //
-//  AntrenmanViewModel.swift
+//  StudentDetailViewModel.swift
 //  StayFit
 //
-//  Created by İmat Gökaslan on 13.10.2024.
+//  Created by İmat Gökaslan on 20.11.2024.
 //
 
 import Foundation
-import SwiftUI
-
-
-struct WorkoutCevap: Codable {
-    var id: Int
-    var title: String
-    var description: String
-    var formattedStartDate: String
-    var formattedEndDate: String
-    var status: Int
-    var endDate: String
-    var startDate: String
-}
-
-struct WorkoutPlanResponse2: Codable {
-    var getWorkoutPlansBySubscriptionIdDtos: [WorkoutCevap] // Yeni dizi adı
-    var success: Bool
-    var message: String
-}
-
-struct WorkoutPlanResponse: Codable {
-    var getWorkoutPlansByMemberIdDtos: [WorkoutCevap] // Yeni dizi adı
-    var success: Bool
-    var message: String
-}
-
-class AntrenmanViewModel: ObservableObject {
+class StudentDetailViewModel: ObservableObject {
     @Published var workoutPlan: [WorkoutCevap] = []
     @Published var isLoading = false
     @Published var errorMessage: String?
 
-    func fetchWorkoutPlan() {
+    func fetchWorkoutPlan(subscriptionId: String) {
         // API URL
-        guard let url = URL(string: "http://localhost:5200/api/WorkoutPlans/GetWorkoutPlansByMemberId") else {
+        guard let url = URL(string: "http://localhost:5200/api/WorkoutPlans/GetWorkoutPlansBySubscriptionId?subscriptionId=\(subscriptionId)") else {
             self.errorMessage = "Invalid URL"
             return
         }
@@ -72,10 +46,10 @@ class AntrenmanViewModel: ObservableObject {
                 }
 
                 do {
-                    let response = try JSONDecoder().decode(WorkoutPlanResponse.self, from: data)
+                    let response = try JSONDecoder().decode(WorkoutPlanResponse2.self, from: data)
 
                     if response.success {
-                        self?.workoutPlan = response.getWorkoutPlansByMemberIdDtos
+                        self?.workoutPlan = response.getWorkoutPlansBySubscriptionIdDtos
                     } else {
                         self?.errorMessage = response.message
                     }

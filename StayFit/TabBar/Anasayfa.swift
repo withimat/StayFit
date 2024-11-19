@@ -65,9 +65,7 @@ struct Anasayfa: View {
                             CustomText()
                             
                         }
-                        
-                        
-                        
+ 
                        Spacer()
                 
                         NavigationLink {
@@ -83,6 +81,7 @@ struct Anasayfa: View {
                     
        
                     }
+                    
                     CoverImageView()
                         .frame(height: 300)
                         .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
@@ -97,8 +96,7 @@ struct Anasayfa: View {
                         Spacer()
                     }
                     
-                    
-                    
+                
                     ScrollView(.horizontal, showsIndicators: false) {
                                HStack(spacing: 10) { // Öğeler arasında boşluk
                                    if let meals = dietProgram.program[selectedDay] {
@@ -120,11 +118,7 @@ struct Anasayfa: View {
                            }
                     .padding(.top,-10)
                     .offset(y:-15)
-                    
-                    
-                   
-                    
-                    
+   
                     HStack(){
                         Text("Personel Traniers")
                             .font(.title2)

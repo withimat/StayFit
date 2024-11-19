@@ -1,7 +1,7 @@
 //
 //  SecimEkrani.swift
 //  StayFit
-//......swxw
+//
 //  Created by İmat Gökaslan on 13.10.2024.
 //
 
@@ -9,20 +9,23 @@ import SwiftUI
 
 struct SecimEkrani: View {
     @EnvironmentObject var authManager: AuthManager
+    @State var isAnimating: Bool = false
     var body: some View {
         NavigationStack{
             ZStack {
-                
-                Rectangle()
-                    .background(.black)
-                    .ignoresSafeArea()
+                Image("stayy")
                 VStack(spacing: 40) {
-                    Text("Lütfen bir seçim yapınız..")
-                        .foregroundColor(.white)
-                        .fontWeight(.semibold)
-                        .font(.system(size: 25))
-                    HStack(spacing:20){
-                        Spacer()
+                    Image("cover2")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: UIScreen.main.bounds.width-110)
+                        .cornerRadius(20)
+                        .padding(.vertical)
+                        
+                    
+                    
+                    HStack(spacing:40){
+                        
                         NavigationLink {
                             LoginView()
                                 .navigationBarBackButtonHidden(true)
@@ -32,7 +35,7 @@ struct SecimEkrani: View {
                                 
                         }
 
-                        Spacer()
+                       
                         
                         NavigationLink {
                             AntrenorLoginView()
@@ -42,9 +45,15 @@ struct SecimEkrani: View {
                                   .foregroundColor(.white)
                         }
 
-                      Spacer()
+                    
                     }
+                    
+                    Text("Lütfen bir seçim yapınız..")
+                        .foregroundColor(.white)
+                        .fontWeight(.semibold)
+                        .font(.system(size: 25))
                 }
+               
             }
             .navigationBarBackButtonHidden(true)
            

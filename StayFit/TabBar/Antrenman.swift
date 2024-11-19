@@ -7,53 +7,47 @@
 
 import SwiftUI
 
-
 struct Antrenman: View {
-    @ObservedObject var workoutProgram = AntrenmanViewModel()
-    @State private var selectedDay: String = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "EEEE" // Gün adını tam almak için (Pazartesi, Salı, vb.)
-        formatter.locale = Locale(identifier: "tr_TR") // Türkçe gün adları için
-        return formatter.string(from: Date())
-    }()
-    
-    let daysOfWeek = ["Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi", "Pazar"]
+    @StateObject private var viewModel = AntrenmanViewModel() // ViewModel'ı bağladık
 
-    var body: some View {
-       NavigationStack{
-            VStack {
-                // Gün seçimi için Picker
-                Picker("Gün Seçin", selection: $selectedDay) {
-                    ForEach(daysOfWeek, id: \.self) { day in
-                        Text(day).tag(day)
-                    }
-                }
-                .pickerStyle(MenuPickerStyle())
-                .padding()
+       var body: some View {
+           NavigationView {
+               VStack {
+                   if viewModel.isLoading {
+                       ProgressView("Yükleniyor...") // Yükleme göstergesi
+                   } else if let errorMessage = viewModel.errorMessage {
+                       Text("Hata: \(errorMessage)")
+                           .foregroundColor(.red)
+                           .multilineTextAlignment(.center)
+                           .padding()
+                   } else {
+                       List(viewModel.workoutPlan, id: \.id) { workout in
+                           NavigationLink {
+                               EmptyView()
+                           } label: {
+                               WorkoutRowView(workout: workout)
+                           }
 
-                // Seçilen günün antrenmanını gösterme
-                if let workout = workoutProgram.program[selectedDay] {
-                    VStack(alignment: .leading, spacing: 10) {
-                        Text(workout.name)
-                            .font(.largeTitle)
-                            .fontWeight(.bold)
-
-                        Text(workout.description)
-                            .font(.body)
-                            .foregroundColor(.gray)
-                    }
-                    .padding()
-                } else {
-                    Text("Bu gün için program bulunamadı.")
-                        .foregroundColor(.red)
-                        .padding()
-                }
-            }
-            .navigationTitle("Antrenman Programı")
-            .navigationBarTitleDisplayMode(.inline)
-        }
-    }
-}
+                           
+                       }
+                   }
+               }
+               .navigationTitle("Antrenman Planı")
+               .toolbar {
+                   ToolbarItem(placement: .navigationBarTrailing) {
+                       Button(action: {
+                           viewModel.fetchWorkoutPlan() // Yenile butonu
+                       }) {
+                           Image(systemName: "arrow.clockwise")
+                       }
+                   }
+               }
+               .onAppear {
+                   viewModel.fetchWorkoutPlan() // Görünüm yüklendiğinde veri çekiliyor
+               }
+           }
+       }
+   }
 
 
 #Preview {

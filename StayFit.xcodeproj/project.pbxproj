@@ -21,6 +21,8 @@
 		311111D62CB5D12800BA2EF7 /* TrainerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311111D52CB5D12800BA2EF7 /* TrainerDetailView.swift */; };
 		313B7D052CCD2FBF005C64A5 /* ProfileDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313B7D042CCD2FBF005C64A5 /* ProfileDetailView.swift */; };
 		313B7D072CCD37B8005C64A5 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313B7D062CCD37B8005C64A5 /* EditProfileView.swift */; };
+		313D3B952CEA032000C33452 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 313D3B942CEA032000C33452 /* Lottie */; };
+		313D3B972CEA032600C33452 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 313D3B962CEA032600C33452 /* Alamofire */; };
 		315260782CCF74A70042EB47 /* AntrenorProfilModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315260772CCF74A70042EB47 /* AntrenorProfilModelView.swift */; };
 		315260832CD0DADF0042EB47 /* YararliBilgiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315260822CD0DADF0042EB47 /* YararliBilgiler.swift */; };
 		315260852CD0DDFB0042EB47 /* fitness.json in Resources */ = {isa = PBXBuildFile; fileRef = 315260842CD0DDFB0042EB47 /* fitness.json */; };
@@ -28,6 +30,12 @@
 		315E19FA2CB7278100B4E81D /* SuplementDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315E19F92CB7278100B4E81D /* SuplementDetailView.swift */; };
 		315E19FC2CB727AD00B4E81D /* SuplementListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315E19FB2CB727AD00B4E81D /* SuplementListItemView.swift */; };
 		315E19FE2CB7293900B4E81D /* HeadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315E19FD2CB7293900B4E81D /* HeadingView.swift */; };
+		31630EBA2CEB8DA30069A73F /* WorkoutPlanViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31630EB92CEB8DA30069A73F /* WorkoutPlanViewModel.swift */; };
+		31630EBE2CECBCA80069A73F /* AntrenorWorkoutPlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31630EBD2CECBCA80069A73F /* AntrenorWorkoutPlanView.swift */; };
+		31630EC02CEE7A260069A73F /* StudentDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31630EBF2CEE7A260069A73F /* StudentDetailViewModel.swift */; };
+		31630EC22CEFDACB0069A73F /* WorkoutRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31630EC12CEFDACB0069A73F /* WorkoutRowView.swift */; };
+		31630EC42CEFDFD00069A73F /* ExerciseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31630EC32CEFDFD00069A73F /* ExerciseViewModel.swift */; };
+		31630EC62CEFE1DA0069A73F /* ExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31630EC52CEFE1DA0069A73F /* ExerciseView.swift */; };
 		316A95C32CC56C09004BC12E /* AntrenorListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A95C22CC56C09004BC12E /* AntrenorListViewModel.swift */; };
 		316A95C52CC56CDB004BC12E /* PersonListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A95C42CC56CDB004BC12E /* PersonListView.swift */; };
 		316C95FE2CABF27800D78A51 /* StayFitApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316C95FD2CABF27800D78A51 /* StayFitApp.swift */; };
@@ -75,8 +83,6 @@
 		318368FA2CB989F20056CF59 /* VideoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318368F92CB989F20056CF59 /* VideoModel.swift */; };
 		31901D0C2CBA75DE00427F0A /* diyet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31901D0B2CBA75DE00427F0A /* diyet.swift */; };
 		31901D0E2CBA7A8C00427F0A /* BeslenmeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31901D0D2CBA7A8C00427F0A /* BeslenmeViewModel.swift */; };
-		31E66E3E2CB6E48500E0F16A /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 31E66E3D2CB6E48500E0F16A /* Lottie */; };
-		31E66E402CB6E48900E0F16A /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 31E66E3F2CB6E48900E0F16A /* Alamofire */; };
 		31E66E422CB6E5FA00E0F16A /* LottieItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E66E412CB6E5FA00E0F16A /* LottieItem.swift */; };
 		31E66E442CB6F6B800E0F16A /* Antrenman.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E66E432CB6F6B800E0F16A /* Antrenman.swift */; };
 		31E66E462CB701BF00E0F16A /* CalendarViewmodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E66E452CB701BF00E0F16A /* CalendarViewmodel.swift */; };
@@ -117,6 +123,12 @@
 		315E19F92CB7278100B4E81D /* SuplementDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplementDetailView.swift; sourceTree = "<group>"; };
 		315E19FB2CB727AD00B4E81D /* SuplementListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplementListItemView.swift; sourceTree = "<group>"; };
 		315E19FD2CB7293900B4E81D /* HeadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadingView.swift; sourceTree = "<group>"; };
+		31630EB92CEB8DA30069A73F /* WorkoutPlanViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutPlanViewModel.swift; sourceTree = "<group>"; };
+		31630EBD2CECBCA80069A73F /* AntrenorWorkoutPlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AntrenorWorkoutPlanView.swift; sourceTree = "<group>"; };
+		31630EBF2CEE7A260069A73F /* StudentDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentDetailViewModel.swift; sourceTree = "<group>"; };
+		31630EC12CEFDACB0069A73F /* WorkoutRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutRowView.swift; sourceTree = "<group>"; };
+		31630EC32CEFDFD00069A73F /* ExerciseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseViewModel.swift; sourceTree = "<group>"; };
+		31630EC52CEFE1DA0069A73F /* ExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseView.swift; sourceTree = "<group>"; };
 		316A95C22CC56C09004BC12E /* AntrenorListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AntrenorListViewModel.swift; sourceTree = "<group>"; };
 		316A95C42CC56CDB004BC12E /* PersonListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonListView.swift; sourceTree = "<group>"; };
 		316C95FA2CABF27800D78A51 /* StayFit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StayFit.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -189,8 +201,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				31E66E3E2CB6E48500E0F16A /* Lottie in Frameworks */,
-				31E66E402CB6E48900E0F16A /* Alamofire in Frameworks */,
+				313D3B952CEA032000C33452 /* Lottie in Frameworks */,
+				313D3B972CEA032600C33452 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,9 +337,9 @@
 			children = (
 				316C96312CABF52B00D78A51 /* ProfileView.swift */,
 				316C962E2CABF4E300D78A51 /* MainTabView.swift */,
+				317C44952CB46FFF001D5F21 /* Beslenme.swift */,
 				317C448E2CB3CA92001D5F21 /* CustomTabBar.swift */,
 				317C44932CB46FF3001D5F21 /* Anasayfa.swift */,
-				317C44952CB46FFF001D5F21 /* Beslenme.swift */,
 				317C44972CB4700C001D5F21 /* Calendarr.swift */,
 				31E66E432CB6F6B800E0F16A /* Antrenman.swift */,
 				31F22A992CD4E9F10073C27F /* AntrenorSecim.swift */,
@@ -362,6 +374,7 @@
 				317E59B22CBC55C400CFAA6B /* VideoListItemView.swift */,
 				313B7D042CCD2FBF005C64A5 /* ProfileDetailView.swift */,
 				313B7D062CCD37B8005C64A5 /* EditProfileView.swift */,
+				31630EC12CEFDACB0069A73F /* WorkoutRowView.swift */,
 			);
 			path = Widgets;
 			sourceTree = "<group>";
@@ -396,6 +409,8 @@
 				310071A82CC446720011F6AC /* AntrenorProfil.swift */,
 				31F22AAC2CD681550073C27F /* SecilenAntrenorDetaySayfasi.swift */,
 				31F22AB02CD69A810073C27F /* EditAntrenorProfileView.swift */,
+				31630EBD2CECBCA80069A73F /* AntrenorWorkoutPlanView.swift */,
+				31630EC52CEFE1DA0069A73F /* ExerciseView.swift */,
 			);
 			path = Antrenor;
 			sourceTree = "<group>";
@@ -408,6 +423,9 @@
 				315260772CCF74A70042EB47 /* AntrenorProfilModelView.swift */,
 				31F22A9D2CD510390073C27F /* AntrenorAnasayfaViewModel.swift */,
 				31F22AAE2CD697520073C27F /* AntrenorEditProfileViewModel.swift */,
+				31630EB92CEB8DA30069A73F /* WorkoutPlanViewModel.swift */,
+				31630EBF2CEE7A260069A73F /* StudentDetailViewModel.swift */,
+				31630EC32CEFDFD00069A73F /* ExerciseViewModel.swift */,
 			);
 			path = Antrenor;
 			sourceTree = "<group>";
@@ -515,8 +533,8 @@
 			);
 			name = StayFit;
 			packageProductDependencies = (
-				31E66E3D2CB6E48500E0F16A /* Lottie */,
-				31E66E3F2CB6E48900E0F16A /* Alamofire */,
+				313D3B942CEA032000C33452 /* Lottie */,
+				313D3B962CEA032600C33452 /* Alamofire */,
 			);
 			productName = StayFit;
 			productReference = 316C95FA2CABF27800D78A51 /* StayFit.app */;
@@ -547,8 +565,8 @@
 			);
 			mainGroup = 316C95F12CABF27800D78A51;
 			packageReferences = (
-				316C961F2CABF44100D78A51 /* XCRemoteSwiftPackageReference "lottie-ios" */,
-				316C96222CABF45100D78A51 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				313D3B8E2CEA030300C33452 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				313D3B912CEA031400C33452 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 316C95FB2CABF27800D78A51 /* Products */;
 			projectDirPath = "";
@@ -597,6 +615,8 @@
 				316C96382CABF59A00D78A51 /* CustomTextField.swift in Sources */,
 				316C961A2CABF3AC00D78A51 /* Trainer.swift in Sources */,
 				316C96002CABF27800D78A51 /* ContentView.swift in Sources */,
+				31630EBE2CECBCA80069A73F /* AntrenorWorkoutPlanView.swift in Sources */,
+				31630EC22CEFDACB0069A73F /* WorkoutRowView.swift in Sources */,
 				316C960D2CABF2EE00D78A51 /* LoginViewViewModel.swift in Sources */,
 				311111CE2CB57A1C00BA2EF7 /* CustomText.swift in Sources */,
 				31F22AAD2CD681550073C27F /* SecilenAntrenorDetaySayfasi.swift in Sources */,
@@ -615,6 +635,8 @@
 				31E66E422CB6E5FA00E0F16A /* LottieItem.swift in Sources */,
 				317E59B32CBC55C400CFAA6B /* VideoListItemView.swift in Sources */,
 				317E59A42CBC3E0400CFAA6B /* Webservice.swift in Sources */,
+				31630EC42CEFDFD00069A73F /* ExerciseViewModel.swift in Sources */,
+				31630EC02CEE7A260069A73F /* StudentDetailViewModel.swift in Sources */,
 				316C962F2CABF4E300D78A51 /* MainTabView.swift in Sources */,
 				317E599F2CBBB6A100CFAA6B /* Workout.swift in Sources */,
 				316A95C52CC56CDB004BC12E /* PersonListView.swift in Sources */,
@@ -623,9 +645,11 @@
 				316C963F2CABF62500D78A51 /* RegisterView.swift in Sources */,
 				318368F82CB989C30056CF59 /* VideoPlayerHelper.swift in Sources */,
 				31F22AA72CD67BC90073C27F /* AntrenorListesiSayfasi.swift in Sources */,
+				31630EC62CEFE1DA0069A73F /* ExerciseView.swift in Sources */,
 				311111D02CB57EEA00BA2EF7 /* CoverImageView.swift in Sources */,
 				311111D42CB5886C00BA2EF7 /* TrainersItem.swift in Sources */,
 				310071A72CC4464C0011F6AC /* AntrenorAnasayfa.swift in Sources */,
+				31630EBA2CEB8DA30069A73F /* WorkoutPlanViewModel.swift in Sources */,
 				315260832CD0DADF0042EB47 /* YararliBilgiler.swift in Sources */,
 				317E59A12CBBB71100CFAA6B /* AntrenmanViewModel.swift in Sources */,
 				315260782CCF74A70042EB47 /* AntrenorProfilModelView.swift in Sources */,
@@ -867,7 +891,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		316C961F2CABF44100D78A51 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+		313D3B8E2CEA030300C33452 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-ios";
 			requirement = {
@@ -875,25 +899,25 @@
 				minimumVersion = 4.5.0;
 			};
 		};
-		316C96222CABF45100D78A51 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+		313D3B912CEA031400C33452 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 5.9.1;
+				minimumVersion = 5.10.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		31E66E3D2CB6E48500E0F16A /* Lottie */ = {
+		313D3B942CEA032000C33452 /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 316C961F2CABF44100D78A51 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			package = 313D3B8E2CEA030300C33452 /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
 		};
-		31E66E3F2CB6E48900E0F16A /* Alamofire */ = {
+		313D3B962CEA032600C33452 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 316C96222CABF45100D78A51 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			package = 313D3B912CEA031400C33452 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */

@@ -15,7 +15,7 @@ struct AntrenorAnasayfa: View {
             List(viewModel.students) { student in
                 NavigationLink(destination: StudentDetailView(student: student)) {
                     StudentRowView(student: student)
-                       
+                    
                 }
             }
             .navigationTitle("Öğrencilerim")
