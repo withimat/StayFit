@@ -1,7 +1,7 @@
 //
 //  SecimEkrani.swift
 //  StayFit
-//
+//  Token: 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
 //  Created by İmat Gökaslan on 13.10.2024.
 //
 
@@ -22,7 +22,6 @@ struct SecimEkrani: View {
                         .cornerRadius(20)
                         .padding(.vertical)
                         
-                    
                     
                     HStack(spacing:40){
                         

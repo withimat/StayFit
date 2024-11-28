@@ -24,7 +24,7 @@ struct Person: Identifiable, Decodable ,Encodable{
 
 class AntrenorListViewModel: ObservableObject {
     @Published var persons: [Person] = []
-
+    @Published var goal = ""
     init() {
         fetchPersons()
     }
@@ -61,13 +61,13 @@ class AntrenorListViewModel: ObservableObject {
         task.resume()
     }
     
-    func sendSubscriptionRequest(personID: String) {
+    func sendSubscriptionRequest(personID: String,goal:String) {
         guard let token = UserDefaults.standard.string(forKey: "jwt") else {
             print("Token bulunamadı.")
             return
         }
 
-        guard let url = URL(string: "http://localhost:5200/api/Subscriptions/CreateSubscription?trainerId=\(personID)") else {
+        guard let url = URL(string: "http://localhost:5200/api/Subscriptions/CreateSubscription?trainerId=\(personID)&goal=\(goal)") else {
             print("Geçersiz URL")
             return
         }

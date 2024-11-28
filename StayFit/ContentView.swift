@@ -22,11 +22,11 @@ struct Fotoyukleme: View {
                     .frame(height: 100)
                     .clipShape(Circle())
             } else {
-                Text("No Image Selected")
+                Text("Secilen Fotoğraf Yok")
                     .padding()
             }
             
-            Button("Select Image") {
+            Button("Fotoğraf Seçin") {
                 isImagePickerPresented = true
             }
             .padding()
@@ -35,7 +35,7 @@ struct Fotoyukleme: View {
             .cornerRadius(8)
             
             if selectedImage != nil {
-                Button("Upload Image") {
+                Button("Resmi Yükle") {
                     uploadImage()
                 }
                 .padding()

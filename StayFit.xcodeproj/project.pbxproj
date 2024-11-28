@@ -36,6 +36,18 @@
 		31630EC22CEFDACB0069A73F /* WorkoutRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31630EC12CEFDACB0069A73F /* WorkoutRowView.swift */; };
 		31630EC42CEFDFD00069A73F /* ExerciseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31630EC32CEFDFD00069A73F /* ExerciseViewModel.swift */; };
 		31630EC62CEFE1DA0069A73F /* ExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31630EC52CEFE1DA0069A73F /* ExerciseView.swift */; };
+		31630EC82CF0A7840069A73F /* WeeklyWorkoutPlanViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31630EC72CF0A7840069A73F /* WeeklyWorkoutPlanViewModel.swift */; };
+		31630ECA2CF0A8280069A73F /* WeeklyWorkoutPlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31630EC92CF0A8280069A73F /* WeeklyWorkoutPlanView.swift */; };
+		31630ECC2CF315090069A73F /* AddExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31630ECB2CF315090069A73F /* AddExerciseView.swift */; };
+		31630ECE2CF335C00069A73F /* WeeklyWorkoutGetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31630ECD2CF335C00069A73F /* WeeklyWorkoutGetView.swift */; };
+		31630ED02CF336330069A73F /* WeeklyWorkoutGetViewmodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31630ECF2CF336330069A73F /* WeeklyWorkoutGetViewmodel.swift */; };
+		31630ED42CF33E970069A73F /* MemberExerciseListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31630ED32CF33E970069A73F /* MemberExerciseListView.swift */; };
+		31630EDA2CF4CAD70069A73F /* WeeklyProgressesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31630ED92CF4CAD70069A73F /* WeeklyProgressesView.swift */; };
+		31630EDC2CF4CAF70069A73F /* WeeklyProgressesModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31630EDB2CF4CAF70069A73F /* WeeklyProgressesModelView.swift */; };
+		31630EE02CF4E61C0069A73F /* WeeklyProgressIAView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31630EDF2CF4E61C0069A73F /* WeeklyProgressIAView.swift */; };
+		31630EE22CF4E9370069A73F /* WeeklyProgressIAModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31630EE12CF4E9370069A73F /* WeeklyProgressIAModelView.swift */; };
+		31630EE42CF507710069A73F /* WeeklyProgressResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31630EE32CF507710069A73F /* WeeklyProgressResultView.swift */; };
+		31630EE62CF507970069A73F /* WeeklyProgressResultModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31630EE52CF507970069A73F /* WeeklyProgressResultModelView.swift */; };
 		316A95C32CC56C09004BC12E /* AntrenorListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A95C22CC56C09004BC12E /* AntrenorListViewModel.swift */; };
 		316A95C52CC56CDB004BC12E /* PersonListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A95C42CC56CDB004BC12E /* PersonListView.swift */; };
 		316C95FE2CABF27800D78A51 /* StayFitApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316C95FD2CABF27800D78A51 /* StayFitApp.swift */; };
@@ -129,6 +141,18 @@
 		31630EC12CEFDACB0069A73F /* WorkoutRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutRowView.swift; sourceTree = "<group>"; };
 		31630EC32CEFDFD00069A73F /* ExerciseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseViewModel.swift; sourceTree = "<group>"; };
 		31630EC52CEFE1DA0069A73F /* ExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseView.swift; sourceTree = "<group>"; };
+		31630EC72CF0A7840069A73F /* WeeklyWorkoutPlanViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyWorkoutPlanViewModel.swift; sourceTree = "<group>"; };
+		31630EC92CF0A8280069A73F /* WeeklyWorkoutPlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyWorkoutPlanView.swift; sourceTree = "<group>"; };
+		31630ECB2CF315090069A73F /* AddExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExerciseView.swift; sourceTree = "<group>"; };
+		31630ECD2CF335C00069A73F /* WeeklyWorkoutGetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyWorkoutGetView.swift; sourceTree = "<group>"; };
+		31630ECF2CF336330069A73F /* WeeklyWorkoutGetViewmodel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyWorkoutGetViewmodel.swift; sourceTree = "<group>"; };
+		31630ED32CF33E970069A73F /* MemberExerciseListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberExerciseListView.swift; sourceTree = "<group>"; };
+		31630ED92CF4CAD70069A73F /* WeeklyProgressesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyProgressesView.swift; sourceTree = "<group>"; };
+		31630EDB2CF4CAF70069A73F /* WeeklyProgressesModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyProgressesModelView.swift; sourceTree = "<group>"; };
+		31630EDF2CF4E61C0069A73F /* WeeklyProgressIAView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyProgressIAView.swift; sourceTree = "<group>"; };
+		31630EE12CF4E9370069A73F /* WeeklyProgressIAModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyProgressIAModelView.swift; sourceTree = "<group>"; };
+		31630EE32CF507710069A73F /* WeeklyProgressResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyProgressResultView.swift; sourceTree = "<group>"; };
+		31630EE52CF507970069A73F /* WeeklyProgressResultModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyProgressResultModelView.swift; sourceTree = "<group>"; };
 		316A95C22CC56C09004BC12E /* AntrenorListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AntrenorListViewModel.swift; sourceTree = "<group>"; };
 		316A95C42CC56CDB004BC12E /* PersonListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonListView.swift; sourceTree = "<group>"; };
 		316C95FA2CABF27800D78A51 /* StayFit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StayFit.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -411,6 +435,8 @@
 				31F22AB02CD69A810073C27F /* EditAntrenorProfileView.swift */,
 				31630EBD2CECBCA80069A73F /* AntrenorWorkoutPlanView.swift */,
 				31630EC52CEFE1DA0069A73F /* ExerciseView.swift */,
+				31630EC92CF0A8280069A73F /* WeeklyWorkoutPlanView.swift */,
+				31630ECB2CF315090069A73F /* AddExerciseView.swift */,
 			);
 			path = Antrenor;
 			sourceTree = "<group>";
@@ -426,6 +452,7 @@
 				31630EB92CEB8DA30069A73F /* WorkoutPlanViewModel.swift */,
 				31630EBF2CEE7A260069A73F /* StudentDetailViewModel.swift */,
 				31630EC32CEFDFD00069A73F /* ExerciseViewModel.swift */,
+				31630EC72CF0A7840069A73F /* WeeklyWorkoutPlanViewModel.swift */,
 			);
 			path = Antrenor;
 			sourceTree = "<group>";
@@ -443,6 +470,10 @@
 				310071A22CC43E640011F6AC /* AuthManager.swift */,
 				31F22AA22CD5F9B70073C27F /* AntrenorSecimViewModel.swift */,
 				31F22AA42CD5FFF90073C27F /* EditProfilViewModel.swift */,
+				31630ECF2CF336330069A73F /* WeeklyWorkoutGetViewmodel.swift */,
+				31630EDB2CF4CAF70069A73F /* WeeklyProgressesModelView.swift */,
+				31630EE12CF4E9370069A73F /* WeeklyProgressIAModelView.swift */,
+				31630EE52CF507970069A73F /* WeeklyProgressResultModelView.swift */,
 			);
 			path = Ogrenci;
 			sourceTree = "<group>";
@@ -452,6 +483,11 @@
 			children = (
 				316C963C2CABF5EB00D78A51 /* LoginView.swift */,
 				316C963E2CABF62500D78A51 /* RegisterView.swift */,
+				31630ECD2CF335C00069A73F /* WeeklyWorkoutGetView.swift */,
+				31630ED32CF33E970069A73F /* MemberExerciseListView.swift */,
+				31630ED92CF4CAD70069A73F /* WeeklyProgressesView.swift */,
+				31630EDF2CF4E61C0069A73F /* WeeklyProgressIAView.swift */,
+				31630EE32CF507710069A73F /* WeeklyProgressResultView.swift */,
 			);
 			name = Ogrenci;
 			path = View;
@@ -612,6 +648,9 @@
 				31F22A9E2CD510390073C27F /* AntrenorAnasayfaViewModel.swift in Sources */,
 				31901D0C2CBA75DE00427F0A /* diyet.swift in Sources */,
 				317C44962CB46FFF001D5F21 /* Beslenme.swift in Sources */,
+				31630ECE2CF335C00069A73F /* WeeklyWorkoutGetView.swift in Sources */,
+				31630EE22CF4E9370069A73F /* WeeklyProgressIAModelView.swift in Sources */,
+				31630EE02CF4E61C0069A73F /* WeeklyProgressIAView.swift in Sources */,
 				316C96382CABF59A00D78A51 /* CustomTextField.swift in Sources */,
 				316C961A2CABF3AC00D78A51 /* Trainer.swift in Sources */,
 				316C96002CABF27800D78A51 /* ContentView.swift in Sources */,
@@ -623,6 +662,8 @@
 				311111D22CB5822700BA2EF7 /* DiyetItem.swift in Sources */,
 				316C960F2CABF30900D78A51 /* RegisterViewViewModel.swift in Sources */,
 				315E19FC2CB727AD00B4E81D /* SuplementListItemView.swift in Sources */,
+				31630EE62CF507970069A73F /* WeeklyProgressResultModelView.swift in Sources */,
+				31630ECA2CF0A8280069A73F /* WeeklyWorkoutPlanView.swift in Sources */,
 				317C448B2CB31D88001D5F21 /* Lottie.swift in Sources */,
 				31E66E462CB701BF00E0F16A /* CalendarViewmodel.swift in Sources */,
 				317C448D2CB3C8DF001D5F21 /* Tab.swift in Sources */,
@@ -632,16 +673,21 @@
 				316C96112CABF32E00D78A51 /* MainViewViewModel.swift in Sources */,
 				315E19FA2CB7278100B4E81D /* SuplementDetailView.swift in Sources */,
 				31F22AAF2CD697520073C27F /* AntrenorEditProfileViewModel.swift in Sources */,
+				31630ECC2CF315090069A73F /* AddExerciseView.swift in Sources */,
 				31E66E422CB6E5FA00E0F16A /* LottieItem.swift in Sources */,
+				31630ED42CF33E970069A73F /* MemberExerciseListView.swift in Sources */,
 				317E59B32CBC55C400CFAA6B /* VideoListItemView.swift in Sources */,
 				317E59A42CBC3E0400CFAA6B /* Webservice.swift in Sources */,
 				31630EC42CEFDFD00069A73F /* ExerciseViewModel.swift in Sources */,
 				31630EC02CEE7A260069A73F /* StudentDetailViewModel.swift in Sources */,
+				31630EC82CF0A7840069A73F /* WeeklyWorkoutPlanViewModel.swift in Sources */,
 				316C962F2CABF4E300D78A51 /* MainTabView.swift in Sources */,
 				317E599F2CBBB6A100CFAA6B /* Workout.swift in Sources */,
 				316A95C52CC56CDB004BC12E /* PersonListView.swift in Sources */,
+				31630EDC2CF4CAF70069A73F /* WeeklyProgressesModelView.swift in Sources */,
 				31F22AAB2CD67C5A0073C27F /* AntrenorListesiRow.swift in Sources */,
 				317B4A812CB72D65003A0874 /* SuplementList.swift in Sources */,
+				31630EDA2CF4CAD70069A73F /* WeeklyProgressesView.swift in Sources */,
 				316C963F2CABF62500D78A51 /* RegisterView.swift in Sources */,
 				318368F82CB989C30056CF59 /* VideoPlayerHelper.swift in Sources */,
 				31F22AA72CD67BC90073C27F /* AntrenorListesiSayfasi.swift in Sources */,
@@ -665,6 +711,7 @@
 				311111D62CB5D12800BA2EF7 /* TrainerDetailView.swift in Sources */,
 				31F22A9A2CD4E9F10073C27F /* AntrenorSecim.swift in Sources */,
 				310071A12CC439DE0011F6AC /* AntrenorLoginView.swift in Sources */,
+				31630ED02CF336330069A73F /* WeeklyWorkoutGetViewmodel.swift in Sources */,
 				316A95C32CC56C09004BC12E /* AntrenorListViewModel.swift in Sources */,
 				316C962C2CABF49A00D78A51 /* Extension.swift in Sources */,
 				31E66E4D2CB7063300E0F16A /* Bundle.swift in Sources */,
@@ -676,6 +723,7 @@
 				31901D0E2CBA7A8C00427F0A /* BeslenmeViewModel.swift in Sources */,
 				316C95FE2CABF27800D78A51 /* StayFitApp.swift in Sources */,
 				318368FA2CB989F20056CF59 /* VideoModel.swift in Sources */,
+				31630EE42CF507710069A73F /* WeeklyProgressResultView.swift in Sources */,
 				316C96132CABF35000D78A51 /* ProfileViewViewModel.swift in Sources */,
 				316C96182CABF39900D78A51 /* Kullanici.swift in Sources */,
 				316C963D2CABF5EB00D78A51 /* LoginView.swift in Sources */,

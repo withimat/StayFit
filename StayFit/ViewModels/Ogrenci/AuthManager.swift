@@ -24,7 +24,7 @@ class AuthManager: ObservableObject {
         DispatchQueue.main.async {
             self.isAuthenticated = false
             self.token = nil
-            self.userRole = "" // Rolü sıfırla
+            self.userRole = ""
             print("Çıkış yapıldı, token silindi.")
         }
     }

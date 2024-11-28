@@ -24,6 +24,14 @@ struct ProfileView: View {
     @EnvironmentObject var authManager: AuthManager
     @State private var shouldNavigateToLogin = false
 
+    init() {
+        let appearance = UINavigationBarAppearance()
+        appearance.backgroundColor = UIColor(named: "BG")
+        appearance.titleTextAttributes = [.foregroundColor: UIColor(named: "beyaz")!,.font : UIFont(name: "Pacifico-Regular" , size: 22)!]
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        UINavigationBar.appearance().compactAppearance = appearance
+    }
     var body: some View {
         NavigationStack {
             VStack {
@@ -32,12 +40,21 @@ struct ProfileView: View {
                         VStack(alignment: .center, spacing: 10) {
                             ProfileDetailsView(profile: profile)
                             HStack {
-                                Button("Çıkış Yap") {
+                                
+                                
+                                Button {
                                     authManager.logout()
                                     shouldNavigateToLogin = true
+                                } label: {
+                                    Text("Çıkış Yap")
+                                        .foregroundColor(.white)
+                                        .padding()
+                                        .background(.blue)
+                                        .cornerRadius(15)
                                 }
+
                             }
-                            .offset(y:-30)
+                            .offset(y:-50)
                         }
                         
                     }
@@ -49,6 +66,7 @@ struct ProfileView: View {
                     }
                 }
             }
+            .offset(y:-7)
             .onAppear {
                 viewmodel.fetchUserProfile()  // Görünüm her yüklendiğinde çağrılır
             }

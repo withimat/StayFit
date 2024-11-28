@@ -3,4 +3,22 @@
    uuid = "A13ACE26-4E39-442F-BDAF-5B8FAE875117"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8483C8EC-C0A7-4CDD-986A-C4FF72668073"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../../../var/folders/gt/pqg75r1s5fdc45gccgy6xt7c0000gn/T/swift-generated-sources/@__swiftmacro_7StayFit0034AntrenorWorkoutPlanViewswift_oeBCkfMX94_0_33_26CA7FA07F3C3985DFC27F0DE63489E5Ll7PreviewfMf_.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1"
+            endingLineNumber = "1"
+            landmarkName = "$s7StayFit0034AntrenorWorkoutPlanViewswift_oeBCkfMX94_0_33_26CA7FA07F3C3985DFC27F0DE63489E5Ll7PreviewfMf_15PreviewRegistryfMu_"
+            landmarkType = "37">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

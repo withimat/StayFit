@@ -7,10 +7,9 @@
 
 import Foundation
 import Combine
-struct Exercise: Codable, Identifiable {
-    var id: Int
+
+struct Exercise: Codable{
     var workoutDayId: Int
-    var isCompleted: Bool
     var priority: Int
     var name: String
     var description: String
@@ -20,45 +19,142 @@ struct Exercise: Codable, Identifiable {
     var exerciseLevel: Int
     var exerciseCategory: Int
 }
+typealias ExerciseArray = [Exercise]
+
+struct GetExercisesResponse: Codable {
+    let getExercisesByWorkoutDayIdDtos: [Exercise]?
+    let messages: String?
+    let success: Bool
+}
+
+import Foundation
+import Foundation
 
 class ExerciseViewModel: ObservableObject {
-    @Published var exercises: [Exercise] = []
-    private var cancellables = Set<AnyCancellable>()
+    @Published var exercises: [Exercise] = [] // List of exercises
+    @Published var errorMessage: String? // To display error messages if any
+    @Published var isLoading: Bool = false // To show a loading indicator if needed
+    @Published var WorkoutId = 0
+    let apiBaseURL = "http://localhost:5200/api/Exercises"
     
-    func postWorkouts() {
-        guard let jwtToken = UserDefaults.standard.string(forKey: "jwt") else {
-            print("JWT token bulunamadı.")
+    /// Fetch exercises (GET request)
+    func fetchExercises(for workoutDayId: Int) {
+        guard let url = URL(string: "\(apiBaseURL)/GetExercisesByWorkoutDayId?workoutDayId=\(workoutDayId)") else {
+            print("Invalid URL")
             return
         }
         
-        let url = URL(string: "https://api.yourbackend.com/workouts")! // API URL'nizi ekleyin
+        // Retrieve the JWT token from UserDefaults
+        guard let token = UserDefaults.standard.string(forKey: "jwt") else {
+            print("JWT token is missing")
+            return
+        }
+        
         var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.setValue("Bearer \(jwtToken)", forHTTPHeaderField: "Authorization")
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "GET"
+        request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         
-        do {
-            let data = try JSONEncoder().encode(exercises)
-            request.httpBody = data
-        } catch {
-            print("Veriler JSON'a dönüştürülemedi: \(error.localizedDescription)")
-            return
-        }
+        isLoading = true
         
-        URLSession.shared.dataTaskPublisher(for: request)
-            .map { $0.data }
-            .decode(type: [Exercise].self, decoder: JSONDecoder())
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { completion in
-                switch completion {
-                case .failure(let error):
-                    print("API Hatası: \(error.localizedDescription)")
-                case .finished:
-                    print("API'ye başarıyla gönderildi.")
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            DispatchQueue.main.async {
+                self.isLoading = false
+            }
+            
+            if let error = error {
+                DispatchQueue.main.async {
+                    self.errorMessage = "Error fetching exercises: \(error.localizedDescription)"
                 }
-            }, receiveValue: { response in
-                print("Gelen cevap: \(response)")
-            })
-            .store(in: &cancellables)
+                print("Error fetching exercises: \(error)")
+                return
+            }
+            
+            guard let data = data else {
+                DispatchQueue.main.async {
+                    self.errorMessage = "No data received from the server."
+                }
+                print("No data received")
+                return
+            }
+            
+            do {
+                // Decode the response using `GetExercisesResponse`
+                let response = try JSONDecoder().decode(GetExercisesResponse.self, from: data)
+                
+                if response.success {
+                    DispatchQueue.main.async {
+                        self.exercises = response.getExercisesByWorkoutDayIdDtos ?? []
+                        print(response.getExercisesByWorkoutDayIdDtos!)
+                        self.errorMessage = nil // Clear error message on success
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        self.errorMessage = response.messages ?? "An unknown error occurred."
+                        print(response)
+                        print(response.messages!)
+                    }
+                    print("Error message from server: \(response.messages ?? "No message")")
+                }
+            } catch {
+                DispatchQueue.main.async {
+                    self.errorMessage = "Failed to decode response: \(error.localizedDescription)"
+                }
+                print("Error decoding response: \(error)")
+            }
+        }.resume()
     }
+    
+    /// Add a new exercise (POST request)
+        
+        func addExercises(_ exercises: [Exercise]) {
+            guard let url = URL(string: "\(apiBaseURL)/CreateExercise") else {
+                self.errorMessage = "Invalid URL"
+                return
+            }
+            
+            guard let token = UserDefaults.standard.string(forKey: "jwt") else {
+                self.errorMessage = "JWT token is missing"
+                return
+            }
+            
+            var request = URLRequest(url: url)
+            request.httpMethod = "POST"
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+            
+            do {
+                let jsonData = try JSONEncoder().encode(exercises)
+                request.httpBody = jsonData
+                
+                URLSession.shared.dataTask(with: request) { [weak self] data, response, error in
+                    DispatchQueue.main.async {
+                        if let error = error {
+                            self?.errorMessage = "Error: \(error.localizedDescription)"
+                            return
+                        }
+                        
+                        guard let httpResponse = response as? HTTPURLResponse else {
+                            self?.errorMessage = "Invalid response"
+                            return
+                        }
+                        
+                        if httpResponse.statusCode == 200 {
+                            self?.exercises.append(contentsOf: exercises)
+                            self?.errorMessage = nil
+                        } else {
+                            self?.errorMessage = "Server error: \(httpResponse.statusCode)"
+                        }
+                    }
+                }.resume()
+            } catch {
+                DispatchQueue.main.async {
+                    self.errorMessage = "Error encoding exercise: \(error.localizedDescription)"
+                }
+            }
+        }
+    
+    
+    
+    
+    
 }

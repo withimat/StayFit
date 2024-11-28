@@ -23,7 +23,8 @@ struct Antrenman: View {
                    } else {
                        List(viewModel.workoutPlan, id: \.id) { workout in
                            NavigationLink {
-                               EmptyView()
+                               WeeklyWorkoutGetView(workout: workout)
+                                   .navigationBarBackButtonHidden(true)
                            } label: {
                                WorkoutRowView(workout: workout)
                            }
@@ -33,6 +34,7 @@ struct Antrenman: View {
                    }
                }
                .navigationTitle("Antrenman Planı")
+               .navigationBarTitleDisplayMode(.inline)
                .toolbar {
                    ToolbarItem(placement: .navigationBarTrailing) {
                        Button(action: {

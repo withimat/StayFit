@@ -36,6 +36,7 @@ struct StudentDetailView: View {
                                 .foregroundColor(.gray)
                         }
                         
+                        
                         Text("\(student.firstName) \(student.lastName)")
                             .font(.title)
                             .fontWeight(.bold)
@@ -57,7 +58,9 @@ struct StudentDetailView: View {
                             Divider()
                             Text("Boy                            : \t \(student.height) cm")
                             Divider()
-                            Text("Kilo                            : \t  \(student.weight) kg")
+                            Text("Kilo                           : \t  \(student.weight) kg")
+                            Divider()
+                            Text("Hedef                          : \t  \(student.goal ?? "hedef eklenmedi")")
                             Divider()
                             Text("Cinsiyet                     : \t \(student.gender == 0 ? "Erkek" : "Kadın")")
                             Divider()
@@ -97,39 +100,53 @@ struct StudentDetailView: View {
                         
                         if viewModel.isLoading {
                             ProgressView("Antrenman planları yükleniyor...")
-                        } else if let errorMessage = viewModel.errorMessage {
-                            Text("Hata: \(errorMessage)")
-                                .foregroundColor(.red)
-                                .multilineTextAlignment(.center)
                         } else if viewModel.workoutPlan.isEmpty {
                             Text("Henüz antrenman planı yok.")
                                 .foregroundColor(.gray)
                         } else {
                             ForEach(viewModel.workoutPlan, id: \.id) { workout in
                                 
-                                NavigationLink {
-                                    ExerciseView(workout: workout)
-                                } label: {
-                                    VStack(alignment: .leading, spacing: 8) {
-                                        Text(workout.title)
-                                            .font(.headline)
-                                        Text(workout.description)
-                                            .font(.subheadline)
-                                            .foregroundColor(.gray)
-                                        HStack {
-                                            Text("Başlangıç: \(workout.formattedStartDate)")
-                                            Spacer()
-                                            Text("Bitiş: \(workout.formattedEndDate)")
-                                        }
-                                        .font(.footnote)
-                                        .foregroundColor(.secondary)
-                                    }
-                                    .padding()
-                                    .background(RoundedRectangle(cornerRadius: 10).fill(Color(UIColor.systemBackground)))
-                                    .shadow(radius: 2)
+                NavigationLink {
+                WeeklyWorkoutPlanView( workout: workout)
+                    .navigationBarBackButtonHidden(true)
                                 }
-
+                            label: {
+                VStack(alignment: .leading, spacing: 8) {
+                HStack {
+                Text(workout.title)
+                    .font(.headline)
+                Spacer()
+                    Button {
+                        withAnimation {
+                           
+                            if let index = viewModel.workoutPlan.firstIndex(where: { $0.id == workout.id }) {
+                                viewModel.workoutPlan.remove(at: index)
                             }
+                        }
+                        
+                        viewModel.deleteWorkoutPlan(id: workout.id)
+                    } label: {
+                        Image(systemName: "trash")
+                    }
+
+               }
+               Text(workout.description)
+                   .font(.subheadline)
+                   .foregroundColor(.gray)
+               HStack {
+                   Text("Başlangıç: \(workout.formattedStartDate)")
+                   Spacer()
+                   Text("Bitiş: \(workout.formattedEndDate)")
+               }
+               .font(.footnote)
+               .foregroundColor(.secondary)
+           }
+           .padding()
+           .background(RoundedRectangle(cornerRadius: 10).fill(Color(UIColor.systemBackground)))
+            .shadow(radius: 2)
+            }
+
+            }
                         }
                     }
                     .padding()
@@ -148,5 +165,5 @@ struct StudentDetailView: View {
 }
 
 #Preview {
-    StudentDetailView(student: Student(id: "12", memberId: "12", endDate: "11/21", amount: 5500, height: 180, weight: 80, firstName: "İmat", lastName: "Gokaslan", gender: 0, birthDate: "15/08", photoPath: ""))
+    StudentDetailView(student: Student(id: "2", memberId: "2", endDate: "11/21", amount: 5500, height: 180, weight: 80, firstName: "İmat", lastName: "Gokaslan", gender: 0, birthDate: "15/08", photoPath: "", goal: "Bölgesel Yağ Yakımı"))
 }

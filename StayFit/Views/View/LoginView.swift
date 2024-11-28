@@ -38,27 +38,7 @@ struct LoginView : View {
                     }
                     
                     //MARK: - LOGIN YAZISI
-                HStack{
-                    VStack(alignment: .leading,spacing: 12, content: {
-                        
-                        Text("Hoşgeldiniz")
-                            .font(.title)
-                            .fontWeight(.bold)
-                            .foregroundStyle(.white)
-                            
-                        
-                        Text("Lütfen giriş yapınız..")
-                            .foregroundColor(Color.white.opacity(0.5))
-                        
-                        
-                        
-                        
-                    })
-                    
-                    Spacer(minLength: 0)
-                    
-                }
-                .padding()
+                HosgeldinYazisi()
                 
                 HStack{
                     if !viewmodel.errorMessage.isEmpty{
@@ -133,8 +113,6 @@ struct LoginView : View {
                     
                 BigButton(title: "Giriş Yap", action: {
                     showAlert = true
-                    
-                    feedback.impactOccurred()
                     viewmodel.login(role: "student") 
                 }, color: .white)
                 
@@ -203,4 +181,30 @@ struct LoginView : View {
 
 #Preview {
     LoginView()
+}
+
+struct HosgeldinYazisi: View {
+    var body: some View {
+        HStack{
+            VStack(alignment: .leading,spacing: 12, content: {
+                
+                Text("Hoşgeldiniz")
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .foregroundStyle(.white)
+                    
+                
+                Text("Lütfen giriş yapınız..")
+                    .foregroundColor(Color.white.opacity(0.5))
+                
+                
+                
+                
+            })
+            
+            Spacer(minLength: 0)
+            
+        }
+        .padding()
+    }
 }

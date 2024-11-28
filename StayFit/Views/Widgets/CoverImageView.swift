@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct CoverImageView: View {
-    let covers: [String] = ["cover-6", "cover-7", "cover3", "cover4"]
+    let covers: [String] = ["cover-6", "cover-7-3", "bg-2", "bg-1"]
     
     @State private var currentIndex: Int = 0  // Aktif olan index'i tutar
-    let timer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()  // 3 saniyede bir çalışacak timer
+    let timer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
     
     var body: some View {
-        TabView(selection: $currentIndex) {  // Seçili sekme için 'selection' kullandık
+        TabView(selection: $currentIndex) {
             ForEach(0..<covers.count, id: \.self) { index in
                 Image(covers[index])
                     .resizable()

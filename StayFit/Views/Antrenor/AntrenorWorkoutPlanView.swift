@@ -13,7 +13,6 @@ struct AntrenorWorkoutPlanView: View {
     @Environment(\.dismiss) var dismiss
     @State private var showAlert = false
     @State private var alertMessage = ""
-    
     var body: some View {
         NavigationStack {
             VStack {
@@ -94,5 +93,5 @@ struct AntrenorWorkoutPlanView: View {
 }
 
 #Preview {
-    AntrenorWorkoutPlanView(student: Student(id: "12", memberId: "12", endDate: "11/21", amount: 5500, height: 180, weight: 80, firstName: "İmat", lastName: "Gokaslan", gender: 0, birthDate: "15/08", photoPath: ""))
+    AntrenorWorkoutPlanView(student: Student(id: "12", memberId: "12", endDate: "11/21", amount: 5500, height: 180, weight: 80, firstName: "İmat", lastName: "Gokaslan", gender: 0, birthDate: "15/08", photoPath: "", goal: ""))
 }

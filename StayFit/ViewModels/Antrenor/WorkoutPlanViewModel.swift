@@ -27,6 +27,7 @@ class WorkoutPlanViewModel: ObservableObject {
     @Published var endDate = Date()
     @Published var isSubmitting = false
     @Published var errorMessage: String?
+    @Published var workoutPlans: [WorkoutPlan] = []
     
     func resetFields() {
            self.title = ""
@@ -35,6 +36,9 @@ class WorkoutPlanViewModel: ObservableObject {
            self.endDate = Date()
            self.errorMessage = nil
        }
+    
+    
+    
     
     func createWorkoutPlan() {
         // API URL
@@ -106,4 +110,8 @@ class WorkoutPlanViewModel: ObservableObject {
             }
         }.resume()
     }
+    
+    
+    
+    
 }

@@ -140,9 +140,13 @@ struct AntrenorListesiDetaySayfasi: View {
                                         .foregroundColor(.secondary)
                                 }
                                 
+                                CustomTextField(ad: $viewModel.goal,icon: "person.fill",placeholder: "Hedef bilgisi gir")
+                                    .border(.black.opacity(0.4))
+                                    .cornerRadius(10)
+                                
                                 Spacer()
                                 Button(action: {
-                                    viewModel.sendSubscriptionRequest(personID: person.id)
+                                    viewModel.sendSubscriptionRequest(personID: person.id,goal: viewModel.goal)
                                     showAlert = true
                                 }) {
                                     Text("Ödeme Yap")
@@ -197,4 +201,8 @@ struct AntrenorListesiDetaySayfasi: View {
         outputFormatter.timeStyle = .none
         return outputFormatter.string(from: date)
     }
+}
+
+#Preview {
+    AntrenorListesiDetaySayfasi(person: Person(id: "", createdDate: "", firstName: "İmat", lastName: "Gökaslan", email: "imat@gmail.com", phone: "5380354884", bio: "Mua Thai Uzmanı", monthlyRate: 100, rate: 5, yearsOfExperience: 0, birthDate: "15/08/2000", gender: "Erkek"))
 }

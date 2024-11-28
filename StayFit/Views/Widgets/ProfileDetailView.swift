@@ -9,8 +9,7 @@ import SwiftUI
 
 
 struct ProfileDetailsView: View {
-    @State var profile: UserProfile  // Kullanıcı profilini parametre olarak alıyoruz
-    
+    @State var profile: UserProfile
     var body: some View {
         NavigationStack {
             VStack(spacing: 16) {
@@ -61,8 +60,8 @@ struct ProfileDetailsView: View {
                 VStack(alignment: .leading, spacing: 16) {
                     profileInfoRow(label: "Email adresi", value: profile.email)
                     profileInfoRow(label: "Telefon Numarası", value: profile.phone)
-                    profileInfoRow(label: "Kayıt Tarihi", value: profile.createdDate)
-                    profileInfoRow(label: "Doğum Tarihi", value: profile.birthDate)
+                    profileInfoRow(label: "Kayıt Tarihi", value: formatDate(profile.createdDate))
+                    profileInfoRow(label: "Doğum Tarihi", value: formatDate(profile.birthDate))
                     profileInfoRow(label: "Boy", value: String(profile.height))
                     profileInfoRow(label: "Kilo", value: String(profile.weight))
                     profileInfoRow(label: "Cinsiyet", value: profile.gender)
@@ -83,9 +82,12 @@ struct ProfileDetailsView: View {
                         EditProfileView(profile: $profile) 
                     } label: {
                         Text("Düzenle")
+                            .foregroundColor(.white)
+                           
                     }
                 }
             }
+            
         
         }
     }
@@ -106,7 +108,7 @@ struct ProfileDetailsView: View {
         let formatter = ISO8601DateFormatter()
         if let date = formatter.date(from: dateString) {
             let displayFormatter = DateFormatter()
-            displayFormatter.dateStyle = .medium
+            displayFormatter.dateFormat = "dd/MM/yyyy"  // Gün, Ay, Yıl formatı
             return displayFormatter.string(from: date)
         }
         return dateString
@@ -115,25 +117,13 @@ struct ProfileDetailsView: View {
 
 
 #Preview {
-    ProfileDetailsView(profile: UserProfile(
-        id: "1234",
-        createdDate: "2023-01-01",
-        firstName: "İmat",
-        lastName: "Gökaslan",
-        email: "imattgokk@example.com",
-        phone: "11234567890",
-        photoPath: nil,
-        height: 180,  // Varsayılan height değeri eklendi
-        weight: 75,   // Varsayılan weight değeri eklendi
-        birthDate: "1990-01-01",
-        gender: "Erkek"
-    ))
+    AntrenorProfileDetailsView(profile: AntrenorProfile(id: "", createdDate: "12/20/24", firstName: "İmat", lastName: "Gokaslan", email: "imatt@gmail.com", phone: "5380354884", birthDate: "15/18/23", gender: "Kadın", monthlyRate: 5000, bio: "Yoga Eğitmeni"))
 }
 
 struct AntrenorProfileDetailsView: View {
     @State var profile: AntrenorProfile  // Kullanıcı profilini parametre olarak alıyoruz
     @State private var isEditViewActive = false  // Düzenleme ekranına geçiş durumu
-    
+   
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -190,12 +180,13 @@ struct AntrenorProfileDetailsView: View {
                         profileInfoRow(label: "Cinsiyet", value: profile.gender)
                         profileInfoRow(label: "Kayıt Tarihi", value: formatDate(profile.createdDate))
                     }
+                    .padding(.horizontal)
                     .padding()
                     .background(Color.white)
                     .cornerRadius(12)
                     .shadow(radius: 5)
                     .padding(.horizontal, 16)
-                    .offset(y: -40)
+                    .offset(y:-40)
 
                     Spacer()  // Boş alan eklenir
                 }

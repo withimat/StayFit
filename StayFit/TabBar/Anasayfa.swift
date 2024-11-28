@@ -65,7 +65,6 @@ struct Anasayfa: View {
                             CustomText()
                             
                         }
- 
                        Spacer()
                 
                         NavigationLink {
@@ -77,8 +76,6 @@ struct Anasayfa: View {
                                 .padding()
                         }
 
-                        
-                    
        
                     }
                     
@@ -174,8 +171,7 @@ struct Anasayfa: View {
                                 
                             }
                         }
-                    }//:list
-                    
+                    }
                     
                     
                     
@@ -187,7 +183,6 @@ struct Anasayfa: View {
                             .multilineTextAlignment(.leading)
                         Spacer()
                     }
-                    
                     .padding(.leading)
                     
                     ScrollView(.horizontal,showsIndicators: false) {
@@ -197,11 +192,12 @@ struct Anasayfa: View {
                                 NavigationLink(destination: VideoPlayerView(videoSelected: "yararlivideolar-\(item.id)", videoTitle: item.name)) {
                                         VideoListItemView(video: item)
                                             .padding(.vertical,8)
+                                            
                                     }
                                 
                             }
                         }
-                    }//:list
+                    }
                     
                     
                     

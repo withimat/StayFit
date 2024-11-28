@@ -7,10 +7,17 @@
 import SwiftUI
 
 struct AntrenorProfil: View {
-    @EnvironmentObject var authManager: AuthManager  // Oturum yönetimi
-    @ObservedObject var viewModel = AntrenorProfilModelView()  // ViewModel ile profil yönetimi
-    @State private var shouldNavigateToLogin = false  // Giriş ekranına yönlendirme kontrolü
-    
+    @EnvironmentObject var authManager: AuthManager
+    @ObservedObject var viewModel = AntrenorProfilModelView()
+    @State private var shouldNavigateToLogin = false 
+    init() {
+        let appearance = UINavigationBarAppearance()
+        appearance.backgroundColor = UIColor(named: "BG")
+        appearance.titleTextAttributes = [.foregroundColor: UIColor(named: "beyaz")!,.font : UIFont(name: "Pacifico-Regular" , size: 22)!]
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        UINavigationBar.appearance().compactAppearance = appearance
+    }
     var body: some View {
         NavigationStack {
             VStack {
@@ -18,11 +25,18 @@ struct AntrenorProfil: View {
                     ScrollView {
                         VStack(alignment: .center, spacing: 10) {
                             AntrenorProfileDetailsView(profile: profile)
-                                
+                            
+                            
                             HStack {
-                                Button("Çıkış Yap") {
+                                Button {
                                     authManager.logout()
                                     shouldNavigateToLogin = true
+                                } label: {
+                                    Text("Çıkış Yap")
+                                        .foregroundColor(.white)
+                                        .padding()
+                                        .background(.blue)
+                                        .cornerRadius(15)
                                 }
                             }
                             .offset(y:-30)
@@ -47,17 +61,15 @@ struct AntrenorProfil: View {
                     }
                 }
 
-                // Çıkış yap butonu
                 
             }
             .onAppear {
-                viewModel.fetchAntrenorProfile()  // API çağrısı ile profil bilgilerini getir
+                viewModel.fetchAntrenorProfile()
             }
             .navigationDestination(isPresented: $shouldNavigateToLogin) {
-                SecimEkrani()  // Çıkış sonrası seçim ekranına yönlendirme
+                SecimEkrani()
             }
-            .navigationTitle("Antrenör Profilim")
-            
+            .navigationTitle("Profil")
             .navigationBarTitleDisplayMode(.inline)
         }
     }
