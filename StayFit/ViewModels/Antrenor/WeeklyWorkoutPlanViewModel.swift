@@ -14,6 +14,7 @@ struct WorkoutPlan: Codable{
     var dayOfWeek: Int
 }
 
+
 struct WorkoutDays: Codable, Identifiable {
     var id: Int
     var title: String
@@ -24,14 +25,11 @@ struct WorkoutDays: Codable, Identifiable {
     var updatedDate: String?
     var formattedUpdatedDate: String?
 }
-
 struct WorkoutDayResponse: Codable {
     let getWorkoutDaysByWorkoutPlanIdDtos: [WorkoutDays]
     let message: String
     let success: Bool
 }
-
-
 
 
 

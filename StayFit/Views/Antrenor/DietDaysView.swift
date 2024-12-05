@@ -1,15 +1,14 @@
 //
-//  WeeklyWorkoutPlanView.swift
+//  DietDaysView.swift
 //  StayFit
 //
-//  Created by İmat Gökaslan on 3.12.2024.
-//  viewModel.workoutPlanId = workout.id
-//.sorted(by: { $0.dayOfWeek < $1.dayOfWeek })
+//  Created by İmat Gökaslan on 5.12.2024.
+//
 
 import SwiftUI
 
-struct WeeklyWorkoutPlanView: View {
-    @StateObject private var viewModel = WeeklyWorkoutPlanViewModel()
+struct DietDaysView: View {
+    @StateObject private var viewModel = DietDaysViewModel()
     @Environment(\.dismiss) var dismiss
     let workout: WorkoutCevap
     
@@ -18,15 +17,17 @@ struct WeeklyWorkoutPlanView: View {
             VStack {
                 if viewModel.isLoading {
                     ProgressView("Yükleniyor...")
-                } else {
+                } else if viewModel.dietDays.isEmpty{
+                    Text("Diyet planı yok.")
+                        .foregroundColor(.gray)
+                }
+                else {
                     ScrollView{
-                        ForEach(viewModel.workoutDays.sorted(by: { $0.dayOfWeek < $1.dayOfWeek })) { plan in
+                        ForEach(viewModel.dietDays.sorted(by: { $0.dayOfWeek < $1.dayOfWeek })) { plan in
                                 NavigationLink {
-                                    ExerciseListView(workoutdays: plan)
-                                        .navigationBarBackButtonHidden(true)
+                                    EmptyView()
                                 } label: {
-                                    WeeklyWorkoutDayRowView(plan: plan)
-                                    
+                                    DietDaysRowView(plan: plan)
                                 }
                         }
                     }
@@ -35,7 +36,7 @@ struct WeeklyWorkoutPlanView: View {
                 }
                 Spacer()
                 Form {
-                    Section(header: Text("Yeni Antrenman Planı")) {
+                    Section(header: Text("Yeni Diet Planı")) {
                         TextField("Başlık", text: $viewModel.title)
                         
                         Picker("Gün Seçimi", selection: $viewModel.dayOfWeek) {
@@ -47,7 +48,7 @@ struct WeeklyWorkoutPlanView: View {
                     
                     Section {
                         Button(action: {
-                            viewModel.createWorkoutPlan()
+                            viewModel.createDietPlan()
                         }) {
                             HStack {
                                 Spacer()
@@ -64,26 +65,26 @@ struct WeeklyWorkoutPlanView: View {
                 }
                 .frame(height: 220)
             }
-            .navigationTitle("Antrenman Planları")
+            .navigationTitle("Diyet Planları")
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(
                 leading: Button("İptal") {
                     dismiss()
                 },
                 trailing: Button(action: {
-                    viewModel.workoutPlanId = workout.id
-                    viewModel.getWorkoutPlans()
+                    viewModel.dietPlanId = workout.id
+                    viewModel.getDietPlans()
                 }, label: {
                     Image(systemName: "repeat")
                 })
             )
             .alert("Bilgi", isPresented: .constant(viewModel.errorMessage != nil)) {
                 Button("Tamam") {
-                    if viewModel.errorMessage == "Workout plan başarıyla gönderildi!" {
+                    if viewModel.errorMessage == "Diet plan başarıyla gönderildi!" {
                         withAnimation(Animation.easeInOut(duration: 2.0)) { // 1 saniye süreyle animasyon
                             viewModel.resetFields()
-                            viewModel.workoutPlanId = workout.id
-                            viewModel.getWorkoutPlans()
+                            viewModel.dietPlanId = workout.id
+                            viewModel.getDietPlans()
                         }
                     }
                     withAnimation(Animation.easeOut(duration: 1)) { // 0.5 saniyelik daha hızlı bir animasyon
@@ -95,9 +96,9 @@ struct WeeklyWorkoutPlanView: View {
             }
 
             .onAppear {
-                viewModel.workoutPlanId = workout.id
+                viewModel.dietPlanId = workout.id
                 withAnimation(Animation.easeInOut(duration: 0.5)) {
-                    viewModel.getWorkoutPlans()
+                    viewModel.getDietPlans()
                 }
                 
             }
@@ -108,5 +109,5 @@ struct WeeklyWorkoutPlanView: View {
 
 
 #Preview {
-    WeeklyWorkoutPlanView( workout: WorkoutCevap(id: 2, title: "", description: "", formattedStartDate: "", formattedEndDate: "", status: 0, endDate: "", startDate: ""))
+    DietDaysView( workout: WorkoutCevap(id: 2, title: "", description: "", formattedStartDate: "", formattedEndDate: "", status: 0, endDate: "", startDate: ""))
 }

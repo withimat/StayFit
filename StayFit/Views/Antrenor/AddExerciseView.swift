@@ -12,6 +12,7 @@ struct AddExerciseView: View {
     @Environment(\.dismiss) var dismiss
 
     @State private var exercise = Exercise(
+        id: 0,
         workoutDayId: 0,
         priority: 1, name: "",
         description: "",
@@ -78,6 +79,7 @@ struct AddExerciseView: View {
                 .disabled(exercise.name.isEmpty || isSubmitting || exercise.description.isEmpty)
             }
         }
+        .onAppear(){}
         .toolbar{
             ToolbarItem(placement: .topBarLeading) {
                 Image(systemName: "chevron.left")

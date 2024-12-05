@@ -17,8 +17,7 @@ struct Beslenme: View {
         return formatter.string(from: Date())
     }()
     
-    @State static var count : Int = 0
-    @ObservedObject var dietProgram = BeslenmeViewModel()
+    @ObservedObject var viewModel = BeslenmeViewModel()
     
     var body: some View {
         NavigationView {
@@ -29,7 +28,7 @@ struct Beslenme: View {
                         NavigationLink {
                             SuplementList()
                                 .navigationBarBackButtonHidden(true)
-                                
+                            
                         } label: {
                             LottieItem(text: "Suplementler", lottie: "https://lottie.host/5dd23691-1a2a-4c25-abab-f1b88c9baa5d/oy5D94yaE7.json")
                         }
@@ -40,7 +39,7 @@ struct Beslenme: View {
                         NavigationLink {
                             FitnessTipsView()
                                 .navigationBarBackButtonHidden(true)
-                                
+                            
                         } label: {
                             LottieItem(text: "Diyet Tüyoları", lottie: "https://lottie.host/e79fb253-0a30-4071-8a41-43993a3c97e6/TVHvgXSwuH.json")
                         }
@@ -50,7 +49,7 @@ struct Beslenme: View {
                     
                     HStack {
                         HeadingView(color: Color.black,headingImage: "fork.knife"
-                            , headingText: "Beslenme")
+                                    , headingText: "Beslenme")
                         
                         HStack(){
                             Picker("Gün Seçin", selection: $selectedDay) {
@@ -63,50 +62,52 @@ struct Beslenme: View {
                                 }
                             }
                             .pickerStyle(DefaultPickerStyle())
-                           
+                            
                         }
                     }
                     .padding()
                     
                     
-                   
-                        
-                       
-                            if let meals = dietProgram.program[selectedDay] {
-                                // Her bir öğünü listele
-                                ForEach(meals)  { meal in
-                                    HStack {
-                                    
-                                        DiyetItem(diyet: meal)
-                                            .padding(.top,-15)
-                                            .padding(.bottom,50)
-                                        .padding(.horizontal,50)
-                                    }
-                                    .padding()
-                                      
+                    VStack {
+                        if viewModel.isLoading {
+                            ProgressView("Yükleniyor...") // Yükleme göstergesi
+                        } else if let errorMessage = viewModel.errorMessage {
+                            Text("Hata: \(errorMessage)")
+                                .foregroundColor(.red)
+                                .multilineTextAlignment(.center)
+                                .padding()
+                        } else {
+                            ForEach(viewModel.dietPlan, id: \.id) { workout in
+                                NavigationLink {
+                                    EmptyView()
+                                } label: {
+                                    WorkoutRowView(workout: workout)
                                 }
-                            } else {
-                                // Eğer seçilen gün için öğün yoksa
-                                Text("Bu gün için diyet programı bulunamadı.")
-                                    .font(.subheadline)
-                                    .foregroundColor(.red)
-                                    .padding(.horizontal) // Yatay boşluk ekleme
+                                
+                                
                             }
-                            
-                        
-                      
-                    
-                    
-
-                    
-                        
-                
+                        }
+                    }
                     
                     Spacer()
                 }
                 .padding(.top)
-                .navigationTitle("Beslenme")
-                .navigationBarTitleDisplayMode(.inline)
+                
+            }
+            .navigationTitle("Beslenme")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: {
+                        viewModel.fetchdietPlan() // Yenile butonu
+                    }) {
+                        Image(systemName: "arrow.clockwise")
+                    }
+                }
+            }
+            .onAppear {
+                viewModel.fetchdietPlan()
+                
             }
         }
     }

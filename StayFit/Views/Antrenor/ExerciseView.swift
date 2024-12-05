@@ -6,77 +6,66 @@
 
 
 import SwiftUI
+
 struct ExerciseListView: View {
     @StateObject private var viewModel = ExerciseViewModel()
     var workoutdays: WorkoutDays
     @Environment(\.dismiss) var dismiss
+    
     var body: some View {
         NavigationView {
-            VStack {
-                List(viewModel.exercises.sorted(by: { $0.priority < $1.priority }), id: \.name) { exercise in
-                    NavigationLink {
-                        ExerciseDetailView(exercise: exercise)
-                        
-                    } label: {
-                        VStack(alignment: .leading) {
-                            Text(exercise.name)
-                                .font(.headline)
-                            Text(exercise.description)
-                                .font(.subheadline)
-                            Text("Hareket Önceliği : \(exercise.priority)")
-                                .font(.caption)
-                                .foregroundColor(.gray)
-                        }
-                    }
-
-                    
-                }
-                .navigationTitle("Egzersiz Listesi")
-                .navigationBarTitleDisplayMode(.inline)
-                .toolbar{
-                    ToolbarItem(placement: .topBarLeading) {
-                        Image(systemName: "chevron.left")
-                            .imageScale(.large)
-                            .foregroundColor(.blue)
-                            .onTapGesture {
-                                dismiss()
+            ScrollView {
+                VStack(alignment: .leading) {
+                    ForEach(viewModel.exercises.sorted(by: { $0.priority < $1.priority }), id: \.name) { exercise in
+                        NavigationLink(destination: ExerciseDetailView(exercise: exercise)) {
+                            ExerciseRowView(exercise: exercise) {
+                                viewModel.deleteWorkoutDay(by: exercise.id)
                             }
+                        }
+                        .padding(.horizontal, 5)
                     }
                 }
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        NavigationLink(destination: AddExerciseView(viewModel: viewModel).navigationBarBackButtonHidden(true)
-                        ){
-                            Image(systemName: "plus")
-                                .imageScale(.large)
+                .padding()
+            }
+            .navigationTitle("Egzersiz Listesi")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Image(systemName: "chevron.left")
+                        .imageScale(.large)
+                        .foregroundColor(.blue)
+                        .onTapGesture {
+                            dismiss()
                         }
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    NavigationLink(destination: AddExerciseView(viewModel: viewModel).navigationBarBackButtonHidden(true)) {
+                        Image(systemName: "plus")
+                            .imageScale(.large)
                     }
                 }
             }
             .onAppear {
                 viewModel.WorkoutId = workoutdays.id
-                print(viewModel.WorkoutId)
                 viewModel.fetchExercises(for: workoutdays.id)
+                
             }
         }
     }
-
 }
 
 
 
 
-
 #Preview {
-    ExerciseListView( workoutdays: WorkoutDays(id: 1, title: "Bacak", dayOfWeek: 0, isCompleted: false))
+    //ExerciseListView( workoutdays: WorkoutDays(id: 1, title: "Bacak", dayOfWeek: 0, isCompleted: false))
+    ExerciseDetailView(exercise: Exercise(id: 1, workoutDayId: 1, priority: 1, name: "Bacak", description: "Önemli Bir sey", setCount: 3, repetitionCount: 10, durationMinutes: 1, exerciseLevel: 1, exerciseCategory: 1))
 }
 
 
 
 struct ExerciseDetailView: View {
     let exercise: Exercise
-    
-    // Özel renkler
     private let lightBlue = Color(red: 235/255, green: 245/255, blue: 255/255)
     private let mediumBlue = Color(red: 100/255, green: 149/255, blue: 237/255)
     private let darkBlue = Color(red: 25/255, green: 25/255, blue: 112/255)
@@ -160,6 +149,7 @@ struct ExerciseDetailView: View {
         .navigationBarTitleDisplayMode(.inline)
     }
 }
+
 
 struct DetailBox: View {
     let title: String

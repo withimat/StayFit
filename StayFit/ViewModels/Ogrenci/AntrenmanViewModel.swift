@@ -27,10 +27,24 @@ struct WorkoutPlanResponse2: Codable {
 }
 
 struct WorkoutPlanResponse: Codable {
-    var getWorkoutPlansByMemberIdDtos: [WorkoutCevap] // Yeni dizi adı
+    var getWorkoutPlansByMemberIdDtos: [WorkoutCevap]
     var success: Bool
     var message: String
 }
+
+struct DietPlanResponse2: Codable {
+    var getDietPlansBySubscriptionIdDtos: [WorkoutCevap]
+    var success: Bool
+    var message: String
+}
+
+struct DietPlanResponse: Codable {
+    var getDietPlansByMemberIdDtos: [WorkoutCevap]
+    var success: Bool
+    var message: String
+}
+
+
 
 class AntrenmanViewModel: ObservableObject {
     @Published var workoutPlan: [WorkoutCevap] = []

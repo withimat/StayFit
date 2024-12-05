@@ -21,15 +21,18 @@ struct Antrenman: View {
                            .multilineTextAlignment(.center)
                            .padding()
                    } else {
-                       List(viewModel.workoutPlan, id: \.id) { workout in
-                           NavigationLink {
-                               WeeklyWorkoutGetView(workout: workout)
-                                   .navigationBarBackButtonHidden(true)
-                           } label: {
-                               WorkoutRowView(workout: workout)
+                       ScrollView {
+                           ForEach(viewModel.workoutPlan, id: \.id) { workout in
+                               NavigationLink {
+                                   WeeklyWorkoutGetView(workout: workout)
+                                       .navigationBarBackButtonHidden(true)
+                               } label: {
+                                   MemberWorkoutRowView(workout: workout)
+                                       .padding(.top)
+                               }
+                               
+                               
                            }
-
-                           
                        }
                    }
                }

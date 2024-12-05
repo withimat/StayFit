@@ -8,7 +8,8 @@
 import Foundation
 import Combine
 
-struct Exercise: Codable{
+struct Exercise: Codable , Identifiable{
+    var id: Int
     var workoutDayId: Int
     var priority: Int
     var name: String
@@ -19,6 +20,7 @@ struct Exercise: Codable{
     var exerciseLevel: Int
     var exerciseCategory: Int
 }
+
 typealias ExerciseArray = [Exercise]
 
 struct GetExercisesResponse: Codable {
@@ -33,7 +35,8 @@ import Foundation
 class ExerciseViewModel: ObservableObject {
     @Published var exercises: [Exercise] = [] // List of exercises
     @Published var errorMessage: String? // To display error messages if any
-    @Published var isLoading: Bool = false // To show a loading indicator if needed
+    @Published var isLoading: Bool = false
+    @Published var yenile: Bool = false
     @Published var WorkoutId = 0
     let apiBaseURL = "http://localhost:5200/api/Exercises"
     
@@ -154,7 +157,58 @@ class ExerciseViewModel: ObservableObject {
         }
     
     
-    
+    func deleteWorkoutDay(by id: Int) {
+        guard let url = URL(string: "http://localhost:5200/api/Exercises/DeleteExercise?excersiceId=\(id)") else {
+            self.errorMessage = "Geçersiz URL"
+            return
+        }
+        
+        guard let token = UserDefaults.standard.string(forKey: "jwt") else {
+            self.errorMessage = "JWT token eksik"
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "DELETE"
+        request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        
+        isLoading = true
+        
+        URLSession.shared.dataTask(with: request) { [weak self] data, response, error in
+            DispatchQueue.main.async {
+                self?.isLoading = false
+            }
+            
+            if let error = error {
+                DispatchQueue.main.async {
+                    self?.errorMessage = "Egzersiz silme hatası: \(error.localizedDescription)"
+                }
+                print("Error deleting workout day: \(error)")
+                return
+            }
+            
+            guard let httpResponse = response as? HTTPURLResponse else {
+                DispatchQueue.main.async {
+                    self?.errorMessage = "Geçersiz sunucu yanıtı"
+                }
+                return
+            }
+            
+            if httpResponse.statusCode == 200 {
+                DispatchQueue.main.async { [self] in
+
+                    self?.exercises.removeAll { $0.workoutDayId == id }
+                    self?.fetchExercises(for: self?.WorkoutId ?? 0)
+                    self?.errorMessage = nil
+                }
+            } else {
+                DispatchQueue.main.async {
+                    self?.errorMessage = "Egzersiz silme başarısız. Durum kodu: \(httpResponse.statusCode)"
+                }
+            }
+        }.resume()
+    }
+
     
     
 }

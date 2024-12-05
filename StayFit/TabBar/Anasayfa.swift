@@ -94,7 +94,7 @@ struct Anasayfa: View {
                     }
                     
                 
-                    ScrollView(.horizontal, showsIndicators: false) {
+                    /*ScrollView(.horizontal, showsIndicators: false) {
                                HStack(spacing: 10) { // Öğeler arasında boşluk
                                    if let meals = dietProgram.program[selectedDay] {
                                        // Her bir öğünü listele
@@ -115,6 +115,7 @@ struct Anasayfa: View {
                            }
                     .padding(.top,-10)
                     .offset(y:-15)
+                     */
    
                     HStack(){
                         Text("Personel Traniers")

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+
 class AuthManager: ObservableObject {
     static let shared = AuthManager()  // Singleton yapısı
     
