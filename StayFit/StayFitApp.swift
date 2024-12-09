@@ -41,7 +41,7 @@ struct ContentView2: View {
             }
         }
         .onAppear {
-            // Uygulama açıldığında yapılacak işlemler
+            
         }
     }
 }

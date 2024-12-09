@@ -32,8 +32,8 @@ struct DietDaysRowView: View {
                             .foregroundColor(.red)
                     }
                     .buttonStyle(BorderlessButtonStyle())
-                    Image(systemName: plan.isCompleted ? "checkmark.circle.fill" : "circle")
-                        .foregroundColor(plan.isCompleted ? .green : .gray)
+                    Image(systemName: plan.isCompleted! ? "checkmark.circle.fill" : "circle")
+                        .foregroundColor(plan.isCompleted! ? .green : .gray)
                 }
                
             }
@@ -66,4 +66,46 @@ struct DietDaysRowView: View {
 
 #Preview {
     DietDaysRowView(plan: DietDays(id: 12, title: "Göğüs", dayOfWeek: 1, isCompleted: true, formattedCreatedDate:"11/21/2024"))
+}
+
+
+struct DietDaysRowViewForMember: View {
+    let plan: DietDays
+    @StateObject private var viewModel = DietDaysViewModel()
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            HStack {
+                Text(plan.title.uppercased())
+                    .font(.headline)
+                    .foregroundColor(.white)
+                Spacer()
+                
+               
+            }
+            HStack {
+                Text(DayOfWeek(rawValue: plan.dayOfWeek)?.displayName ?? "")
+                    .font(.subheadline)
+                    .foregroundColor(.gray)
+                
+                Spacer()
+                
+                Text(plan.formattedCreatedDate ?? "")
+                    .font(.caption)
+                    .foregroundColor(.gray)
+            }
+        }
+        .frame(height: 50)
+        .padding(30)
+        .background(
+            RoundedRectangle(cornerRadius: 10)
+                .fill(Color.blue.opacity(0.3))
+        )
+        .overlay(
+            RoundedRectangle(cornerRadius: 10)
+                .stroke(Color.gray, lineWidth: 2)
+        )
+        .padding(.horizontal,20)
+        .padding(.top,5)
+    }
 }

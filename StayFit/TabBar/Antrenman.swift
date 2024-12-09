@@ -14,7 +14,7 @@ struct Antrenman: View {
            NavigationView {
                VStack {
                    if viewModel.isLoading {
-                       ProgressView("Yükleniyor...") // Yükleme göstergesi
+                       ProgressView("Yükleniyor...")
                    } else if let errorMessage = viewModel.errorMessage {
                        Text("Hata: \(errorMessage)")
                            .foregroundColor(.red)

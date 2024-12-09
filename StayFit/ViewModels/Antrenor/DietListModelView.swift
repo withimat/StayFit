@@ -1,46 +1,49 @@
 //
-//  ExerciseViewModel.swift
+//  DietListModelView.swift
 //  StayFit
 //
-//  Created by İmat Gökaslan on 22.11.2024.
-//
+//  Created by İmat Gökaslan on 7.12.2024.
+//getDietsByDietDayIdDtos
 
 import Foundation
-import Combine
 
-struct Exercise: Codable , Identifiable{
+
+struct DietMeal: Identifiable, Codable {
     var id: Int
-    var workoutDayId: Int
-    var priority: Int
-    var name: String
-    var description: String
-    var setCount: Int
-    var repetitionCount: Int
-    var durationMinutes: Int
-    var exerciseLevel: Int
-    var exerciseCategory: Int
+    var dietDayId: Int? // Optional hale getirildi
+    var mealType: Int
+    var foodName: String
+    var portion: Double
+    var unit: String
+    var calories: Double
+    var carbs: Double
+    var protein: Double
+    var fat: Double
 }
 
-typealias ExerciseArray = [Exercise]
+typealias DietArray = [DietMeal]
 
-struct GetExercisesResponse: Codable {
-    let getExercisesByWorkoutDayIdDtos: [Exercise]?
-    let messages: String?
+struct GetDietsResponse: Codable {
+    var getDietsByDietDayIdDtos: [DietMeal]?
+    let message: String?
     let success: Bool
 }
 
 
-class ExerciseViewModel: ObservableObject {
-    @Published var exercises: [Exercise] = [] // List of exercises
+
+class DietListModelView : ObservableObject {
+    @Published var dietmeals: [DietMeal] = [] // List of exercises
     @Published var errorMessage: String? // To display error messages if any
     @Published var isLoading: Bool = false
     @Published var yenile: Bool = false
-    @Published var WorkoutId = 0
-    let apiBaseURL = "http://localhost:5200/api/Exercises"
+    @Published var dietId = 0
+    let apiBaseURL = "http://localhost:5200/api/Diets"
+    
+    
     
     /// Fetch exercises (GET request)
-    func fetchExercises(for workoutDayId: Int) {
-        guard let url = URL(string: "\(apiBaseURL)/GetExercisesByWorkoutDayId?workoutDayId=\(workoutDayId)") else {
+    func fetchDiets(for DietDayId: Int) {
+        guard let url = URL(string: "\(apiBaseURL)/GetDietSByDietDayId?dietDayId=\(DietDayId)") else {
             print("Invalid URL")
             return
         }
@@ -62,6 +65,9 @@ class ExerciseViewModel: ObservableObject {
                 self.isLoading = false
             }
             
+          
+          
+        
             if let error = error {
                 DispatchQueue.main.async {
                     self.errorMessage = "Error fetching exercises: \(error.localizedDescription)"
@@ -77,24 +83,28 @@ class ExerciseViewModel: ObservableObject {
                 print("No data received")
                 return
             }
+            if  let jsonString = String(data: data, encoding: .utf8) {
+                print("Response JSON: \(jsonString)")
+            }
             
             do {
                 // Decode the response using `GetExercisesResponse`
-                let response = try JSONDecoder().decode(GetExercisesResponse.self, from: data)
+                let response = try JSONDecoder().decode(GetDietsResponse.self, from: data)
                 
                 if response.success {
                     DispatchQueue.main.async {
-                        self.exercises = response.getExercisesByWorkoutDayIdDtos ?? []
-                        print(response.getExercisesByWorkoutDayIdDtos!)
+                        self.dietmeals = response.getDietsByDietDayIdDtos ?? []
+                        print(response)
                         self.errorMessage = nil // Clear error message on success
                     }
                 } else {
                     DispatchQueue.main.async {
-                        self.errorMessage = response.messages ?? "An unknown error occurred."
+                        self.errorMessage = response.message ?? "An unknown error occurred."
                         print(response)
-                        print(response.messages!)
+                       
+                        
                     }
-                    print("Error message from server: \(response.messages ?? "No message")")
+                    print("Error message from server: \(response.message ?? "No message")")
                 }
             } catch {
                 DispatchQueue.main.async {
@@ -105,58 +115,59 @@ class ExerciseViewModel: ObservableObject {
         }.resume()
     }
     
-    /// Add a new exercise (POST request)
+    
+    func addDiets(_ diets: [DietMeal]) {
+        guard let url = URL(string: "\(apiBaseURL)/CreateDietList") else {
+            self.errorMessage = "Invalid URL"
+            return
+        }
         
-        func addExercises(_ exercises: [Exercise]) {
-            guard let url = URL(string: "\(apiBaseURL)/CreateExercise") else {
-                self.errorMessage = "Invalid URL"
-                return
-            }
+        guard let token = UserDefaults.standard.string(forKey: "jwt") else {
+            self.errorMessage = "JWT token is missing"
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        
+        do {
+            let jsonData = try JSONEncoder().encode(diets)
+            request.httpBody = jsonData
             
-            guard let token = UserDefaults.standard.string(forKey: "jwt") else {
-                self.errorMessage = "JWT token is missing"
-                return
-            }
-            
-            var request = URLRequest(url: url)
-            request.httpMethod = "POST"
-            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-            request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-            
-            do {
-                let jsonData = try JSONEncoder().encode(exercises)
-                request.httpBody = jsonData
-                
-                URLSession.shared.dataTask(with: request) { [weak self] data, response, error in
-                    DispatchQueue.main.async {
-                        if let error = error {
-                            self?.errorMessage = "Error: \(error.localizedDescription)"
-                            return
-                        }
-                        
-                        guard let httpResponse = response as? HTTPURLResponse else {
-                            self?.errorMessage = "Invalid response"
-                            return
-                        }
-                        
-                        if httpResponse.statusCode == 200 {
-                            self?.exercises.append(contentsOf: exercises)
-                            self?.errorMessage = nil
-                        } else {
-                            self?.errorMessage = "Server error: \(httpResponse.statusCode)"
-                        }
+            URLSession.shared.dataTask(with: request) { [weak self] data, response, error in
+                DispatchQueue.main.async { [self] in
+                    if let error = error {
+                        self?.errorMessage = "Error: \(error.localizedDescription)"
+                        return
                     }
-                }.resume()
-            } catch {
-                DispatchQueue.main.async {
-                    self.errorMessage = "Error encoding exercise: \(error.localizedDescription)"
+                    
+                    guard let httpResponse = response as? HTTPURLResponse else {
+                        self?.errorMessage = "Invalid response"
+                        return
+                    }
+                    print(httpResponse.statusCode)
+                    if httpResponse.statusCode == 200 {
+                        self?.dietmeals.append(contentsOf: diets)
+                        self?.errorMessage = nil
+                    } else {
+                        self?.errorMessage = "Server error: \(httpResponse.statusCode)"
+                    }
                 }
+            }.resume()
+        } catch {
+            DispatchQueue.main.async {
+                self.errorMessage = "Error encoding exercise: \(error.localizedDescription)"
             }
         }
+    }
     
     
-    func deleteWorkoutDay(by id: Int) {
-        guard let url = URL(string: "http://localhost:5200/api/Exercises/DeleteExercise?excersiceId=\(id)") else {
+    
+    
+    func deleteDietMeal(by id: Int) {
+        guard let url = URL(string: "http://localhost:5200/api/Diets/DeleteDiet?dietId=\(id)") else {
             self.errorMessage = "Geçersiz URL"
             return
         }
@@ -195,8 +206,8 @@ class ExerciseViewModel: ObservableObject {
             if httpResponse.statusCode == 200 {
                 DispatchQueue.main.async { [self] in
 
-                    self?.exercises.removeAll { $0.workoutDayId == id }
-                    self?.fetchExercises(for: self?.WorkoutId ?? 0)
+                    self?.dietmeals.removeAll { $0.dietDayId == id }
+                    self?.fetchDiets(for: self?.dietId ?? 0)
                     self?.errorMessage = nil
                 }
             } else {
@@ -207,6 +218,7 @@ class ExerciseViewModel: ObservableObject {
         }.resume()
     }
 
+    
     
     
 }

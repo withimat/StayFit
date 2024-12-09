@@ -73,6 +73,36 @@ struct StudentDetailView: View {
                     .padding(.horizontal)
                     
                     Divider()
+                    
+                    
+                    HStack{
+                        Spacer()
+                        
+                        NavigationLink {
+                            StudentWorkoutView(viewModel: viewModel, student: student)
+                        } label: {
+                            LottieItem(text: "Antrenman", lottie: "https://lottie.host/9f89854b-1c46-48d3-ba18-a00b23455157/GKg9GEfX6B.json")
+                        }
+
+                        
+                        
+                        Spacer()
+                        NavigationLink {
+                            StudentDietView(viewModel: viewModel, student: student)
+                        } label: {
+                            LottieItem(text: "Diyet", lottie: "https://lottie.host/e62589b7-38c6-41d8-b1e6-c73e68e153b8/vnRXxHAmIO.json")
+                        }
+
+                        
+                        
+                        Spacer()
+                        
+                    }
+                    
+                    
+                    
+                    /*
+                    Divider()
                     HStack {
                         Spacer()
                         NavigationLink {
@@ -203,7 +233,14 @@ struct StudentDetailView: View {
 
                 Spacer()
                     Button {
+                        withAnimation {
+                           
+                            if let index = viewModel.dietPlan.firstIndex(where: { $0.id == diet.id }) {
+                                viewModel.dietPlan.remove(at: index)
+                            }
+                        }
                         
+                        viewModel.deleteDietPlan(id: diet.id)
                     } label: {
                         Image(systemName: "trash")
                     }
@@ -228,6 +265,7 @@ struct StudentDetailView: View {
             }
                     }
                     .padding()
+                     */
                 }
             }
             .onAppear {

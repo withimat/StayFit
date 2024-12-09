@@ -58,8 +58,8 @@ struct ExerciseListView: View {
 
 
 #Preview {
-    //ExerciseListView( workoutdays: WorkoutDays(id: 1, title: "Bacak", dayOfWeek: 0, isCompleted: false))
-    ExerciseDetailView(exercise: Exercise(id: 1, workoutDayId: 1, priority: 1, name: "Bacak", description: "Önemli Bir sey", setCount: 3, repetitionCount: 10, durationMinutes: 1, exerciseLevel: 1, exerciseCategory: 1))
+    ExerciseListView( workoutdays: WorkoutDays(id: 1, title: "Bacak", dayOfWeek: 0, isCompleted: false))
+    //ExerciseDetailView(exercise: Exercise(id: 1, workoutDayId: 1, priority: 1, name: "Bacak", description: "Önemli Bir sey", setCount: 3, repetitionCount: 10, durationMinutes: 1, exerciseLevel: 1, exerciseCategory: 1))
 }
 
 

@@ -77,11 +77,12 @@ struct Beslenme: View {
                                 .multilineTextAlignment(.center)
                                 .padding()
                         } else {
-                            ForEach(viewModel.dietPlan, id: \.id) { workout in
+                            ForEach(viewModel.dietPlan, id: \.id) { diet in
                                 NavigationLink {
-                                    EmptyView()
+                                    GetDietPlansByMemberId(workout: diet)
+                                        .navigationBarBackButtonHidden(true)
                                 } label: {
-                                    WorkoutRowView(workout: workout)
+                                    WorkoutRowView(workout: diet)
                                 }
                                 
                                 
@@ -94,7 +95,7 @@ struct Beslenme: View {
                 .padding(.top)
                 
             }
-            .navigationTitle("Beslenme")
+            .navigationTitle("Beslenme Planı")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {

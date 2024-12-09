@@ -36,8 +36,7 @@ class BeslenmeViewModel: ObservableObject {
         self.isLoading = true
         URLSession.shared.dataTask(with: request) { [weak self] data, response, error in
             DispatchQueue.main.async {
-                print(data!)
-                print(response!)
+               
                 
                 self?.isLoading = false
 

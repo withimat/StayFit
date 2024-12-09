@@ -8,16 +8,16 @@
 import Foundation
 
 struct DietPlan: Codable{
-
-    let dietPlanId: Int
+    var dietPlanId: Int
     var title: String
     var dayOfWeek: Int
 }
+
 struct DietDays: Codable, Identifiable {
     var id: Int
     var title: String
     var dayOfWeek: Int
-    var isCompleted: Bool
+    var isCompleted: Bool?
     var createdDate: String?
     var formattedCreatedDate: String?
     var updatedDate: String?
@@ -70,7 +70,7 @@ class DietDaysViewModel : ObservableObject {
           URLSession.shared.dataTask(with: request) { [weak self] data, response, error in
               DispatchQueue.main.async {
                   self?.isLoading = false
-                  print(response!)
+                  
                   print(request)
                   if let error = error {
                       self?.errorMessage = "Request error: \(error.localizedDescription)"

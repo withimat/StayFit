@@ -6,8 +6,6 @@
 //
 
 import Foundation
-
-import Foundation
 import Alamofire
 
 struct CreateDietPlanDto: Codable {

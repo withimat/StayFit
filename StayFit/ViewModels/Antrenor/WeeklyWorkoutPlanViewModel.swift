@@ -71,7 +71,7 @@ class WeeklyWorkoutPlanViewModel: ObservableObject {
            URLSession.shared.dataTask(with: request) { [weak self] data, response, error in
                DispatchQueue.main.async {
                    self?.isLoading = false
-                   print(response!)
+                  
                    print(request)
                    if let error = error {
                        self?.errorMessage = "Request error: \(error.localizedDescription)"

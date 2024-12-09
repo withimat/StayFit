@@ -10,7 +10,7 @@ import SwiftUI
 struct DietDaysView: View {
     @StateObject private var viewModel = DietDaysViewModel()
     @Environment(\.dismiss) var dismiss
-    let workout: WorkoutCevap
+    var workout: WorkoutCevap
     
     var body: some View {
         NavigationStack {
@@ -25,7 +25,8 @@ struct DietDaysView: View {
                     ScrollView{
                         ForEach(viewModel.dietDays.sorted(by: { $0.dayOfWeek < $1.dayOfWeek })) { plan in
                                 NavigationLink {
-                                    EmptyView()
+                                    DietListView(workoutdays: plan)
+                                        .navigationBarBackButtonHidden(true)
                                 } label: {
                                     DietDaysRowView(plan: plan)
                                 }
@@ -109,5 +110,5 @@ struct DietDaysView: View {
 
 
 #Preview {
-    DietDaysView( workout: WorkoutCevap(id: 2, title: "", description: "", formattedStartDate: "", formattedEndDate: "", status: 0, endDate: "", startDate: ""))
+    DietDaysView( workout: WorkoutCevap(id: 9, title: "", description: "", formattedStartDate: "", formattedEndDate: "", status: 0, endDate: "", startDate: ""))
 }

@@ -3,6 +3,7 @@
 //  StayFit
 //
 //  Created by İmat Gökaslan on 1.10.2024.
+
 import SwiftUI
 
 struct RegisterView: View {

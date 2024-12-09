@@ -14,8 +14,7 @@ struct EditProfileView: View {
     
     var body: some View {
         VStack {
-            
-            
+            Fotoyukleme()
             Form {
                 Section(header: Text("Kişisel Bilgiler")) {
                     HStack{

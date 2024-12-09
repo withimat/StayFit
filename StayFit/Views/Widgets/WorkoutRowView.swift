@@ -17,7 +17,8 @@ struct WorkoutRowView: View {
                     .fontWeight(.bold)
                     .foregroundColor(.white)
                 Spacer()
-                Button(action: {
+                
+                /*Button(action: {
                     
                 }) {
                     Image(systemName: "trash")
@@ -26,10 +27,9 @@ struct WorkoutRowView: View {
                         .background(Color.white.opacity(0.8))
                         .clipShape(Circle())
                         .shadow(radius: 3)
-                }
-                .onTapGesture {
-                  
-                }
+                }*/
+                
+                
             }
             .padding(.bottom, 5)
 
