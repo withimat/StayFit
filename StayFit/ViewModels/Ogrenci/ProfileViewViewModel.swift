@@ -26,6 +26,9 @@ struct UserProfile : Codable {
 class ProfileViewViewModel : ObservableObject{
     @Published var userProfile: UserProfile?
 
+        
+    
+    
         func fetchUserProfile() {
             guard let token = UserDefaults.standard.string(forKey: "jwt") else {
                 print("Token bulunamadı")
@@ -33,7 +36,7 @@ class ProfileViewViewModel : ObservableObject{
             }
 
 
-            guard let url = URL(string: "http://localhost:5200/api/Members/GetMemberProfile") else {
+            guard let url = URL(string: "\(APIConfig.baseURL)/api/Members/GetMemberProfile") else {
                 print("Geçersiz URL")
                 return
             }

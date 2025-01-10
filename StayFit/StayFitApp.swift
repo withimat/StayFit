@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct StayFitApp: App {
     // AuthManager Singleton’ını izlemek için StateObject
-    @StateObject private var authManager = AuthManager.shared
+    @ObservedObject private var authManager = AuthManager.shared
 
     var body: some Scene {
         WindowGroup {
@@ -20,13 +20,18 @@ struct StayFitApp: App {
     }
 }
 
+struct APIConfig {
+    static let baseURL = "http://localhost:5200"
+}
+
+
 struct ContentView2: View {
-    @EnvironmentObject var authManager: AuthManager
+    @ObservedObject var authManager = AuthManager.shared
     
     var body: some View {
         VStack {
             if authManager.token == nil || authManager.userRole.isEmpty {
-                // Eğer token yoksa ya da userRole boşsa, seçim ekranına yönlendirilir
+               
                 SecimEkrani()
             } else {
                 // Eğer token ve userRole varsa, role göre yönlendirme yapılır
@@ -35,7 +40,7 @@ struct ContentView2: View {
                 } else if authManager.userRole == "student" {
                     MainTabView()
                 } else {
-                    // Default olarak seçilen bir durum olabilir, burada diğer roller için bir şeyler yapılabilir.
+                
                     Text("Geçersiz rol")
                 }
             }

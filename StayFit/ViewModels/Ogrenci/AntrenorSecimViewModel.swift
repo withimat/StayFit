@@ -38,15 +38,14 @@ class AntrenorSecimViewModel: ObservableObject {
         fetchPerson()
     }
 
-    // Person verisini API'den çekme fonksiyonu
     func fetchPerson() {
-        // UserDefaults üzerinden tokeni alıyoruz
+      
         guard let token = UserDefaults.standard.string(forKey: "jwt") else {
             print("Token bulunamadı.")
             return
         }
 
-        guard let url = URL(string: "http://localhost:5200/api/Subscriptions/GetMemberSubscribedTrainer") else {
+        guard let url = URL(string: "\(APIConfig.baseURL)/api/Subscriptions/GetMemberSubscribedTrainer") else {
             print("Geçersiz URL")
             return
         }

@@ -16,6 +16,8 @@ struct WeeklyProgressModel: Codable {
     let waistCircumference: Float
     let neckCircumference: Float
     let chestCircumference: Float
+    let creator : Int
+    let formattedCreatedDate: String
 }
 
 struct ApiResponse: Codable {
@@ -29,7 +31,6 @@ struct ApiResponse: Codable {
         case getWeeklyProgressesBySubsIdDtos
     }
 }
-
 // MARK: - ViewModel
 class WeeklyProgressResultModelView: ObservableObject {
     @Published var progresses: [WeeklyProgressModel] = []
@@ -37,45 +38,55 @@ class WeeklyProgressResultModelView: ObservableObject {
     @Published var isSuccess: Bool = false
     @Published var isLoading: Bool = false
     @Published var message: String = ""
-    
+
     func fetchProgresses(subscriptionId: String) {
-        guard let url = URL(string: "http://localhost:5200/api/WeeklyProgresses/GetWeeklyProgressesBySubsId?SubscriptionId=\(subscriptionId)") else {
+        guard let url = URL(string: "\(APIConfig.baseURL)/api/WeeklyProgresses/GetWeeklyProgressesBySubsId?SubscriptionId=\(subscriptionId)") else {
             self.errorMessage = "Invalid URL"
             return
         }
-        
+
         isLoading = true
         errorMessage = nil
-        
+
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
-        
+
         if let token = UserDefaults.standard.string(forKey: "jwt") {
             request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         }
-        
+
         URLSession.shared.dataTask(with: request) { [weak self] data, response, error in
             guard let self = self else { return }
-            
+
             DispatchQueue.main.async {
                 self.isLoading = false
-                
+
                 if let error = error {
                     self.errorMessage = "Network error: \(error.localizedDescription)"
                     return
                 }
-                
+
+                if let httpResponse = response as? HTTPURLResponse {
+                    print("HTTP Status Code: \(httpResponse.statusCode)")
+                    print("HTTP Headers: \(httpResponse.allHeaderFields)")
+                }
+
                 guard let data = data else {
                     self.errorMessage = "No data received from server"
                     return
                 }
-                
+
+                // Sunucudan gelen ham yanıtı yazdır
+                if let rawResponse = String(data: data, encoding: .utf8) {
+                    print("Raw Server Response: \(rawResponse)")
+                }
+
                 do {
                     let decoder = JSONDecoder()
                     let apiResponse = try decoder.decode(ApiResponse.self, from: data)
                     self.isSuccess = apiResponse.success
                     self.message = apiResponse.message
-                    
+
                     if apiResponse.success {
                         if let progresses = apiResponse.getWeeklyProgressesBySubsIdDtos {
                             self.progresses = progresses

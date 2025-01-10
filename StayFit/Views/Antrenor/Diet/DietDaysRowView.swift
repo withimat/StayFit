@@ -10,7 +10,7 @@ import SwiftUI
 
 struct DietDaysRowView: View {
     let plan: DietDays
-    @StateObject private var viewModel = DietDaysViewModel()
+    @StateObject var viewModel = DietDaysViewModel()
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -64,15 +64,20 @@ struct DietDaysRowView: View {
     }
 }
 
+
+
 #Preview {
-    DietDaysRowView(plan: DietDays(id: 12, title: "Göğüs", dayOfWeek: 1, isCompleted: true, formattedCreatedDate:"11/21/2024"))
+    DietDaysRowViewForMember(plan: DietDays(id: 12, title: "Göğüs", dayOfWeek: 1, isCompleted: true, formattedCreatedDate:"11/21/2024"))
 }
+
+
+
 
 
 struct DietDaysRowViewForMember: View {
     let plan: DietDays
-    @StateObject private var viewModel = DietDaysViewModel()
-    
+    @StateObject var viewModel = DietDaysViewModel()
+    @State var workout : WorkoutCevap?
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             HStack {
@@ -80,7 +85,19 @@ struct DietDaysRowViewForMember: View {
                     .font(.headline)
                     .foregroundColor(.white)
                 Spacer()
-                
+                HStack(spacing:20){
+                    Button {
+                        viewModel.completeDietDay(dietDayId2: plan.id)
+                        viewModel.dietPlanId = workout!.id
+                        viewModel.getDietPlans()
+                        print("\(viewModel.errorMessage ?? "butona basıldı")")
+                        
+                    } label: {
+                        Image(systemName: plan.isCompleted! ? "checkmark.circle.fill" : "circle")
+                            .foregroundColor(plan.isCompleted! ? .green : .gray)
+                    }
+
+                }
                
             }
             HStack {

@@ -10,7 +10,7 @@ import SwiftUI
 struct AntrenorLoginView : View {
    // @State  private var username = ""
    // @State  private var password = ""
-    @StateObject var viewmodel = LoginViewViewModel()
+    @StateObject var viewmodel = TrainerLoginViewViewModel()
     @State  var visible : Bool = false
     @State  var visibleString = "eye.slash.fill"
     @State var isAnimating: Bool = false
@@ -140,7 +140,7 @@ struct AntrenorLoginView : View {
                 
                 
                 
-                
+                /*
                 Button(action: {
                     
                 }, label: {
@@ -150,7 +150,7 @@ struct AntrenorLoginView : View {
                 })
                 .padding(.top,5)
                 
-                
+                */
             
                 
             

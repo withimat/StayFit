@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ExerciseRowView: View {
     let exercise: Exercise
-    var onDelete: () -> Void // Silme işleminden sonra çağrılacak bir closure
+    var onDelete: () -> Void 
     
     var body: some View {
             VStack(alignment: .leading, spacing: 10) {
@@ -20,10 +20,12 @@ struct ExerciseRowView: View {
                         .foregroundColor(.white)
                     Spacer()
                     HStack(spacing: 15) {
-                        Image(systemName: "pencil")
-                            .foregroundColor(.white)
+                        
                         Button{
-                            onDelete()
+                            
+                            withAnimation {
+                                onDelete()
+                            }
                         } label: {
                             Image(systemName: "trash")
                                 .foregroundColor(.white)
@@ -91,27 +93,21 @@ struct ExerciseRowView: View {
 }
 
 // Örnek Model ve Önizleme
-struct ExerciseRowView_Previews: PreviewProvider {
-    static var previews: some View {
-        ExerciseRowView(exercise: Exercise(
-            id: 0,
-            workoutDayId: 1,
-            priority: 2,
-            name: "Abs Workout",
-            description: "Core strength exercises",
-            setCount: 4,
-            repetitionCount: 12,
-            durationMinutes: 15,
-            exerciseLevel: 2,
-            exerciseCategory: 1
-        ), onDelete: {
-            
-        })
-            .padding()
-            
-    }
-}
-
+#Preview(body: {
+    MemberExerciseRowView(exercise: Exercise(
+        id: 0,
+        workoutDayId: 1,
+        priority: 2,
+        name: "Abs Workout",
+        description: "Core strength exercises",
+        setCount: 4,
+        repetitionCount: 12,
+        durationMinutes: 15,
+        exerciseLevel: 2,
+        exerciseCategory: 1
+    ))
+    
+})
 
 struct MemberExerciseRowView: View {
     let exercise: Exercise
@@ -124,7 +120,7 @@ struct MemberExerciseRowView: View {
                         .font(.headline)
                         .foregroundColor(.white)
                 
-                   
+                    
                 }
                 
                 // Alt Açıklama
@@ -183,3 +179,4 @@ struct MemberExerciseRowView: View {
             
         }
 }
+

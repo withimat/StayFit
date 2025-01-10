@@ -17,8 +17,14 @@ struct ExerciseListView: View {
             ScrollView {
                 VStack(alignment: .leading) {
                     ForEach(viewModel.exercises.sorted(by: { $0.priority < $1.priority }), id: \.name) { exercise in
-                        NavigationLink(destination: ExerciseDetailView(exercise: exercise)) {
+                        NavigationLink(destination: ExerciseDetailView(exercise: exercise)
+                            .navigationBarBackButtonHidden(true)
+                        
+                        
+                        )
+                        {
                             ExerciseRowView(exercise: exercise) {
+                                
                                 viewModel.deleteWorkoutDay(by: exercise.id)
                             }
                         }

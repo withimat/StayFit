@@ -16,14 +16,7 @@ struct RegisterView: View {
         NavigationStack {
             VStack {
                 ScrollView {
-                    HStack {
-                        if !viewmodel.errorMessage.isEmpty {
-                            Text(viewmodel.errorMessage)
-                                .foregroundStyle(.red)
-                        }
-                    }
-                    .padding()
-                    .offset(y: -10)
+                    
 
                     CustomTextField(ad: $viewmodel.firstName, icon: "person", placeholder: "Adınız")
                     CustomTextField(ad: $viewmodel.lastName, icon: "person", placeholder: "Soyadınız")
@@ -105,6 +98,15 @@ struct RegisterView: View {
                            .cornerRadius(15)
                            .padding(.horizontal)
 
+                    HStack {
+                        if !viewmodel.errorMessage.isEmpty {
+                            Text(viewmodel.errorMessage)
+                                .foregroundStyle(.red)
+                        }
+                    }
+                    .padding()
+                    
+                    
                     BigButton(title: "Kayıt Ol", action: {
                         viewmodel.register()
 
@@ -116,6 +118,7 @@ struct RegisterView: View {
                             showingAlert = true
                         }
                     }, color: .white)
+                    .offset(y:30)
                     .alert(isPresented: $showingAlert) {
                         if isSuccess {
                             return Alert(

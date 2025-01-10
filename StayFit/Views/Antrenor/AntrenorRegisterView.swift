@@ -20,19 +20,7 @@ struct AntrenorRegisterView: View {
             VStack{
                 
                 ScrollView {
-                    
-                    HStack{
-                        if !viewmodel.errorMessage.isEmpty{
-                            Text(viewmodel.errorMessage)
-                                .foregroundStyle(.red)
-                        }
-                    }
-                    .padding()
-                    .offset(y:-10)
-                
-                
-                
-                
+                   
                 CustomTextField(ad: $viewmodel.firstName, icon: "person",placeholder: "Adınız")
                 
                 CustomTextField(ad: $viewmodel.lastName, icon: "person",placeholder: "Soyadınız")
@@ -40,33 +28,6 @@ struct AntrenorRegisterView: View {
                 CustomTextField(ad: $viewmodel.email,icon: "envelope",placeholder: "Email")
                 CustomTextField(ad: $viewmodel.phone,icon: "phone",placeholder: "Telefon no")
                 
-                /*
-                 
-                 HStack(spacing:20){
-                 
-                 Image(systemName: "person.fill")
-                 .foregroundColor(.white)
-                 .font(.system(size: 24))
-                 Text("Rol Seç")
-                 .foregroundColor(.black.opacity(0.3))
-                 Spacer()
-                 
-                 Picker("Rol Seçin", selection: $viewmodel.role) {
-                 Text("").tag("")
-                 Text("Öğrenci").tag("Öğrenci")
-                 .foregroundColor(.black)
-                 Text("Antrenör").tag("Antrenör")
-                 .foregroundColor(.black)
-                 }
-                 .pickerStyle(MenuPickerStyle())  // Segmented tasarım
-                 
-                 }
-                 .frame(width: .infinity)
-                 .padding()
-                 .background(Color.white.opacity(viewmodel.role == "" ? 0.1 : 0.5))
-                 .cornerRadius(15)
-                 .padding(.horizontal)
-                 */
                 
                 
                 HStack(){
@@ -107,20 +68,9 @@ struct AntrenorRegisterView: View {
             
                 
                 
-                HStack{
-                    Text("Aylık Ücret")
-                        .foregroundColor(.black.opacity(0.3))
-                    Slider(value: $viewmodel.monthlyRate,in: 0...5000,step: 200)
-                        .foregroundColor(.black.opacity(0.3))
-                        .padding()
+                    MonthlyRateSliderView(monthlyRate: $viewmodel.monthlyRate)
+                    YearsOfExperienceView(experience: $viewmodel.YearsOfExperience)
                     
-                    Text(String(Int(viewmodel.monthlyRate)))
-                }
-                .padding(.horizontal,20)
-                .background(Color.white.opacity(viewmodel.monthlyRate != 0 ? 0.5 : 0.1))
-                .cornerRadius(15)
-                .padding(.horizontal)
-                
                 
                 
                     HStack {
@@ -145,9 +95,20 @@ struct AntrenorRegisterView: View {
                 
                     
                     
+                    
                     CustomTextField(ad: $viewmodel.bio,icon: "applepencil",placeholder: "Bio")
                 
-                
+                    CustomTextField(ad: $viewmodel.specializations,icon: "applepencil",placeholder: "Uzmanlık")
+                    
+                    HStack{
+                        if !viewmodel.errorMessage.isEmpty{
+                            Text(viewmodel.errorMessage)
+                                .foregroundStyle(.red)
+                        }
+                    }
+                    .padding()
+                    
+                   
                 
                 BigButton(title: "Kayıt Ol", action: {
                     viewmodel.register()
@@ -219,3 +180,49 @@ enum Gender: Int {
 #Preview {
     AntrenorRegisterView()
 }
+
+
+
+struct MonthlyRateSliderView: View {
+    @Binding var monthlyRate: Double // Binding kullanarak ana view ile veri paylaşımı
+    
+    var body: some View {
+        HStack {
+            Text("Aylık Ücret")
+                .foregroundColor(.black.opacity(0.3))
+            Slider(value: $monthlyRate, in: 0...5000, step: 200)
+                .foregroundColor(.black.opacity(0.3))
+                .padding()
+            
+            Text(String(Int(monthlyRate)))
+        }
+        .padding(.horizontal, 20)
+        .background(Color.white.opacity(monthlyRate != 0 ? 0.5 : 0.1))
+        .cornerRadius(15)
+        .padding(.horizontal)
+    }
+}
+
+import SwiftUI
+
+struct YearsOfExperienceView: View {
+    @Binding var experience: Int // Binding ile veri paylaşımı
+    
+    var body: some View {
+        HStack {
+            Text("Deneyim (Yıl)")
+                .foregroundColor(.black.opacity(0.3))
+            Stepper("\(experience)", value: $experience, in: 0...10)
+            Spacer()
+            
+            Text("\(experience)")
+                .foregroundColor(.black)
+        }
+        .frame(height: 60)
+        .padding(.horizontal, 20)
+        .background(Color.white.opacity(experience != 0 ? 0.5 : 0.1))
+        .cornerRadius(15)
+        .padding(.horizontal)
+    }
+}
+

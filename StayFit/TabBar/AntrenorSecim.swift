@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import SwiftUI
+
 struct AntrenorSecim: View {
     @ObservedObject var viewmodel = AntrenorSecimViewModel()
     @State private var isNavigatingToList: Bool = false  // Antrenor listesine geçiş kontrolü

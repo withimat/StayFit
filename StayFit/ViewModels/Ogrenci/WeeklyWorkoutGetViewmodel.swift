@@ -19,7 +19,7 @@ class WeeklyWorkoutGetViewmodel: ObservableObject {
     
     
     func getWorkoutPlans() {
-        guard let url = URL(string: "http://localhost:5200/api/WorkoutDays/GetWorkoutDaysByWorkoutPlanId?workoutPlanId=\(workoutPlanId)") else {
+        guard let url = URL(string: "\(APIConfig.baseURL)/api/WorkoutDays/GetWorkoutDaysByWorkoutPlanId?workoutPlanId=\(workoutPlanId)") else {
             self.errorMessage = "Invalid URL"
             return
         }

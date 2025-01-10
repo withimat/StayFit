@@ -10,7 +10,8 @@ import SwiftUI
 struct DietMealRowView: View {
     let meal: DietMeal
     var onDelete: () -> Void
-    
+    @ObservedObject var viewModel = DietListModelView()
+   
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
             HStack {
@@ -19,10 +20,13 @@ struct DietMealRowView: View {
                     .foregroundColor(.white)
                 Spacer()
                 HStack(spacing: 10) {
-                    Image(systemName: "pencil")
-                        .foregroundColor(.white)
+                   
                     Button {
-                        onDelete()
+                        withAnimation {
+                            onDelete()
+                            print("\(viewModel.errorMessage ?? "hata mesajı yazmadı")")
+                        }
+                      
                     } label: {
                         Image(systemName: "trash")
                             .foregroundColor(.white)
@@ -41,7 +45,7 @@ struct DietMealRowView: View {
                 }
                 Spacer()
                 VStack(alignment: .trailing, spacing: 3) { // Boşlukları azalt
-                    Text("Karbonhidrat: \(meal.carbs, specifier: "%.f") g")
+                    Text("Karbonhidrat: \(meal.carbohydrate, specifier: "%.f") g")
                         .font(.footnote)
                         .foregroundColor(.gray)
                     Text("Protein: \(meal.protein, specifier: "%.f") g")
@@ -79,7 +83,7 @@ struct DietMealRowView_Previews: PreviewProvider {
             portion: 150.0,
             unit: "gram",
             calories: 165.0,
-            carbs: 0.0,
+            carbohydrate: 0.0,
             protein: 31.0,
             fat: 3.6
         ), onDelete: {
@@ -116,7 +120,7 @@ struct DietMealRowViewForMember: View {
                 }
                 Spacer()
                 VStack(alignment: .trailing, spacing: 3) { // Boşlukları azalt
-                    Text("Karbonhidrat: \(meal.carbs, specifier: "%.f") g")
+                    Text("Karbonhidrat: \(meal.carbohydrate, specifier: "%.f") g")
                         .font(.footnote)
                         .foregroundColor(.gray)
                     Text("Protein: \(meal.protein, specifier: "%.f") g")

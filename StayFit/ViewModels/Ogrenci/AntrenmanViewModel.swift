@@ -21,7 +21,7 @@ struct WorkoutCevap: Codable {
 }
 
 struct WorkoutPlanResponse2: Codable {
-    var getWorkoutPlansBySubscriptionIdDtos: [WorkoutCevap] // Yeni dizi adı
+    var getWorkoutPlansBySubscriptionIdDtos: [WorkoutCevap]
     var success: Bool
     var message: String
 }
@@ -52,24 +52,21 @@ class AntrenmanViewModel: ObservableObject {
     @Published var errorMessage: String?
 
     func fetchWorkoutPlan() {
-        // API URL
-        guard let url = URL(string: "http://localhost:5200/api/WorkoutPlans/GetWorkoutPlansByMemberId") else {
+        
+        guard let url = URL(string: "\(APIConfig.baseURL)/api/WorkoutPlans/GetWorkoutPlansByMemberId") else {
             self.errorMessage = "Invalid URL"
             return
         }
 
-        // Retrieve JWT token from UserDefaults
         guard let token = UserDefaults.standard.string(forKey: "jwt") else {
             self.errorMessage = "Missing authentication token"
             return
         }
 
-        // Prepare the request
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
 
-        // API Call
         self.isLoading = true
         URLSession.shared.dataTask(with: request) { [weak self] data, response, error in
             DispatchQueue.main.async {

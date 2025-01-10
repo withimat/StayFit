@@ -25,14 +25,13 @@ struct AntrenorProfile: Codable {
 class AntrenorProfilModelView: ObservableObject {
     @Published var antrenorProfile: AntrenorProfile?
 
-    /// Profil bilgilerini API'den getirir
     func fetchAntrenorProfile() {
         guard let token = UserDefaults.standard.string(forKey: "jwt") else {
             print("Token bulunamadı")
             return
         }
 
-        guard let url = URL(string: "http://localhost:5200/api/Trainers/GetTrainerProfile") else {
+        guard let url = URL(string: "\(APIConfig.baseURL)/api/Trainers/GetTrainerProfile") else {
             print("Geçersiz URL")
             return
         }

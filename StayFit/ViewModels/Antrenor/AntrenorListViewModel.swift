@@ -30,7 +30,7 @@ class AntrenorListViewModel: ObservableObject {
     }
 
     func fetchPersons() {
-        guard let url = URL(string: "http://localhost:5200/api/Trainers/GetAllTrainersIncludeUser") else {
+        guard let url = URL(string: "\(APIConfig.baseURL)/api/Trainers/GetAllTrainersIncludeUser") else {
             print("Geçersiz URL")
             return
         }
@@ -67,7 +67,7 @@ class AntrenorListViewModel: ObservableObject {
             return
         }
 
-        guard let url = URL(string: "http://localhost:5200/api/Subscriptions/CreateSubscription?trainerId=\(personID)&goal=\(goal)") else {
+        guard let url = URL(string: "\(APIConfig.baseURL)/api/Subscriptions/CreateSubscription?trainerId=\(personID)&goal=\(goal)") else {
             print("Geçersiz URL")
             return
         }

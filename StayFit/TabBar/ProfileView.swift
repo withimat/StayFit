@@ -39,6 +39,7 @@ struct ProfileView: View {
                     ScrollView {
                         VStack(alignment: .center, spacing: 10) {
                             ProfileDetailsView(profile: profile)
+                                .offset(y:-30)
                             HStack {
                                 
                                 
@@ -52,6 +53,7 @@ struct ProfileView: View {
                                         .background(.blue)
                                         .cornerRadius(15)
                                 }
+                                .offset(y:-35)
 
                             }
                             .offset(y:-50)

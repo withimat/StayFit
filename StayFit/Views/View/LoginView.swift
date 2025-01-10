@@ -9,13 +9,13 @@ import SwiftUI
 import LocalAuthentication
 
 struct LoginView : View {
-   // @State  private var username = ""
-   // @State  private var password = ""
-    @StateObject var viewmodel = LoginViewViewModel()
+   
+    @StateObject var viewmodel = MemberLoginViewViewModel()
     @State  var visible : Bool = false
     @State  var visibleString = "eye.slash.fill"
     @State var isAnimating: Bool = false
     @State private var showAlert = false
+    
     @Environment(\.dismiss) var dismiss
     var body: some View {
         NavigationStack {
@@ -33,6 +33,7 @@ struct LoginView : View {
                     .onAppear(){
                         withAnimation(.easeIn(duration: 1)) {
                             isAnimating.toggle()
+                            
                             
                         }
                     }
@@ -122,7 +123,7 @@ struct LoginView : View {
                 
                 
                 
-                
+                /*
                 
                 Button(action: {
                     
@@ -133,7 +134,7 @@ struct LoginView : View {
                 })
                 .padding(.top,5)
                 
-                
+                */
             
                 
             

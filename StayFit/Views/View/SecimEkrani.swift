@@ -2,68 +2,87 @@
 //  SecimEkrani.swift
 //  StayFit
 //  Token: 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
+//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
 //  Created by İmat Gökaslan on 13.10.2024.
 //
 
 import SwiftUI
-
 struct SecimEkrani: View {
     @EnvironmentObject var authManager: AuthManager
     @State var isAnimating: Bool = false
+    
     var body: some View {
-        NavigationStack{
-            ZStack {
-                Image("stayy")
-                VStack(spacing: 40) {
-                    Image("cover2")
+        NavigationStack {
+            GeometryReader { geometry in
+                ZStack {
+                    // Arka Plan Görselleri
+                    Image("stayy")
                         .resizable()
-                        .scaledToFit()
-                        .frame(width: UIScreen.main.bounds.width-110)
-                        .cornerRadius(20)
-                        .padding(.vertical)
-                        
+                        .scaledToFill()
+                        .frame(width: geometry.size.width, height: geometry.size.height+200)
+                        .ignoresSafeArea()
+                        .offset(y:-80)
                     
-                    HStack(spacing:40){
+                    Rectangle()
+                        .foregroundColor(.BG)
+                        .opacity(0.3)
+                        .ignoresSafeArea()
+                    
+                    // İçerik
+                    VStack(spacing: geometry.size.height * 0.05) { // Dinamik boşluk
+                        Image("cover2")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: geometry.size.width * 0.7) // Genişlik cihaz boyutuna göre
+                            .cornerRadius(20)
+                            .padding(.vertical)
                         
-                        NavigationLink {
-                            LoginView()
-                                .navigationBarBackButtonHidden(true)
-                        } label: {
-                            LottieItem(text: "Ögrenci", lottie: "https://lottie.host/2e20be73-aead-4cb9-a49f-0bc900ae620f/guUtIiN8UJ.json")
+                        // Seçim Butonları
+                        HStack(spacing: geometry.size.width * 0.1) { // Dinamik boşluk
+                            // Öğrenci Seçimi
+                            Spacer()
+                            NavigationLink {
+                                LoginView()
+                                    .navigationBarBackButtonHidden(true)
+                            } label: {
+                                LottieItem(
+                                    text: "Öğrenci",
+                                    lottie: "https://lottie.host/2e20be73-aead-4cb9-a49f-0bc900ae620f/guUtIiN8UJ.json"
+                                )
+                                .frame(width: geometry.size.width * 0.3) // Buton genişliği
                                 .foregroundColor(.white)
-                                
+                            }
+                            
+                            Spacer()
+                            NavigationLink {
+                                AntrenorLoginView()
+                                    .navigationBarBackButtonHidden(true)
+                            } label: {
+                                LottieItem(
+                                    text: "Antrenör",
+                                    lottie: "https://lottie.host/2386d88f-e4e3-45c7-871c-f4b81d091602/Qng1wbwGBz.json"
+                                )
+                                .frame(width: geometry.size.width * 0.3) // Buton genişliği
+                                .foregroundColor(.white)
+                            }
+                            Spacer()
+                            
                         }
-
-                       
                         
-                        NavigationLink {
-                            AntrenorLoginView()
-                                .navigationBarBackButtonHidden(true)
-                        } label: {
-                              LottieItem(text: "Antrenör", lottie: "https://lottie.host/2386d88f-e4e3-45c7-871c-f4b81d091602/Qng1wbwGBz.json")
-                                  .foregroundColor(.white)
-                        }
-
-                    
+                        // Alt Metin
+                        Text("Lütfen bir seçim yapınız..")
+                            .foregroundColor(.white)
+                            .fontWeight(.semibold)
+                            .font(.system(size: geometry.size.width * 0.06)) // Dinamik yazı boyutu
                     }
-                    
-                    Text("Lütfen bir seçim yapınız..")
-                        .foregroundColor(.white)
-                        .fontWeight(.semibold)
-                        .font(.system(size: 25))
+                    .frame(width: geometry.size.width, height: geometry.size.height, alignment: .center)
                 }
-               
             }
             .navigationBarBackButtonHidden(true)
-           
-            
-            
-            
-           
         }
-        
     }
 }
+
 
 #Preview {
     

@@ -14,7 +14,7 @@ struct WeeklyProgressView: View {
     @Environment(\.dismiss) var dismiss
     let antrenor : GelenAntrenor
     var body: some View {
-        NavigationView {
+        NavigationStack {
             Form {
                 Section(header: Text("Kişisel Bilgiler")) {
                     TextField("Boy", text: $viewModel.height)
@@ -97,6 +97,7 @@ struct WeeklyProgressView: View {
                 }
             }
             .navigationTitle("Haftalık İlerleme")
+            .navigationBarTitleDisplayMode(.inline)
             .sheet(isPresented: $isImagePickerPresented) {
                 ImagePicker(selectedImage: Binding(
                     get: { UIImage() },
@@ -118,6 +119,7 @@ struct WeeklyProgressView: View {
                 )
             }
         }
+        
         .onAppear(){
             viewModel.subscriptionId = antrenor.subscriptionId
             print(viewModel.subscriptionId)

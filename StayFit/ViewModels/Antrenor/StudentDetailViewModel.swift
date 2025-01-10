@@ -23,24 +23,22 @@ class StudentDetailViewModel: ObservableObject {
     @Published var studentid = "0"
 
     func fetchWorkoutPlan(subscriptionId: String) {
-        // API URL
-        guard let url = URL(string: "http://localhost:5200/api/WorkoutPlans/GetWorkoutPlansBySubscriptionId?subscriptionId=\(subscriptionId)") else {
+       
+        guard let url = URL(string: "\(APIConfig.baseURL)/api/WorkoutPlans/GetWorkoutPlansBySubscriptionId?subscriptionId=\(subscriptionId)") else {
             self.errorMessage = "Invalid URL"
             return
         }
 
-        // Retrieve JWT token from UserDefaults
         guard let token = UserDefaults.standard.string(forKey: "jwt") else {
             self.errorMessage = "Missing authentication token"
             return
         }
 
-        // Prepare the request
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
 
-        // API Call
+        
         self.isLoading = true
         URLSession.shared.dataTask(with: request) { [weak self] data, response, error in
             DispatchQueue.main.async {
@@ -73,25 +71,22 @@ class StudentDetailViewModel: ObservableObject {
     
     
     func deleteWorkoutPlan(id: Int) {
-            // API URL with dynamic ID
-            guard let url = URL(string: "http://localhost:5200/api/WorkoutPlans/DeleteWorkoutPlanById/\(id)") else {
+            
+            guard let url = URL(string: "\(APIConfig.baseURL)/api/WorkoutPlans/DeleteWorkoutPlanById/\(id)") else {
                 self.errorMessage = "Invalid URL"
                 return
             }
 
-            // Retrieve JWT token from UserDefaults
             guard let token = UserDefaults.standard.string(forKey: "jwt") else {
                 self.errorMessage = "Missing authentication token"
                 return
             }
 
-            // Prepare the request
             var request = URLRequest(url: url)
             request.httpMethod = "DELETE"
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
             request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization") // JWT token ekleme
 
-            // API Call
             self.isSubmitting = true
             URLSession.shared.dataTask(with: request) { [weak self] data, response, error in
                 DispatchQueue.main.async {
@@ -108,8 +103,7 @@ class StudentDetailViewModel: ObservableObject {
                             return
                         }
                     }
-                    
-                    // If successful, remove the deleted workout from the list
+                  
                     self?.workoutPlans2.removeAll { $0.WorkoutPlanId == id }
                     self?.errorMessage = "Plan başarıyla silindi"
                 }
@@ -118,25 +112,24 @@ class StudentDetailViewModel: ObservableObject {
     
     
     func updateWorkoutPlan(workoutPlan: WorkoutCevap) {
-        // API URL
-        guard let url = URL(string: "http://localhost:5200/api/WorkoutPlans/UpdateWorkoutPlan") else {
+       
+        guard let url = URL(string: "\(APIConfig.baseURL)/api/WorkoutPlans/UpdateWorkoutPlan") else {
             self.errorMessage = "Invalid URL"
             return
         }
 
-        // Retrieve JWT token from UserDefaults
+      
         guard let token = UserDefaults.standard.string(forKey: "jwt") else {
             self.errorMessage = "Missing authentication token"
             return
         }
 
-        // Prepare the request
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
 
-        // Encode the workoutPlan object into JSON
+
         do {
             let jsonData = try JSONEncoder().encode(workoutPlan)
             request.httpBody = jsonData
@@ -145,7 +138,7 @@ class StudentDetailViewModel: ObservableObject {
             return
         }
 
-        // API Call
+   
         self.isSubmitting = true
         URLSession.shared.dataTask(with: request) { [weak self] data, response, error in
             DispatchQueue.main.async {
@@ -163,7 +156,7 @@ class StudentDetailViewModel: ObservableObject {
                     }
                 }
 
-                // Handle successful response
+               
                 if let index = self?.workoutPlan.firstIndex(where: { $0.id == workoutPlan.id }) {
                     self?.workoutPlan[index] = workoutPlan
                 }
@@ -174,24 +167,23 @@ class StudentDetailViewModel: ObservableObject {
     
     
     func fetchDietPlan(subscriptionId: String) {
-        // API URL
-        guard let url = URL(string: "http://localhost:5200/api/DietPlans/GetDietPlansBySubscriptionId?subscriptionId=\(subscriptionId)") else {
+      
+        guard let url = URL(string: "\(APIConfig.baseURL)/api/DietPlans/GetDietPlansBySubscriptionId?subscriptionId=\(subscriptionId)") else {
             self.errorMessage2 = "Invalid URL"
             return
         }
 
-        // Retrieve JWT token from UserDefaults
         guard let token = UserDefaults.standard.string(forKey: "jwt") else {
             self.errorMessage2 = "Missing authentication token"
             return
         }
 
-        // Prepare the request
+    
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
 
-        // API Call
+       
         self.isLoading2 = true
         URLSession.shared.dataTask(with: request) { [weak self] data, response, error in
             DispatchQueue.main.async {
@@ -223,25 +215,23 @@ class StudentDetailViewModel: ObservableObject {
     }
     
     func deleteDietPlan(id: Int) {
-            // API URL with dynamic ID
-            guard let url = URL(string: "http://localhost:5200/api/DietPlans/DeleteDietPlan?dietPlanId=\(id)") else {
+           
+            guard let url = URL(string: "\(APIConfig.baseURL)/api/DietPlans/DeleteDietPlan?dietPlanId=\(id)") else {
                 self.errorMessage = "Invalid URL"
                 return
             }
 
-            // Retrieve JWT token from UserDefaults
             guard let token = UserDefaults.standard.string(forKey: "jwt") else {
                 self.errorMessage = "Missing authentication token"
                 return
             }
 
-            // Prepare the request
+    
             var request = URLRequest(url: url)
             request.httpMethod = "DELETE"
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-            request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization") // JWT token ekleme
+            request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
 
-            // API Call
             self.isSubmitting = true
             URLSession.shared.dataTask(with: request) { [weak self] data, response, error in
                 DispatchQueue.main.async {
@@ -259,7 +249,7 @@ class StudentDetailViewModel: ObservableObject {
                         }
                     }
                     
-                    // If successful, remove the deleted workout from the list
+               
                     self?.workoutPlans.removeAll { $0.WorkoutPlanId == id }
                     self?.errorMessage = "Plan başarıyla silindi"
                 }

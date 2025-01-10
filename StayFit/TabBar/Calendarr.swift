@@ -20,33 +20,35 @@ struct Calendarr : View {
     }()
     
     var body: some View {
+      
         NavigationStack{
             VStack(){
                 
                 
                 
                 Picker(selection: $pickerSelect,
-                     label: Text("")){
-                  Text("Antrenman").tag(true)
-                  Text("Diyet").tag(false)
-                  
-              }.pickerStyle(SegmentedPickerStyle()).padding()
+                       label: Text("")){
+                    Text("Antrenman").tag(true)
+                    Text("Diyet").tag(false)
+                    
+                }.pickerStyle(SegmentedPickerStyle()).padding()
                 if pickerSelect {
                     Antrenman()
                 }else {
                     Beslenme()
-                        
+                    
                 }
                 
                 
                 
                 
                 Spacer()
-                    
+                
             }
             .navigationTitle("Calendar")
             .toolbarTitleDisplayMode(.inline)
         }
+        
     }
 }
 

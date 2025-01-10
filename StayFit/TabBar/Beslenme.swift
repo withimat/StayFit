@@ -12,8 +12,8 @@ struct Beslenme: View {
     let daysOfWeek = ["Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi", "Pazar"]
     @State private var selectedDay: String = {
         let formatter = DateFormatter()
-        formatter.dateFormat = "EEEE" // Gün adını tam almak için (Pazartesi, Salı, vb.)
-        formatter.locale = Locale(identifier: "tr_TR") // Türkçe gün adları için
+        formatter.dateFormat = "EEEE" 
+        formatter.locale = Locale(identifier: "tr_TR")
         return formatter.string(from: Date())
     }()
     
@@ -51,19 +51,7 @@ struct Beslenme: View {
                         HeadingView(color: Color.black,headingImage: "fork.knife"
                                     , headingText: "Beslenme")
                         
-                        HStack(){
-                            Picker("Gün Seçin", selection: $selectedDay) {
-                                ForEach(daysOfWeek, id: \.self) { day in
-                                    HStack {
-                                        
-                                        Text(day).tag(day)
-                                    }
-                                    
-                                }
-                            }
-                            .pickerStyle(DefaultPickerStyle())
-                            
-                        }
+                        
                     }
                     .padding()
                     
@@ -71,12 +59,7 @@ struct Beslenme: View {
                     VStack {
                         if viewModel.isLoading {
                             ProgressView("Yükleniyor...") // Yükleme göstergesi
-                        } else if let errorMessage = viewModel.errorMessage {
-                            Text("Hata: \(errorMessage)")
-                                .foregroundColor(.red)
-                                .multilineTextAlignment(.center)
-                                .padding()
-                        } else {
+                        }  else {
                             ForEach(viewModel.dietPlan, id: \.id) { diet in
                                 NavigationLink {
                                     GetDietPlansByMemberId(workout: diet)
@@ -100,7 +83,7 @@ struct Beslenme: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
-                        viewModel.fetchdietPlan() // Yenile butonu
+                        viewModel.fetchdietPlan()
                     }) {
                         Image(systemName: "arrow.clockwise")
                     }

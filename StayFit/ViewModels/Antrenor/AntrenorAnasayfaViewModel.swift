@@ -31,7 +31,7 @@ class AntrenorAnasayfaViewModel : ObservableObject {
                 return
             }
 
-            guard let url = URL(string: "http://localhost:5200/api/Subscriptions/GetTrainerSubscribers") else {
+            guard let url = URL(string: "\(APIConfig.baseURL)/api/Subscriptions/GetTrainerSubscribers") else {
                 print("Geçersiz URL")
                 return
             }

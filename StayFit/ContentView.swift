@@ -51,9 +51,9 @@ struct Fotoyukleme: View {
 
     func uploadImage() {
         guard let selectedImage = selectedImage else { return }
-        let url = URL(string: "http://localhost:5200/api/Images/upload")!
+        let url = URL(string: "\(APIConfig.baseURL)/api/Users/UpdateProfilePhoto")!
         var request = URLRequest(url: url)
-        request.httpMethod = "POST"
+        request.httpMethod = "PUT" // PUT yöntemini belirtiyoruz.
         
         let boundary = UUID().uuidString
         request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
@@ -65,13 +65,16 @@ struct Fotoyukleme: View {
         }
         request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
 
-        let imageData = selectedImage.jpegData(compressionQuality: 1.0)
+        guard let imageData = selectedImage.jpegData(compressionQuality: 1.0) else {
+            print("Resim verisi oluşturulamadı!")
+            return
+        }
         
         var body = Data()
         body.append("--\(boundary)\r\n".data(using: .utf8)!)
         body.append("Content-Disposition: form-data; name=\"file\"; filename=\"selectedImage.jpg\"\r\n".data(using: .utf8)!)
         body.append("Content-Type: image/jpeg\r\n\r\n".data(using: .utf8)!)
-        body.append(imageData!)
+        body.append(imageData)
         body.append("\r\n".data(using: .utf8)!)
         body.append("--\(boundary)--\r\n".data(using: .utf8)!)
         
@@ -92,7 +95,6 @@ struct Fotoyukleme: View {
             }
         }.resume()
     }
-
 }
 
 struct ImagePicker: UIViewControllerRepresentable {

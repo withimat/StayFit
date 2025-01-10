@@ -41,13 +41,12 @@ class WorkoutPlanViewModel: ObservableObject {
     
     
     func createWorkoutPlan() {
-        // API URL
-        guard let url = URL(string: "http://localhost:5200/api/WorkoutPlans/CreateWorkoutPlan") else {
+     
+        guard let url = URL(string: "\(APIConfig.baseURL)/api/WorkoutPlans/CreateWorkoutPlan") else {
             self.errorMessage = "Invalid URL"
             return
         }
 
-        // Prepare the model
         let workoutPlan = CreateWorkoutPlanDto(
             subscriptionId: subscriptionId,
             memberId: memberId,
@@ -57,30 +56,30 @@ class WorkoutPlanViewModel: ObservableObject {
             endDate: endDate
         )
 
-        // Configure JSONEncoder for ISO 8601 date formatting
+  
         let jsonEncoder = JSONEncoder()
         jsonEncoder.dateEncodingStrategy = .iso8601
 
-        // Serialize to JSON
+
         guard let jsonData = try? jsonEncoder.encode(workoutPlan) else {
             self.errorMessage = "Failed to encode data"
             return
         }
 
-        // Retrieve JWT token from UserDefaults
+
         guard let token = UserDefaults.standard.string(forKey: "jwt") else {
             self.errorMessage = "Missing authentication token"
             return
         }
 
-        // Prepare the request
+
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization") // JWT token ekleme
+        request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         request.httpBody = jsonData
 
-        // API Call
+  
         self.isSubmitting = true
         URLSession.shared.dataTask(with: request) { [weak self] data, response, error in
             DispatchQueue.main.async {
@@ -92,21 +91,20 @@ class WorkoutPlanViewModel: ObservableObject {
                 }
 
                 if let httpResponse = response as? HTTPURLResponse {
-                    // HTTP yanıt kodunu kontrol et
+                   
                     if httpResponse.statusCode != 200 {
-                        // Hata durumunda statusCode'u ve yanıtı logla
+               
                         self?.errorMessage = "Server error: Status code \(httpResponse.statusCode)"
 
-                        // API'den gelen yanıtı al ve hata mesajını göster
                         if let data = data, let responseString = String(data: data, encoding: .utf8) {
-                            print("Server Response: \(responseString)") // Sunucu yanıtını yazdır
+                            print("Server Response: \(responseString)") 
                             self?.errorMessage = "Error: \(responseString) \(httpResponse.statusCode)"
                         }
                         return
                     }
                 }
                 
-                self?.errorMessage = "Plan başarıyla gönderildi" // Başarılı işlem sonrası hata mesajı sıfırlanır
+                self?.errorMessage = "Plan başarıyla gönderildi"
             }
         }.resume()
     }

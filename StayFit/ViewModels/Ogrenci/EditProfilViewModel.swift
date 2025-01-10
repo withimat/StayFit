@@ -10,7 +10,7 @@ import Foundation
 
 class EditProfileViewModel: ObservableObject {
     func updateProfile(_ profile: UserProfile) {
-        guard let url = URL(string: "http://localhost:5200/api/Members/UpdateMemberProfile") else {
+        guard let url = URL(string: "\(APIConfig.baseURL)/api/Members/UpdateMemberProfile") else {
             print("Geçersiz URL")
             return
         }
@@ -19,12 +19,10 @@ class EditProfileViewModel: ObservableObject {
         request.httpMethod = "PUT"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        // JWT token ayarı
         if let token = UserDefaults.standard.string(forKey: "jwt") {
             request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         }
 
-        // Tüm profili JSON olarak göndermek için JSONEncoder kullanıyoruz
         do {
             let encoder = JSONEncoder()
             encoder.dateEncodingStrategy = .iso8601 // Tarih formatlama gerekiyorsa

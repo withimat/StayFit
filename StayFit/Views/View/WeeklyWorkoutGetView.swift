@@ -8,66 +8,73 @@
 import SwiftUI
 
 struct WeeklyWorkoutGetView: View {
-    @StateObject private var viewModel = WeeklyWorkoutPlanViewModel()
+    @ObservedObject var viewModel = WeeklyWorkoutPlanViewModel()
     @Environment(\.dismiss) var dismiss
-    let workout : WorkoutCevap
-     var body: some View {
-         NavigationStack {
-             VStack {
-                     List {
-                         ForEach(viewModel.workoutDays) { plan in
-                             NavigationLink {
-                                 MemberExerciseListView(workoutdays: plan)
-                                     .navigationBarBackButtonHidden(true)
-                             } label: {
-                                 VStack(alignment: .leading, spacing: 8) {
-                                     Text(plan.title)
-                                         .font(.headline)
-                                     
-                                     HStack {
-                                         Text(DayOfWeek(rawValue: plan.dayOfWeek)?.displayName ?? "")
-                                             .font(.subheadline)
-                                             .foregroundColor(.secondary)
-                                         
-                                         Spacer()
-                                         
-                                         Text(plan.formattedCreatedDate!)
-                                             .font(.caption)
-                                             .foregroundColor(.secondary)
-                                     }
-                                     
-                                     if plan.isCompleted {
-                                         Text("Tamamlandı")
-                                             .foregroundColor(.green)
-                                             .font(.caption)
-                                     }
-                                 }
-                                 .padding(.vertical, 4)
-                             }
+    var workout: WorkoutCevap
 
-                         }
-                     }
-                 
-              
-                 
-             }
-             .navigationTitle("Antrenman Planları")
-             .navigationBarTitleDisplayMode(.inline)
-             .navigationBarItems(
-                 leading: Button("İptal") {
-                     dismiss()
-                 }
-             )
-             .onAppear {
-                 //WorkoutDays = viewModel.workoutDays
-                 viewModel.workoutPlanId = workout.id
-                 viewModel.getWorkoutPlans()
-             }
-         }
-     }
- }
+    @State private var showAlert = false
+    @State private var alertMessage = ""
+    @State private var isError = false
+
+    var body: some View {
+        NavigationStack {
+            VStack {
+                ScrollView {
+                    ForEach(viewModel.workoutDays.sorted(by: {
+                        let firstSortOrder = DayOfWeek(rawValue: $0.dayOfWeek)?.sortOrder ?? Int.max
+                        let secondSortOrder = DayOfWeek(rawValue: $1.dayOfWeek)?.sortOrder ?? Int.max
+                        return firstSortOrder < secondSortOrder
+                    })) { plan in
+                        NavigationLink {
+                            MemberExerciseListView(workoutdays: plan)
+                                .navigationBarBackButtonHidden(true)
+                        } label: {
+                            WeeklyWorkoutDayRowViewForMember(workout: workout, plan: plan, viewModel: viewModel)
+                        }
+                    }
+                }
+                .navigationTitle("Antrenman Planları")
+                .navigationBarTitleDisplayMode(.inline)
+                .navigationBarItems(
+                    leading: Button("İptal") {
+                        dismiss()
+                    },
+                    trailing: Button(action: {
+                        viewModel.workoutPlanId = workout.id
+                        viewModel.getWorkoutPlans()
+                    }, label: {
+                        Image(systemName: "repeat")
+                    })
+                )
+                .alert("Bilgi", isPresented: .constant(viewModel.errorMessage != nil)) {
+                    Button("Tamam") {
+                        if viewModel.errorMessage == "Tebrikler!! Bugünü tamamladınız..." {
+                            withAnimation(Animation.easeInOut(duration: 2.0)) {
+                                viewModel.workoutPlanId = workout.id
+                                viewModel.getWorkoutPlans()
+                               
+                            }
+                        }
+                        withAnimation(Animation.easeOut(duration: 1)) {
+                            viewModel.workoutPlanId = workout.id
+                            viewModel.getWorkoutPlans()
+                            viewModel.errorMessage = nil
+                        }
+                    }
+                } message: {
+                    Text(viewModel.errorMessage ?? "")
+                }
+                .onAppear {
+                    viewModel.workoutPlanId = workout.id
+                    viewModel.getWorkoutPlans()
+                }
+                
+            }
+        }
+    }
+}
 
 
 #Preview {
-    WeeklyWorkoutGetView( workout: WorkoutCevap(id: 2, title: "Paazartesi", description: "", formattedStartDate: "", formattedEndDate: "", status: 0, endDate: "", startDate: ""))
+    WeeklyWorkoutGetView( workout: WorkoutCevap(id: 12, title: "İmat", description: "", formattedStartDate: "", formattedEndDate: "", status: 0, endDate: "", startDate: ""))
 }

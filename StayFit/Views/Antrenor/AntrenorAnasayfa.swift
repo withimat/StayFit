@@ -8,21 +8,31 @@
 import SwiftUI
 
 struct AntrenorAnasayfa: View {
+    init() {
+        let appearance = UINavigationBarAppearance()
+        appearance.backgroundColor = UIColor(named: "BG")
+        appearance.titleTextAttributes = [.foregroundColor: UIColor(named: "beyaz")!,.font : UIFont(name: "Pacifico-Regular" , size: 22)!]
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        UINavigationBar.appearance().compactAppearance = appearance
+    }
     @ObservedObject var viewModel = AntrenorAnasayfaViewModel()
     
     var body: some View {
         NavigationStack {
+            VStack{
             List(viewModel.students) { student in
                 NavigationLink(destination: StudentDetailView(student: student)) {
                     StudentRowView(student: student)
                     
                 }
             }
-            .navigationTitle("Öğrencilerim")
-            .navigationBarTitleDisplayMode(.inline)
-            .onAppear {
-                viewModel.fetchStudents()
-            }
+        }
+        .navigationTitle("Öğrencilerim")
+        .navigationBarTitleDisplayMode(.inline)
+        .onAppear {
+            viewModel.fetchStudents()
+        }
         }
     }
 }

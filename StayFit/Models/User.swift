@@ -47,13 +47,6 @@ class registerUser : Codable , Identifiable {
 extension User {
     static var MOCK_USER: [User] = [
         .init(id: "1", kisiAd: "imat", profileUrl: "hoca", kisiSoyad: "GÖKASLAN", kisiTel: "05380354884", kisiBoy: 180, kisiKilo: 80, kisiEmail: "imattgokk@gmail.com"),
-        .init(id: "2", kisiAd: "zeynep", profileUrl: "no1", kisiSoyad: "GÖKASLAN", kisiTel: "0538", kisiBoy: 160, kisiKilo: 50, kisiEmail: "zeynep@gmail.com"),
-        .init(id: "3", kisiAd: "Dogukan", profileUrl: "hoca", kisiSoyad: "Akay", kisiTel: "1234455", kisiBoy: 170, kisiKilo: 70, kisiEmail: "dogukanakay@gmail.com"),
-        .init(id: "4", kisiAd: "imat", profileUrl: "stayFit", kisiSoyad: "GÖKASLAN", kisiTel: "05380354884", kisiBoy: 180, kisiKilo: 80, kisiEmail: "imattgokk@gmail.com"),
-        .init(id: "5", kisiAd: "zeynep", profileUrl: "no1", kisiSoyad: "GÖKASLAN", kisiTel: "0538", kisiBoy: 160, kisiKilo: 50, kisiEmail: "zeynep@gmail.com"),
-        .init(id: "6", kisiAd: "Dogukan", profileUrl: "hoca", kisiSoyad: "Akay", kisiTel: "1234455", kisiBoy: 170, kisiKilo: 70, kisiEmail: "dogukanakay@gmail.com"),
-        .init(id: "7", kisiAd: "imat", profileUrl: "stayFit", kisiSoyad: "GÖKASLAN", kisiTel: "05380354884", kisiBoy: 180, kisiKilo: 80, kisiEmail: "imattgokk@gmail.com"),
-        .init(id: "8", kisiAd: "zeynep", profileUrl: "no1", kisiSoyad: "GÖKASLAN", kisiTel: "0538", kisiBoy: 160, kisiKilo: 50, kisiEmail: "zeynep@gmail.com"),
-        .init(id: "9", kisiAd: "Dogukan", profileUrl: "hoca", kisiSoyad: "Akay", kisiTel: "1234455", kisiBoy: 170, kisiKilo: 70, kisiEmail: "dogukanakay@gmail.com")
+        
     ]
 }

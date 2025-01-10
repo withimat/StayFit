@@ -55,7 +55,7 @@ struct DietMealDetailView: View {
                     
                     DietDetailBox(title: "Kalori", value: "\(String(format: "%.f", meal.calories)) kcal", icon: "flame.fill")
                     // Nutritional Detail Boxes
-                    DietDetailBox(title: "Karbonhidrat", value: "\(String(format: "%.f", meal.carbs)) g", icon: "chart.pie.fill")
+                    DietDetailBox(title: "Karbonhidrat", value: "\(String(format: "%.f", meal.carbohydrate)) g", icon: "chart.pie.fill")
                     DietDetailBox(title: "Protein", value: "\(String(format: "%.f", meal.protein)) g", icon: "leaf.fill")
                     DietDetailBox(title: "Yağ", value: "\(String(format: "%.f", meal.fat)) g", icon: "drop.fill")
                 }
@@ -189,7 +189,7 @@ struct DietMealDetailView_Previews : PreviewProvider {
             portion :150.0,
             unit :"gram",
             calories :200.0,
-            carbs :40.0,
+            carbohydrate :40.0,
             protein :7.0,
             fat :3.0))
     }

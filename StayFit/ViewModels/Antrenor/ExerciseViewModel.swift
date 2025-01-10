@@ -36,16 +36,14 @@ class ExerciseViewModel: ObservableObject {
     @Published var isLoading: Bool = false
     @Published var yenile: Bool = false
     @Published var WorkoutId = 0
-    let apiBaseURL = "http://localhost:5200/api/Exercises"
-    
-    /// Fetch exercises (GET request)
+    let apiBaseURL = "\(APIConfig.baseURL)/api/Exercises"
+   
     func fetchExercises(for workoutDayId: Int) {
         guard let url = URL(string: "\(apiBaseURL)/GetExercisesByWorkoutDayId?workoutDayId=\(workoutDayId)") else {
             print("Invalid URL")
             return
         }
         
-        // Retrieve the JWT token from UserDefaults
         guard let token = UserDefaults.standard.string(forKey: "jwt") else {
             print("JWT token is missing")
             return
@@ -79,14 +77,15 @@ class ExerciseViewModel: ObservableObject {
             }
             
             do {
-                // Decode the response using `GetExercisesResponse`
+                
+            
                 let response = try JSONDecoder().decode(GetExercisesResponse.self, from: data)
                 
                 if response.success {
                     DispatchQueue.main.async {
                         self.exercises = response.getExercisesByWorkoutDayIdDtos ?? []
                         print(response.getExercisesByWorkoutDayIdDtos!)
-                        self.errorMessage = nil // Clear error message on success
+                        self.errorMessage = nil
                     }
                 } else {
                     DispatchQueue.main.async {
@@ -105,7 +104,7 @@ class ExerciseViewModel: ObservableObject {
         }.resume()
     }
     
-    /// Add a new exercise (POST request)
+  
         
         func addExercises(_ exercises: [Exercise]) {
             guard let url = URL(string: "\(apiBaseURL)/CreateExercise") else {
@@ -156,7 +155,7 @@ class ExerciseViewModel: ObservableObject {
     
     
     func deleteWorkoutDay(by id: Int) {
-        guard let url = URL(string: "http://localhost:5200/api/Exercises/DeleteExercise?excersiceId=\(id)") else {
+        guard let url = URL(string: "\(APIConfig.baseURL)/api/Exercises/DeleteExercise?excersiceId=\(id)") else {
             self.errorMessage = "Geçersiz URL"
             return
         }

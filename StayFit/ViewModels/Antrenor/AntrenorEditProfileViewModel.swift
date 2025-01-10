@@ -10,7 +10,7 @@ import Foundation
 
 class AntrenorEditProfileViewModel: ObservableObject {
     func updateProfile(_ profile: AntrenorProfile) {
-        guard let url = URL(string: "http://localhost:5200/api/Trainers/UpdateTrainerProfile") else {
+        guard let url = URL(string: "\(APIConfig.baseURL)/api/Trainers/UpdateTrainerProfile") else {
             print("Geçersiz URL")
             return
         }
@@ -19,15 +19,14 @@ class AntrenorEditProfileViewModel: ObservableObject {
         request.httpMethod = "PUT"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        // JWT token ayarı
+
         if let token = UserDefaults.standard.string(forKey: "jwt") {
             request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         }
 
-        // Tüm profili JSON olarak göndermek için JSONEncoder kullanıyoruz
         do {
             let encoder = JSONEncoder()
-            encoder.dateEncodingStrategy = .iso8601 // Tarih formatlama gerekiyorsa
+            encoder.dateEncodingStrategy = .iso8601
             request.httpBody = try encoder.encode(profile)
         } catch {
             print("JSON kodlama hatası: \(error)")

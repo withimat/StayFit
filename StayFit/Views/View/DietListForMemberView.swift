@@ -30,7 +30,7 @@ struct DietListForMemberView: View {
     }
 
     private func totalCalories(for meals: [DietMeal]) -> Int {
-        Int(meals.reduce(0) { $0 + $1.calories }) // Assuming DietMeal has a 'calories' property
+        Int(meals.reduce(0) { $0 + $1.calories })
     }
     
     var body: some View {

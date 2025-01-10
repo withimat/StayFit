@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+
 struct MemberExerciseListView: View {
     @StateObject private var viewModel = ExerciseViewModel()
     var workoutdays: WorkoutDays

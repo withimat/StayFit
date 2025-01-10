@@ -33,11 +33,11 @@
 		313971F92CFF69FD00BA5E81 /* WeeklyWorkoutDayRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313971F82CFF69FD00BA5E81 /* WeeklyWorkoutDayRowView.swift */; };
 		313B7D052CCD2FBF005C64A5 /* ProfileDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313B7D042CCD2FBF005C64A5 /* ProfileDetailView.swift */; };
 		313B7D072CCD37B8005C64A5 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313B7D062CCD37B8005C64A5 /* EditProfileView.swift */; };
-		313D3B952CEA032000C33452 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 313D3B942CEA032000C33452 /* Lottie */; };
-		313D3B972CEA032600C33452 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 313D3B962CEA032600C33452 /* Alamofire */; };
 		315260782CCF74A70042EB47 /* AntrenorProfilModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315260772CCF74A70042EB47 /* AntrenorProfilModelView.swift */; };
 		315260832CD0DADF0042EB47 /* YararliBilgiler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315260822CD0DADF0042EB47 /* YararliBilgiler.swift */; };
 		315260852CD0DDFB0042EB47 /* fitness.json in Resources */ = {isa = PBXBuildFile; fileRef = 315260842CD0DDFB0042EB47 /* fitness.json */; };
+		315BC5D92D131294008FC54A /* ResetPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315BC5D82D131294008FC54A /* ResetPassword.swift */; };
+		315BC5DC2D1318A1008FC54A /* ResetPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315BC5DB2D1318A1008FC54A /* ResetPasswordViewModel.swift */; };
 		315E19F82CB726AD00B4E81D /* InsetFactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315E19F72CB726AD00B4E81D /* InsetFactView.swift */; };
 		315E19FA2CB7278100B4E81D /* SuplementDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315E19F92CB7278100B4E81D /* SuplementDetailView.swift */; };
 		315E19FC2CB727AD00B4E81D /* SuplementListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315E19FB2CB727AD00B4E81D /* SuplementListItemView.swift */; };
@@ -72,7 +72,6 @@
 		316C96112CABF32E00D78A51 /* MainViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316C96102CABF32E00D78A51 /* MainViewViewModel.swift */; };
 		316C96132CABF35000D78A51 /* ProfileViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316C96122CABF34F00D78A51 /* ProfileViewViewModel.swift */; };
 		316C96162CABF38300D78A51 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316C96152CABF38300D78A51 /* User.swift */; };
-		316C96182CABF39900D78A51 /* Kullanici.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316C96172CABF39900D78A51 /* Kullanici.swift */; };
 		316C961A2CABF3AC00D78A51 /* Trainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316C96192CABF3AC00D78A51 /* Trainer.swift */; };
 		316C961D2CABF3E100D78A51 /* Pacifico-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 316C961C2CABF3E100D78A51 /* Pacifico-Regular.ttf */; };
 		316C962C2CABF49A00D78A51 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316C962B2CABF49A00D78A51 /* Extension.swift */; };
@@ -91,7 +90,6 @@
 		317C44962CB46FFF001D5F21 /* Beslenme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317C44952CB46FFF001D5F21 /* Beslenme.swift */; };
 		317C44982CB4700C001D5F21 /* Calendarr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317C44972CB4700C001D5F21 /* Calendarr.swift */; };
 		317E59952CBB8E2A00CFAA6B /* SecimEkrani.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317E59942CBB8E2A00CFAA6B /* SecimEkrani.swift */; };
-		317E599F2CBBB6A100CFAA6B /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317E599E2CBBB6A100CFAA6B /* Workout.swift */; };
 		317E59A12CBBB71100CFAA6B /* AntrenmanViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317E59A02CBBB71100CFAA6B /* AntrenmanViewModel.swift */; };
 		317E59A42CBC3E0400CFAA6B /* Webservice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317E59A32CBC3E0400CFAA6B /* Webservice.swift */; };
 		317E59A92CBC538100CFAA6B /* motivasyon-2.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 317E59A62CBC538100CFAA6B /* motivasyon-2.mp4 */; };
@@ -106,8 +104,13 @@
 		317E59BC2CBC65CD00CFAA6B /* videos1.json in Resources */ = {isa = PBXBuildFile; fileRef = 317E59BB2CBC65CD00CFAA6B /* videos1.json */; };
 		318368F82CB989C30056CF59 /* VideoPlayerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318368F72CB989C30056CF59 /* VideoPlayerHelper.swift */; };
 		318368FA2CB989F20056CF59 /* VideoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 318368F92CB989F20056CF59 /* VideoModel.swift */; };
-		31901D0C2CBA75DE00427F0A /* diyet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31901D0B2CBA75DE00427F0A /* diyet.swift */; };
+		31854A502D18AD90006F967C /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 31854A4F2D18AD90006F967C /* Alamofire */; };
+		31854A522D18AD94006F967C /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 31854A512D18AD94006F967C /* Lottie */; };
 		31901D0E2CBA7A8C00427F0A /* BeslenmeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31901D0D2CBA7A8C00427F0A /* BeslenmeViewModel.swift */; };
+		31BD44D52D1D9FF8004F06AC /* SearchBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BD44D42D1D9FF8004F06AC /* SearchBoxView.swift */; };
+		31BD44D82D1DA5FD004F06AC /* Fatsecret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BD44D72D1DA5FD004F06AC /* Fatsecret.swift */; };
+		31BD44DA2D1DA6C4004F06AC /* FoodSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BD44D92D1DA6C4004F06AC /* FoodSearchView.swift */; };
+		31BD44DC2D1DB14B004F06AC /* FoodDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31BD44DB2D1DB14B004F06AC /* FoodDetailView.swift */; };
 		31CFF6192CFEFB3700D2A309 /* ExxerciseRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CFF6182CFEFB3700D2A309 /* ExxerciseRowView.swift */; };
 		31CFF61D2CFF1FDA00D2A309 /* WeeklyWorkoutPlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CFF61C2CFF1FDA00D2A309 /* WeeklyWorkoutPlanView.swift */; };
 		31E66E422CB6E5FA00E0F16A /* LottieItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31E66E412CB6E5FA00E0F16A /* LottieItem.swift */; };
@@ -158,6 +161,8 @@
 		315260772CCF74A70042EB47 /* AntrenorProfilModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AntrenorProfilModelView.swift; sourceTree = "<group>"; };
 		315260822CD0DADF0042EB47 /* YararliBilgiler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YararliBilgiler.swift; sourceTree = "<group>"; };
 		315260842CD0DDFB0042EB47 /* fitness.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = fitness.json; sourceTree = "<group>"; };
+		315BC5D82D131294008FC54A /* ResetPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPassword.swift; sourceTree = "<group>"; };
+		315BC5DB2D1318A1008FC54A /* ResetPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewModel.swift; sourceTree = "<group>"; };
 		315E19F72CB726AD00B4E81D /* InsetFactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetFactView.swift; sourceTree = "<group>"; };
 		315E19F92CB7278100B4E81D /* SuplementDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplementDetailView.swift; sourceTree = "<group>"; };
 		315E19FB2CB727AD00B4E81D /* SuplementListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuplementListItemView.swift; sourceTree = "<group>"; };
@@ -193,7 +198,6 @@
 		316C96102CABF32E00D78A51 /* MainViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewViewModel.swift; sourceTree = "<group>"; };
 		316C96122CABF34F00D78A51 /* ProfileViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewViewModel.swift; sourceTree = "<group>"; };
 		316C96152CABF38300D78A51 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		316C96172CABF39900D78A51 /* Kullanici.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kullanici.swift; sourceTree = "<group>"; };
 		316C96192CABF3AC00D78A51 /* Trainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trainer.swift; sourceTree = "<group>"; };
 		316C961C2CABF3E100D78A51 /* Pacifico-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Pacifico-Regular.ttf"; sourceTree = "<group>"; };
 		316C961E2CABF3FD00D78A51 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -213,7 +217,6 @@
 		317C44952CB46FFF001D5F21 /* Beslenme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Beslenme.swift; sourceTree = "<group>"; };
 		317C44972CB4700C001D5F21 /* Calendarr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calendarr.swift; sourceTree = "<group>"; };
 		317E59942CBB8E2A00CFAA6B /* SecimEkrani.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SecimEkrani.swift; path = Views/View/SecimEkrani.swift; sourceTree = "<group>"; };
-		317E599E2CBBB6A100CFAA6B /* Workout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
 		317E59A02CBBB71100CFAA6B /* AntrenmanViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AntrenmanViewModel.swift; sourceTree = "<group>"; };
 		317E59A32CBC3E0400CFAA6B /* Webservice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Webservice.swift; sourceTree = "<group>"; };
 		317E59A62CBC538100CFAA6B /* motivasyon-2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = text; path = "motivasyon-2.mp4"; sourceTree = "<group>"; };
@@ -228,8 +231,11 @@
 		317E59BB2CBC65CD00CFAA6B /* videos1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = videos1.json; sourceTree = "<group>"; };
 		318368F72CB989C30056CF59 /* VideoPlayerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerHelper.swift; sourceTree = "<group>"; };
 		318368F92CB989F20056CF59 /* VideoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoModel.swift; sourceTree = "<group>"; };
-		31901D0B2CBA75DE00427F0A /* diyet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = diyet.swift; sourceTree = "<group>"; };
 		31901D0D2CBA7A8C00427F0A /* BeslenmeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeslenmeViewModel.swift; sourceTree = "<group>"; };
+		31BD44D42D1D9FF8004F06AC /* SearchBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBoxView.swift; sourceTree = "<group>"; };
+		31BD44D72D1DA5FD004F06AC /* Fatsecret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fatsecret.swift; sourceTree = "<group>"; };
+		31BD44D92D1DA6C4004F06AC /* FoodSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodSearchView.swift; sourceTree = "<group>"; };
+		31BD44DB2D1DB14B004F06AC /* FoodDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDetailView.swift; sourceTree = "<group>"; };
 		31CFF6182CFEFB3700D2A309 /* ExxerciseRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExxerciseRowView.swift; sourceTree = "<group>"; };
 		31CFF61C2CFF1FDA00D2A309 /* WeeklyWorkoutPlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyWorkoutPlanView.swift; sourceTree = "<group>"; };
 		31E66E412CB6E5FA00E0F16A /* LottieItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieItem.swift; sourceTree = "<group>"; };
@@ -255,8 +261,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				313D3B952CEA032000C33452 /* Lottie in Frameworks */,
-				313D3B972CEA032600C33452 /* Alamofire in Frameworks */,
+				31854A502D18AD90006F967C /* Alamofire in Frameworks */,
+				31854A522D18AD94006F967C /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,6 +294,14 @@
 				315260822CD0DADF0042EB47 /* YararliBilgiler.swift */,
 			);
 			name = YararliBilgiler;
+			sourceTree = "<group>";
+		};
+		315BC5DA2D131884008FC54A /* Ortak */ = {
+			isa = PBXGroup;
+			children = (
+				315BC5DB2D1318A1008FC54A /* ResetPasswordViewModel.swift */,
+			);
+			path = Ortak;
 			sourceTree = "<group>";
 		};
 		316C95F12CABF27800D78A51 = {
@@ -340,6 +354,7 @@
 		316C960B2CABF2BA00D78A51 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				315BC5DA2D131884008FC54A /* Ortak */,
 				317E59992CBB937C00CFAA6B /* Antrenor */,
 				317E599A2CBB938D00CFAA6B /* Ogrenci */,
 			);
@@ -350,13 +365,10 @@
 			isa = PBXGroup;
 			children = (
 				316C96152CABF38300D78A51 /* User.swift */,
-				316C96172CABF39900D78A51 /* Kullanici.swift */,
 				316C96192CABF3AC00D78A51 /* Trainer.swift */,
 				317C448C2CB3C8DF001D5F21 /* Tab.swift */,
 				31E66E472CB705CF00E0F16A /* SuplementModel.swift */,
 				318368F92CB989F20056CF59 /* VideoModel.swift */,
-				31901D0B2CBA75DE00427F0A /* diyet.swift */,
-				317E599E2CBBB6A100CFAA6B /* Workout.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -429,6 +441,7 @@
 				313B7D042CCD2FBF005C64A5 /* ProfileDetailView.swift */,
 				313B7D062CCD37B8005C64A5 /* EditProfileView.swift */,
 				31630EC12CEFDACB0069A73F /* WorkoutRowView.swift */,
+				315BC5D82D131294008FC54A /* ResetPassword.swift */,
 			);
 			path = Widgets;
 			sourceTree = "<group>";
@@ -455,6 +468,7 @@
 		317E59982CBB92F100CFAA6B /* Antrenor */ = {
 			isa = PBXGroup;
 			children = (
+				31BD44D62D1DA5EF004F06AC /* Deneme */,
 				3100719C2CC40BFD0011F6AC /* AntrenorRegisterView.swift */,
 				310071A02CC439DE0011F6AC /* AntrenorLoginView.swift */,
 				310071A42CC445D70011F6AC /* AntrenorTabView.swift */,
@@ -463,20 +477,8 @@
 				310071A82CC446720011F6AC /* AntrenorProfil.swift */,
 				31F22AAC2CD681550073C27F /* SecilenAntrenorDetaySayfasi.swift */,
 				31F22AB02CD69A810073C27F /* EditAntrenorProfileView.swift */,
-				31630EBD2CECBCA80069A73F /* AntrenorWorkoutPlanView.swift */,
-				31630EC52CEFE1DA0069A73F /* ExerciseView.swift */,
-				31630ECB2CF315090069A73F /* AddExerciseView.swift */,
-				31CFF6182CFEFB3700D2A309 /* ExxerciseRowView.swift */,
-				31CFF61C2CFF1FDA00D2A309 /* WeeklyWorkoutPlanView.swift */,
-				313971F82CFF69FD00BA5E81 /* WeeklyWorkoutDayRowView.swift */,
-				3163BCCD2D00EE00005A97E4 /* AntrenorDietPlanView.swift */,
-				31093B502D022AEB00DF6E87 /* DietDaysView.swift */,
-				31093B522D022D7600DF6E87 /* DietDaysRowView.swift */,
-				31093B582D03AED400DF6E87 /* DietListView.swift */,
-				31093B5A2D03B2F600DF6E87 /* DietMealRowView.swift */,
-				31093B5C2D03B4FC00DF6E87 /* DietMealDetailView.swift */,
-				31093B5E2D03B6A100DF6E87 /* AddDietMealView.swift */,
-				311AC3B12D07885700AE6483 /* StudentWorkoutView.swift */,
+				31BD44D22D1D9C6F004F06AC /* Workout */,
+				31BD44D32D1D9D4F004F06AC /* Diet */,
 			);
 			path = Antrenor;
 			sourceTree = "<group>";
@@ -577,6 +579,45 @@
 			name = Suplement;
 			sourceTree = "<group>";
 		};
+		31BD44D22D1D9C6F004F06AC /* Workout */ = {
+			isa = PBXGroup;
+			children = (
+				311AC3B12D07885700AE6483 /* StudentWorkoutView.swift */,
+				313971F82CFF69FD00BA5E81 /* WeeklyWorkoutDayRowView.swift */,
+				31CFF61C2CFF1FDA00D2A309 /* WeeklyWorkoutPlanView.swift */,
+				31630EC52CEFE1DA0069A73F /* ExerciseView.swift */,
+				31CFF6182CFEFB3700D2A309 /* ExxerciseRowView.swift */,
+				31630ECB2CF315090069A73F /* AddExerciseView.swift */,
+				31630EBD2CECBCA80069A73F /* AntrenorWorkoutPlanView.swift */,
+			);
+			path = Workout;
+			sourceTree = "<group>";
+		};
+		31BD44D32D1D9D4F004F06AC /* Diet */ = {
+			isa = PBXGroup;
+			children = (
+				3163BCCD2D00EE00005A97E4 /* AntrenorDietPlanView.swift */,
+				31093B502D022AEB00DF6E87 /* DietDaysView.swift */,
+				31093B522D022D7600DF6E87 /* DietDaysRowView.swift */,
+				31093B582D03AED400DF6E87 /* DietListView.swift */,
+				31093B5A2D03B2F600DF6E87 /* DietMealRowView.swift */,
+				31093B5C2D03B4FC00DF6E87 /* DietMealDetailView.swift */,
+				31093B5E2D03B6A100DF6E87 /* AddDietMealView.swift */,
+				31BD44D42D1D9FF8004F06AC /* SearchBoxView.swift */,
+			);
+			path = Diet;
+			sourceTree = "<group>";
+		};
+		31BD44D62D1DA5EF004F06AC /* Deneme */ = {
+			isa = PBXGroup;
+			children = (
+				31BD44D72D1DA5FD004F06AC /* Fatsecret.swift */,
+				31BD44D92D1DA6C4004F06AC /* FoodSearchView.swift */,
+				31BD44DB2D1DB14B004F06AC /* FoodDetailView.swift */,
+			);
+			path = Deneme;
+			sourceTree = "<group>";
+		};
 		31E66E492CB705FE00E0F16A /* Data */ = {
 			isa = PBXGroup;
 			children = (
@@ -614,8 +655,8 @@
 			);
 			name = StayFit;
 			packageProductDependencies = (
-				313D3B942CEA032000C33452 /* Lottie */,
-				313D3B962CEA032600C33452 /* Alamofire */,
+				31854A4F2D18AD90006F967C /* Alamofire */,
+				31854A512D18AD94006F967C /* Lottie */,
 			);
 			productName = StayFit;
 			productReference = 316C95FA2CABF27800D78A51 /* StayFit.app */;
@@ -646,8 +687,8 @@
 			);
 			mainGroup = 316C95F12CABF27800D78A51;
 			packageReferences = (
-				313D3B8E2CEA030300C33452 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				313D3B912CEA031400C33452 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				31854A482D18AD27006F967C /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = 316C95FB2CABF27800D78A51 /* Products */;
 			projectDirPath = "";
@@ -691,7 +732,6 @@
 				310071A32CC43E640011F6AC /* AuthManager.swift in Sources */,
 				31E66E482CB705CF00E0F16A /* SuplementModel.swift in Sources */,
 				31F22A9E2CD510390073C27F /* AntrenorAnasayfaViewModel.swift in Sources */,
-				31901D0C2CBA75DE00427F0A /* diyet.swift in Sources */,
 				317C44962CB46FFF001D5F21 /* Beslenme.swift in Sources */,
 				31630ECE2CF335C00069A73F /* WeeklyWorkoutGetView.swift in Sources */,
 				311AC3B22D07885700AE6483 /* StudentWorkoutView.swift in Sources */,
@@ -705,6 +745,7 @@
 				31630EC22CEFDACB0069A73F /* WorkoutRowView.swift in Sources */,
 				316C960D2CABF2EE00D78A51 /* LoginViewViewModel.swift in Sources */,
 				311111CE2CB57A1C00BA2EF7 /* CustomText.swift in Sources */,
+				31BD44DC2D1DB14B004F06AC /* FoodDetailView.swift in Sources */,
 				31F22AAD2CD681550073C27F /* SecilenAntrenorDetaySayfasi.swift in Sources */,
 				311111D22CB5822700BA2EF7 /* DiyetItem.swift in Sources */,
 				316C960F2CABF30900D78A51 /* RegisterViewViewModel.swift in Sources */,
@@ -718,6 +759,7 @@
 				317E59B12CBC54E700CFAA6B /* VideoPlayerView.swift in Sources */,
 				31093B5B2D03B2F600DF6E87 /* DietMealRowView.swift in Sources */,
 				315E19F82CB726AD00B4E81D /* InsetFactView.swift in Sources */,
+				31BD44D52D1D9FF8004F06AC /* SearchBoxView.swift in Sources */,
 				31093B572D03AD2300DF6E87 /* DietListModelView.swift in Sources */,
 				316C96322CABF52B00D78A51 /* ProfileView.swift in Sources */,
 				316C96112CABF32E00D78A51 /* MainViewViewModel.swift in Sources */,
@@ -733,8 +775,8 @@
 				31630EC02CEE7A260069A73F /* StudentDetailViewModel.swift in Sources */,
 				31630EC82CF0A7840069A73F /* WeeklyWorkoutPlanViewModel.swift in Sources */,
 				316C962F2CABF4E300D78A51 /* MainTabView.swift in Sources */,
-				317E599F2CBBB6A100CFAA6B /* Workout.swift in Sources */,
 				316A95C52CC56CDB004BC12E /* PersonListView.swift in Sources */,
+				31BD44DA2D1DA6C4004F06AC /* FoodSearchView.swift in Sources */,
 				313971F92CFF69FD00BA5E81 /* WeeklyWorkoutDayRowView.swift in Sources */,
 				31630EDC2CF4CAF70069A73F /* WeeklyProgressesModelView.swift in Sources */,
 				31F22AAB2CD67C5A0073C27F /* AntrenorListesiRow.swift in Sources */,
@@ -755,9 +797,11 @@
 				315260832CD0DADF0042EB47 /* YararliBilgiler.swift in Sources */,
 				317E59A12CBBB71100CFAA6B /* AntrenmanViewModel.swift in Sources */,
 				315260782CCF74A70042EB47 /* AntrenorProfilModelView.swift in Sources */,
+				315BC5DC2D1318A1008FC54A /* ResetPasswordViewModel.swift in Sources */,
 				317E59952CBB8E2A00CFAA6B /* SecimEkrani.swift in Sources */,
 				316C963A2CABF5B700D78A51 /* BigButton.swift in Sources */,
 				31F22AA32CD5F9B70073C27F /* AntrenorSecimViewModel.swift in Sources */,
+				315BC5D92D131294008FC54A /* ResetPassword.swift in Sources */,
 				31F22AA12CD512710073C27F /* StudentDetailView.swift in Sources */,
 				315E19FE2CB7293900B4E81D /* HeadingView.swift in Sources */,
 				3100719F2CC430CF0011F6AC /* AntrenorRegisterViewModel.swift in Sources */,
@@ -782,10 +826,10 @@
 				31901D0E2CBA7A8C00427F0A /* BeslenmeViewModel.swift in Sources */,
 				316C95FE2CABF27800D78A51 /* StayFitApp.swift in Sources */,
 				318368FA2CB989F20056CF59 /* VideoModel.swift in Sources */,
+				31BD44D82D1DA5FD004F06AC /* Fatsecret.swift in Sources */,
 				31630EE42CF507710069A73F /* WeeklyProgressResultView.swift in Sources */,
 				311AC3AE2D06BF8D00AE6483 /* GetDietPlansByMemberId.swift in Sources */,
 				316C96132CABF35000D78A51 /* ProfileViewViewModel.swift in Sources */,
-				316C96182CABF39900D78A51 /* Kullanici.swift in Sources */,
 				316C963D2CABF5EB00D78A51 /* LoginView.swift in Sources */,
 				3100719D2CC40BFD0011F6AC /* AntrenorRegisterView.swift in Sources */,
 				31E66E442CB6F6B800E0F16A /* Antrenman.swift in Sources */,
@@ -999,14 +1043,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		313D3B8E2CEA030300C33452 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/airbnb/lottie-ios";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.5.0;
-			};
-		};
 		313D3B912CEA031400C33452 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -1015,18 +1051,26 @@
 				minimumVersion = 5.10.1;
 			};
 		};
+		31854A482D18AD27006F967C /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.5.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		313D3B942CEA032000C33452 /* Lottie */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 313D3B8E2CEA030300C33452 /* XCRemoteSwiftPackageReference "lottie-ios" */;
-			productName = Lottie;
-		};
-		313D3B962CEA032600C33452 /* Alamofire */ = {
+		31854A4F2D18AD90006F967C /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 313D3B912CEA031400C33452 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		31854A512D18AD94006F967C /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 31854A482D18AD27006F967C /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

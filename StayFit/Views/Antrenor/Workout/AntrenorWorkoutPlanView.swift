@@ -50,7 +50,7 @@ struct AntrenorWorkoutPlanView: View {
                         viewModel.createWorkoutPlan()
                         
                         // Alert ve temizleme işlemi
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                             if viewModel.errorMessage == "Plan başarıyla gönderildi" {
                                 alertMessage = viewModel.errorMessage ?? ""
                                 showAlert = true

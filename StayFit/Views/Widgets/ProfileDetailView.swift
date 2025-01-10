@@ -60,8 +60,8 @@ struct ProfileDetailsView: View {
                 VStack(alignment: .leading, spacing: 16) {
                     profileInfoRow(label: "Email adresi", value: profile.email)
                     profileInfoRow(label: "Telefon Numarası", value: profile.phone)
-                    profileInfoRow(label: "Kayıt Tarihi", value: formatDate(profile.createdDate))
-                    profileInfoRow(label: "Doğum Tarihi", value: formatDate(profile.birthDate))
+                    profileInfoRow(label: "Kayıt Tarihi", value: formatDate(isoDate: profile.createdDate))
+                    profileInfoRow(label: "Doğum Tarihi", value: formatDate(isoDate: profile.birthDate))
                     profileInfoRow(label: "Boy", value: String(profile.height))
                     profileInfoRow(label: "Kilo", value: String(profile.weight))
                     profileInfoRow(label: "Cinsiyet", value: profile.gender)
@@ -104,15 +104,19 @@ struct ProfileDetailsView: View {
     }
     
     // Tarih formatlamak için yardımcı fonksiyon
-    private func formatDate(_ dateString: String) -> String {
-        let formatter = ISO8601DateFormatter()
-        if let date = formatter.date(from: dateString) {
-            let displayFormatter = DateFormatter()
-            displayFormatter.dateFormat = "dd/MM/yyyy"  // Gün, Ay, Yıl formatı
-            return displayFormatter.string(from: date)
+    func formatDate(isoDate: String) -> String {
+            let dateFormatter = ISO8601DateFormatter()
+            dateFormatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+
+            // ISO 8601 tarihini Date formatına dönüştür
+            if let date = dateFormatter.date(from: isoDate) {
+                let outputFormatter = DateFormatter()
+                outputFormatter.dateFormat = "dd/MM/yyyy"
+                return outputFormatter.string(from: date)
+            }
+
+            return "Geçersiz tarih"
         }
-        return dateString
-    }
 }
 
 
@@ -120,13 +124,12 @@ struct ProfileDetailsView: View {
     AntrenorProfileDetailsView(profile: AntrenorProfile(id: "", createdDate: "12/20/24", firstName: "İmat", lastName: "Gokaslan", email: "imatt@gmail.com", phone: "5380354884", birthDate: "15/18/23", gender: "Kadın", monthlyRate: 5000, bio: "Yoga Eğitmeni"))
 }
 
+
 struct AntrenorProfileDetailsView: View {
-    @State var profile: AntrenorProfile  // Kullanıcı profilini parametre olarak alıyoruz
-    @State private var isEditViewActive = false  // Düzenleme ekranına geçiş durumu
+    @State var profile: AntrenorProfile
    
     var body: some View {
-        NavigationStack {
-            ScrollView {
+        
                 VStack(spacing: 16) {
                     
                     // Üst Kısım: Profil Fotoğrafı ve Bilgiler
@@ -175,10 +178,10 @@ struct AntrenorProfileDetailsView: View {
                     VStack(alignment: .leading, spacing: 16) {
                         profileInfoRow(label: "Email adresi", value: profile.email)
                         profileInfoRow(label: "Telefon Numarası", value: profile.phone)
-                        profileInfoRow(label: "Doğum Tarihi", value: formatDate(profile.birthDate))
+                        profileInfoRow(label: "Doğum Tarihi", value: formatDate(isoDate: profile.birthDate))
                         profileInfoRow(label: "Biyografi", value: profile.bio)
                         profileInfoRow(label: "Cinsiyet", value: profile.gender)
-                        profileInfoRow(label: "Kayıt Tarihi", value: formatDate(profile.createdDate))
+                        profileInfoRow(label: "Kayıt Tarihi", value: formatDate(isoDate: profile.createdDate))
                     }
                     .padding(.horizontal)
                     .padding()
@@ -190,26 +193,22 @@ struct AntrenorProfileDetailsView: View {
 
                     Spacer()  // Boş alan eklenir
                 }
-            }
-            .overlay(alignment: .topTrailing) {  // Butonu sağ üst köşeye eklemek için
-                Button {
-                    isEditViewActive = true  // Düzenleme ekranına yönlendirme tetiklenir
-                } label: {
-                    Text("Düzenle")
-                        .foregroundColor(.blue)
-                        .padding(8)
-                        .background(Color.white.opacity(0.8))
-                        .cornerRadius(8)
-                        .padding([.trailing, .top], 16)
+                .navigationTitle("Antrenör Profilim")
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        NavigationLink {
+                            EditAntrenorProfileView(profile: $profile)
+                        } label: {
+                            Text("Düzenle")
+                                .foregroundColor(.white)
+                               
+                        }
+                    }
                 }
-            }
-            .navigationDestination(isPresented: $isEditViewActive) {
-                EditAntrenorProfileView(profile: $profile)
-                   
-            }
-            .navigationTitle("Antrenör Profilim")
-            .navigationBarTitleDisplayMode(.inline)
-        }
+            
+            
+        
     }
     
     // Bilgi satırı için yardımcı fonksiyon
@@ -224,13 +223,17 @@ struct AntrenorProfileDetailsView: View {
     }
     
     // Tarih formatlamak için yardımcı fonksiyon
-    private func formatDate(_ dateString: String) -> String {
-        let formatter = ISO8601DateFormatter()
-        if let date = formatter.date(from: dateString) {
-            let displayFormatter = DateFormatter()
-            displayFormatter.dateFormat = "dd/MM/yyyy"  // Gün, Ay, Yıl formatı
-            return displayFormatter.string(from: date)
+    func formatDate(isoDate: String) -> String {
+            let dateFormatter = ISO8601DateFormatter()
+            dateFormatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+
+            // ISO 8601 tarihini Date formatına dönüştür
+            if let date = dateFormatter.date(from: isoDate) {
+                let outputFormatter = DateFormatter()
+                outputFormatter.dateFormat = "dd/MM/yyyy"
+                return outputFormatter.string(from: date)
+            }
+
+        return isoDate
         }
-        return dateString
-    }
 }

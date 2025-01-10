@@ -42,9 +42,9 @@ class DietDaysViewModel : ObservableObject {
     @Published var dietDays: [DietDays] = []
     @Published var isLoading = false
    
-    // Reset fields
+
     func resetFields() {
-        self.dietPlanId = 0
+        
         self.title = ""
         self.dayOfWeek = .monday
         self.errorMessage = nil
@@ -52,7 +52,7 @@ class DietDaysViewModel : ObservableObject {
 
    
    func getDietPlans() {
-          guard let url = URL(string: "http://localhost:5200/api/DietDays/GetDietDaysByDietPlanId?dietPlanId=\(dietPlanId)") else {
+          guard let url = URL(string: "\(APIConfig.baseURL)/api/DietDays/GetDietDaysByDietPlanId?dietPlanId=\(dietPlanId)") else {
               self.errorMessage = "Invalid URL"
               return
           }
@@ -102,7 +102,7 @@ class DietDaysViewModel : ObservableObject {
    
    
    func deleteDietDay(by id: Int) {
-       guard let url = URL(string: "http://localhost:5200/api/DietDays/DeleteDietDay?dietDayId=\(id)") else {
+       guard let url = URL(string: "\(APIConfig.baseURL)/api/DietDays/DeleteDietDay?dietDayId=\(id)") else {
            self.errorMessage = "Geçersiz URL"
            return
        }
@@ -140,7 +140,7 @@ class DietDaysViewModel : ObservableObject {
            
            if httpResponse.statusCode == 200 {
                DispatchQueue.main.async {
-                   // Silinen workout day'i listeden kaldır
+                   // Silinen workout day'i listeden kaldırmanın kodu
                    self?.dietDays.removeAll { $0.id == id }
                    self?.errorMessage = nil
                }
@@ -154,41 +154,36 @@ class DietDaysViewModel : ObservableObject {
 
    
    
-    // Create workout plan
+   
     func createDietPlan() {
-        // API URL
-        guard let url = URL(string: "http://localhost:5200/api/DietDays/CreateDietDay") else {
+       
+        guard let url = URL(string: "\(APIConfig.baseURL)/api/DietDays/CreateDietDay") else {
             self.errorMessage = "Invalid URL"
             return
         }
 
-        // Prepare the model
         let workoutPlan = DietPlan(
             dietPlanId: dietPlanId,
             title: title,
             dayOfWeek: dayOfWeek.rawValue
         )
 
-        // Serialize to JSON
         guard let jsonData = try? JSONEncoder().encode(workoutPlan) else {
             self.errorMessage = "Failed to encode data"
             return
         }
 
-        // Retrieve JWT token from UserDefaults
         guard let token = UserDefaults.standard.string(forKey: "jwt") else {
             self.errorMessage = "Missing authentication token"
             return
         }
 
-        // Prepare the request
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         request.httpBody = jsonData
 
-        // API Call
         self.isSubmitting = true
         URLSession.shared.dataTask(with: request) { [weak self] data, response, error in
             DispatchQueue.main.async {
@@ -201,9 +196,18 @@ class DietDaysViewModel : ObservableObject {
 
                 if let httpResponse = response as? HTTPURLResponse {
                     if httpResponse.statusCode != 200 {
-                        if let data = data, let responseString = String(data: data, encoding: .utf8) {
-                            print("Server Response: \(responseString)")
-                            self?.errorMessage = "Error: \(responseString)"
+                        if let data = data {
+                            do {
+                            
+                                let responseJSON = try JSONDecoder().decode([String: AnyDecodable].self, from: data)
+                                if let message = responseJSON["message"]?.value as? String {
+                                    self?.errorMessage = message
+                                } else {
+                                    self?.errorMessage = "Unknown error occurred."
+                                }
+                            } catch {
+                                self?.errorMessage = "Failed to parse server response."
+                            }
                         }
                         return
                     }
@@ -213,4 +217,65 @@ class DietDaysViewModel : ObservableObject {
             }
         }.resume()
     }
+    
+    
+    
+    func completeDietDay(dietDayId2: Int) {
+            guard let url = URL(string: "\(APIConfig.baseURL)/api/DietDays/DietDayCompleted?dietDayId=\(dietDayId2)") else {
+                DispatchQueue.main.async {
+                    self.errorMessage = "Invalid URL"
+                }
+                return
+            }
+
+            guard let token = UserDefaults.standard.string(forKey: "jwt") else {
+                DispatchQueue.main.async {
+                    self.errorMessage = "Missing authentication token"
+                }
+                return
+            }
+
+            var request = URLRequest(url: url)
+            request.httpMethod = "PUT"
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+
+            self.isSubmitting = true
+
+            URLSession.shared.dataTask(with: request) { [weak self] data, response, error in
+                DispatchQueue.main.async {
+                    self?.isSubmitting = false
+
+                    if let error = error {
+                        self?.errorMessage = "Request error: \(error.localizedDescription)"
+                        return
+                    }
+
+                    if let httpResponse = response as? HTTPURLResponse {
+                        print("\(httpResponse.statusCode)")
+                        if httpResponse.statusCode == 200 {
+                            self?.errorMessage = "Tebrikler!! Bugünü tamamladınız..."
+                            print(self!.errorMessage ??  "success ama baska bir yazı")
+                           
+                        } else {
+                            if let data = data {
+                                do {
+                                    let responseJSON = try JSONDecoder().decode([String: String].self, from: data)
+                                    if let message = responseJSON["message"] {
+                                        self?.errorMessage = message
+                                    } else {
+                                        self?.errorMessage = "Unknown error occurred."
+                                    }
+                                } catch {
+                                    self?.errorMessage = "İşlem yapılamadı"
+                                }
+                            } else {
+                                self?.errorMessage = "Server returned status code \(httpResponse.statusCode)."
+                            }
+                        }
+                    }
+                }
+            }.resume()
+        }
+    
 }

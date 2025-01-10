@@ -42,10 +42,12 @@ class WeeklyWorkoutPlanViewModel: ObservableObject {
      @Published var errorMessage: String?
      @Published var workoutDays: [WorkoutDays] = []
      @Published var isLoading = false
+     @Published var yenile : Bool = false
+   
     
-     // Reset fields
+     
      func resetFields() {
-         self.workoutPlanId = 0
+         
          self.title = ""
          self.dayOfWeek = .monday
          self.errorMessage = nil
@@ -53,7 +55,7 @@ class WeeklyWorkoutPlanViewModel: ObservableObject {
 
     
     func getWorkoutPlans() {
-           guard let url = URL(string: "http://localhost:5200/api/WorkoutDays/GetWorkoutDaysByWorkoutPlanId?workoutPlanId=\(workoutPlanId)") else {
+           guard let url = URL(string: "\(APIConfig.baseURL)/api/WorkoutDays/GetWorkoutDaysByWorkoutPlanId?workoutPlanId=\(workoutPlanId)") else {
                self.errorMessage = "Invalid URL"
                return
            }
@@ -103,7 +105,7 @@ class WeeklyWorkoutPlanViewModel: ObservableObject {
     
     
     func deleteWorkoutDay(by id: Int) {
-        guard let url = URL(string: "http://localhost:5200/api/WorkoutDays/DeleteWorkoutDay/\(id)") else {
+        guard let url = URL(string: "\(APIConfig.baseURL)/api/WorkoutDays/DeleteWorkoutDay/\(id)") else {
             self.errorMessage = "Geçersiz URL"
             return
         }
@@ -156,84 +158,192 @@ class WeeklyWorkoutPlanViewModel: ObservableObject {
     
     
      // Create workout plan
-     func createWorkoutPlan() {
-         // API URL
-         guard let url = URL(string: "http://localhost:5200/api/WorkoutDays/CreateWorkoutDay") else {
-             self.errorMessage = "Invalid URL"
-             return
-         }
+    func createWorkoutPlan() {
+       
+        guard let url = URL(string: "\(APIConfig.baseURL)/api/WorkoutDays/CreateWorkoutDay") else {
+            self.errorMessage = "Invalid URL"
+            return
+        }
 
-         // Prepare the model
-         let workoutPlan = WorkoutPlan(
+        let workoutPlan = WorkoutPlan(
             WorkoutPlanId: workoutPlanId,
-             title: title,
-             dayOfWeek: dayOfWeek.rawValue
-         )
+            title: title,
+            dayOfWeek: dayOfWeek.rawValue
+        )
 
-         // Serialize to JSON
-         guard let jsonData = try? JSONEncoder().encode(workoutPlan) else {
-             self.errorMessage = "Failed to encode data"
-             return
-         }
+        guard let jsonData = try? JSONEncoder().encode(workoutPlan) else {
+            self.errorMessage = "Failed to encode data"
+            return
+        }
 
-         // Retrieve JWT token from UserDefaults
-         guard let token = UserDefaults.standard.string(forKey: "jwt") else {
-             self.errorMessage = "Missing authentication token"
-             return
-         }
+        guard let token = UserDefaults.standard.string(forKey: "jwt") else {
+            self.errorMessage = "Missing authentication token"
+            return
+        }
 
-         // Prepare the request
-         var request = URLRequest(url: url)
-         request.httpMethod = "POST"
-         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-         request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-         request.httpBody = jsonData
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        request.httpBody = jsonData
 
-         // API Call
-         self.isSubmitting = true
-         URLSession.shared.dataTask(with: request) { [weak self] data, response, error in
-             DispatchQueue.main.async {
-                 self?.isSubmitting = false
+        self.isSubmitting = true
+        URLSession.shared.dataTask(with: request) { [weak self] data, response, error in
+            DispatchQueue.main.async {
+                self?.isSubmitting = false
 
-                 if let error = error {
-                     self?.errorMessage = "Request error: \(error.localizedDescription)"
-                     return
-                 }
+                if let error = error {
+                    self?.errorMessage = "Request error: \(error.localizedDescription)"
+                    return
+                }
 
-                 if let httpResponse = response as? HTTPURLResponse {
-                     if httpResponse.statusCode != 200 {
-                         if let data = data, let responseString = String(data: data, encoding: .utf8) {
-                             print("Server Response: \(responseString)")
-                             self?.errorMessage = "Error: \(responseString)"
-                         }
-                         return
-                     }
-                 }
+                if let httpResponse = response as? HTTPURLResponse {
+                    if httpResponse.statusCode != 200 {
+                        if let data = data {
+                            do {
+                                // Decode the response to extract the message
+                                let responseJSON = try JSONDecoder().decode([String: AnyDecodable].self, from: data)
+                                if let message = responseJSON["message"]?.value as? String {
+                                    self?.errorMessage = message
+                                } else {
+                                    self?.errorMessage = "Unknown error occurred."
+                                }
+                            } catch {
+                                self?.errorMessage = "Failed to parse server response."
+                            }
+                        }
+                        return
+                    }
+                }
 
-                 self?.errorMessage = "Workout plan başarıyla gönderildi!"
-             }
-         }.resume()
-     }
+                self?.errorMessage = "Antrenman Planı başarıyla gönderildi!"
+               
+                
+            }
+        }.resume()
+    }
+    
+    
+    // Complete workout day
+    func completeWorkoutDay(workoutDayId2: Int) {
+            guard let url = URL(string: "\(APIConfig.baseURL)/api/WorkoutDays/WorkoutDayCompleted?workoutDayId=\(workoutDayId2)") else {
+                DispatchQueue.main.async {
+                    self.errorMessage = "Invalid URL"
+                }
+                return
+            }
+
+            guard let token = UserDefaults.standard.string(forKey: "jwt") else {
+                DispatchQueue.main.async {
+                    self.errorMessage = "Missing authentication token"
+                }
+                return
+            }
+
+            var request = URLRequest(url: url)
+            request.httpMethod = "PUT"
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+
+            self.isSubmitting = true
+
+            URLSession.shared.dataTask(with: request) { [weak self] data, response, error in
+                DispatchQueue.main.async {
+                    self?.isSubmitting = false
+
+                    if let error = error {
+                        self?.errorMessage = "Request error: \(error.localizedDescription)"
+                        return
+                    }
+
+                    if let httpResponse = response as? HTTPURLResponse {
+                        if httpResponse.statusCode == 200 {
+                            self?.errorMessage = "Tebrikler!! Bugünü tamamladınız..."
+                            print(self!.errorMessage ??  "success ama baska bir yazı")
+                           
+                        } else {
+                            if let data = data {
+                                do {
+                                    let responseJSON = try JSONDecoder().decode([String: String].self, from: data)
+                                    if let message = responseJSON["message"] {
+                                        self?.errorMessage = message
+                                    } else {
+                                        self?.errorMessage = "Unknown error occurred."
+                                    }
+                                } catch {
+                                    self?.errorMessage = "Sadece o günün programının tamamlandı butonuna tıklayabilirsin."
+                                }
+                            } else {
+                                self?.errorMessage = "Server returned status code \(httpResponse.statusCode)."
+                            }
+                        }
+                    }
+                }
+            }.resume()
+        }
+
  }
 
- enum DayOfWeek: Int, Codable, CaseIterable {
-     case monday = 0
-     case tuesday
-     case wednesday
-     case thursday
-     case friday
-     case saturday
-     case sunday
+enum DayOfWeek: Int, Codable, CaseIterable {
+    case monday = 1
+    case tuesday = 2
+    case wednesday = 3
+    case thursday = 4
+    case friday = 5
+    case saturday = 6
+    case sunday = 0
 
-     var displayName: String {
-         switch self {
-         case .monday: return "Pazartesi"
-         case .tuesday: return "Salı"
-         case .wednesday: return "Çarşamba"
-         case .thursday: return "Perşembe"
-         case .friday: return "Cuma"
-         case .saturday: return "Cumartesi"
-         case .sunday: return "Pazar"
-         }
-     }
- }
+    var displayName: String {
+        switch self {
+        case .sunday: return "Pazar"
+        case .monday: return "Pazartesi"
+        case .tuesday: return "Salı"
+        case .wednesday: return "Çarşamba"
+        case .thursday: return "Perşembe"
+        case .friday: return "Cuma"
+        case .saturday: return "Cumartesi"
+        }
+    }
+    
+    /// Pazartesi bazlı sıralama
+    var sortOrder: Int {
+        switch self {
+        case .monday: return 0
+        case .tuesday: return 1
+        case .wednesday: return 2
+        case .thursday: return 3
+        case .friday: return 4
+        case .saturday: return 5
+        case .sunday: return 6
+        }
+    }
+}
+
+
+
+import Foundation
+
+struct AnyDecodable: Decodable {
+    let value: Any
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        if let intValue = try? container.decode(Int.self) {
+            value = intValue
+        } else if let doubleValue = try? container.decode(Double.self) {
+            value = doubleValue
+        } else if let stringValue = try? container.decode(String.self) {
+            value = stringValue
+        } else if let boolValue = try? container.decode(Bool.self) {
+            value = boolValue
+        } else {
+            throw DecodingError.typeMismatch(
+                AnyDecodable.self,
+                DecodingError.Context(
+                    codingPath: decoder.codingPath,
+                    debugDescription: "Unsupported type"
+                )
+            )
+        }
+    }
+}

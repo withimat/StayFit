@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct StudentWorkoutView: View {
-    @ObservedObject var viewModel: StudentDetailViewModel
+    @ObservedObject var viewModel = StudentDetailViewModel()
     let student : Student
     var body: some View {
         NavigationStack{
@@ -52,6 +52,9 @@ struct StudentWorkoutView: View {
                 .navigationBarBackButtonHidden(true)
                             }
                         label: {
+                            
+                            
+                            
             VStack(alignment: .leading, spacing: 8) {
             HStack {
             Text(workout.title)
@@ -61,7 +64,14 @@ struct StudentWorkoutView: View {
 
             Spacer()
                 Button {
-                    withAnimation {
+                    
+                } label: {
+                    Image(systemName: "pencil")
+                }
+
+                
+                Button {
+                    withAnimation(.default) {
                        
                         if let index = viewModel.workoutPlan.firstIndex(where: { $0.id == workout.id }) {
                             viewModel.workoutPlan.remove(at: index)
@@ -88,6 +98,8 @@ struct StudentWorkoutView: View {
        .padding()
        .background(RoundedRectangle(cornerRadius: 10).fill(Color(UIColor.systemBackground)))
         .shadow(radius: 2)
+                            
+                            
         }
 
         }
@@ -106,8 +118,12 @@ struct StudentWorkoutView: View {
 }
 
 
+#Preview{
+    StudentWorkoutView(student: Student(id: "1", memberId: "2", endDate: "11/22", amount: 2000, height: 178, weight: 80, firstName: "İmat", lastName: "Gökaslan", gender: 0, birthDate: "11/22",photoPath: "",goal: ""))
+}
+
 struct StudentDietView: View {
-    @ObservedObject var viewModel: StudentDetailViewModel
+    @ObservedObject var viewModel = StudentDetailViewModel()
     let student : Student
     var body: some View {
         NavigationStack{

@@ -34,7 +34,7 @@ class WeeklyProgressIAModelView : ObservableObject {
         isLoading = true
         errorMessage = nil
         
-        guard let url = URL(string: "http://localhost:5200/api/WeeklyProgresses/CreateWeeklyProgressByAI") else {
+        guard let url = URL(string: "\(APIConfig.baseURL)/api/WeeklyProgresses/CreateWeeklyProgressByAI") else {
             errorMessage = "Invalid URL"
             isLoading = false
             return
@@ -52,7 +52,6 @@ class WeeklyProgressIAModelView : ObservableObject {
         
         var body = Data()
         
-        // Eklenecek text parametreler
         let parameters: [String: String] = [
             "subscriptionId": subscriptionId,
             "height": height,
@@ -65,7 +64,6 @@ class WeeklyProgressIAModelView : ObservableObject {
             body.append("\(value)\r\n")
         }
         
-        // Görselleri ekleme
         for (index, image) in selectedImages.enumerated() {
             guard let imageData = image.jpegData(compressionQuality: 0.5) else { continue }
             let filename = "image\(index).jpg"
@@ -89,6 +87,12 @@ class WeeklyProgressIAModelView : ObservableObject {
                     return
                 }
                 
+                // HTTP yanıtı
+                if let httpResponse = response as? HTTPURLResponse {
+                    print("HTTP Status Code: \(httpResponse.statusCode)")
+                    print("HTTP Headers: \(httpResponse.allHeaderFields)")
+                }
+                
                 guard let data = data else {
                     self?.errorMessage = "No data received"
                     return
@@ -96,27 +100,32 @@ class WeeklyProgressIAModelView : ObservableObject {
                 
                 if let responseString = String(data: data, encoding: .utf8) {
                     print("Raw Response:", responseString)
-                    
-                    // JSON'dan mesaj öğesini ve hata mesajlarını ayıkla
-                    do {
-                        if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-                            if let errorMessage = json["error"] as? [String: Any],
-                               let errorDetail = errorMessage["message"] as? String {
-                                // Error içindeki mesaj
-                                self?.errorMessage = errorDetail
-                            } else if let message = json["message"] as? String {
-                                // Genel mesaj
-                                self?.errorMessage = message
-                            } else {
-                                self?.errorMessage = "No recognizable message in response"
-                            }
-                        } else {
-                            self?.errorMessage = "Unexpected response format"
-                        }
-                    } catch {
-                        self?.errorMessage = "Error parsing response: \(error.localizedDescription)"
-                    }
                 }
+                
+                do {
+                    if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+                      
+                        if let errors = json["errors"] as? [String: [String]] {
+                            
+                            let errorMessages = errors.flatMap { key, value in
+                                value.map { "\(key): \($0)" }
+                            }.joined(separator: "\n")
+                            self?.errorMessage = errorMessages
+                        } else if let message = json["message"] as? String {
+                           
+                            self?.errorMessage = message
+                        } else {
+                            
+                            self?.errorMessage = "No recognizable message in response"
+                        }
+                        print("Parsed JSON Response:", json)
+                    } else {
+                        self?.errorMessage = "Unexpected response format"
+                    }
+                } catch {
+                    self?.errorMessage = "Error parsing response: \(error.localizedDescription)"
+                }
+
             }
         }.resume()
 

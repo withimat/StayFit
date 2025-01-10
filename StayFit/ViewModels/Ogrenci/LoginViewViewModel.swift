@@ -6,34 +6,33 @@
 //
 
 import Foundation
+import SwiftUICore
 
-class LoginViewViewModel: ObservableObject {
+class TrainerLoginViewViewModel: ObservableObject {
     @Published var email = ""
     @Published var password = ""
     @Published var errorMessage = ""
     @Published var isAuthenticated: Bool = false
     @Published var isLoggedIn: Bool = false
-    @Published var userRole: String = ""  // Kullanıcı rolü eklendi
+    @Published var userRole: String = ""
+    @ObservedObject var authManager = AuthManager.shared
 
     init() {
         checkIfLoggedIn()
     }
 
-    /// Kullanıcı giriş işlemi
+
     func login(role: String) {
         guard validate() else { return }
 
-        let defaults = UserDefaults.standard
-        
         Webservice().login(email: email, password: password) { result in
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [self] in
                 switch result {
                 case .success(let token):
-                    defaults.setValue(token, forKey: "jwt")
-                    defaults.setValue(role, forKey: "rol")  // Rolü kaydet
+                    authManager.login(token: token, role: role)
                     self.isAuthenticated = true
                     self.isLoggedIn = true
-                    self.userRole = role  // Kullanıcı rolünü güncelle
+                    self.userRole = role
                     print("Başarılı giriş: \(token)")
                 case .failure(let error):
                     self.errorMessage = "Giriş başarısız: \(error.localizedDescription)"
@@ -42,33 +41,99 @@ class LoginViewViewModel: ObservableObject {
         }
     }
 
-    /// Kullanıcı çıkış işlemi (token ve rol silinir)
     func logout() {
-        let defaults = UserDefaults.standard
-        defaults.removeObject(forKey: "jwt")
-        defaults.removeObject(forKey: "rol")  // Rolü sil
+        authManager.logout()
 
         DispatchQueue.main.async {
             self.isAuthenticated = false
             self.isLoggedIn = false
-            self.userRole = ""  // Kullanıcı rolünü temizle
+            self.userRole = ""
             print("Başarılı çıkış yapıldı, token ve rol silindi.")
         }
     }
 
-    /// Kullanıcının hâlâ oturum açık mı kontrolü
     private func checkIfLoggedIn() {
-        let defaults = UserDefaults.standard
-        if let token = defaults.string(forKey: "jwt"),
-           let role = defaults.string(forKey: "rol") {
-            isAuthenticated = true
-            isLoggedIn = true
-            userRole = role// Rolü kaydet
-            print("hala oturum acık.\n\(token)")
+        authManager.checkIfLoggedIn()
+        DispatchQueue.main.async { [self] in
+            self.isAuthenticated = authManager.isAuthenticated
+            self.isLoggedIn = authManager.isAuthenticated
+            self.userRole = authManager.userRole
         }
     }
 
-    /// Form doğrulama fonksiyonu
+  
+    func validate() -> Bool {
+        errorMessage = ""
+
+        guard !email.trimmingCharacters(in: .whitespaces).isEmpty,
+              !password.trimmingCharacters(in: .whitespaces).isEmpty else {
+            errorMessage = "Lütfen tüm alanları doldurun"
+            return false
+        }
+
+        guard email.contains("@") && email.contains(".com") else {
+            errorMessage = "Lütfen geçerli bir email adresi giriniz"
+            return false
+        }
+
+        return true
+    }
+}
+
+
+
+class MemberLoginViewViewModel: ObservableObject {
+    @Published var email = ""
+    @Published var password = ""
+    @Published var errorMessage = ""
+    @Published var isAuthenticated: Bool = false
+    @Published var isLoggedIn: Bool = false
+    @Published var userRole: String = ""
+    @ObservedObject var authManager = AuthManager.shared
+
+    init() {
+        checkIfLoggedIn()
+    }
+
+    func login(role: String) {
+        guard validate() else { return }
+
+        Webservice2().login(email: email, password: password) { result in
+            DispatchQueue.main.async { [self] in
+                switch result {
+                case .success(let token):
+                    authManager.login(token: token, role: role)
+                    self.isAuthenticated = true
+                    self.isLoggedIn = true
+                    self.userRole = role
+                    print("Başarılı giriş: \(token)")
+                case .failure(let error):
+                    self.errorMessage = "Giriş başarısız: \(error.localizedDescription)"
+                }
+            }
+        }
+    }
+
+    func logout() {
+        authManager.logout()
+
+        DispatchQueue.main.async {
+            self.isAuthenticated = false
+            self.isLoggedIn = false
+            self.userRole = "" // Kullanıcı rolünü temizle
+            print("Başarılı çıkış yapıldı, token ve rol silindi.")
+        }
+    }
+
+    private func checkIfLoggedIn() {
+        authManager.checkIfLoggedIn()
+        DispatchQueue.main.async { [self] in
+            self.isAuthenticated = authManager.isAuthenticated
+            self.isLoggedIn = authManager.isAuthenticated
+            self.userRole = authManager.userRole
+        }
+    }
+
     func validate() -> Bool {
         errorMessage = ""
 

@@ -19,17 +19,21 @@ struct WeeklyWorkoutPlanView: View {
                 if viewModel.isLoading {
                     ProgressView("Yükleniyor...")
                 } else {
-                    ScrollView{
-                        ForEach(viewModel.workoutDays.sorted(by: { $0.dayOfWeek < $1.dayOfWeek })) { plan in
-                                NavigationLink {
-                                    ExerciseListView(workoutdays: plan)
-                                        .navigationBarBackButtonHidden(true)
-                                } label: {
-                                    WeeklyWorkoutDayRowView(plan: plan)
-                                    
-                                }
+                    ScrollView {
+                        ForEach(viewModel.workoutDays.sorted(by: {
+                            let firstSortOrder = DayOfWeek(rawValue: $0.dayOfWeek)?.sortOrder ?? Int.max
+                            let secondSortOrder = DayOfWeek(rawValue: $1.dayOfWeek)?.sortOrder ?? Int.max
+                            return firstSortOrder < secondSortOrder
+                        })) { plan in
+                            NavigationLink {
+                                ExerciseListView(workoutdays: plan)
+                                    .navigationBarBackButtonHidden(true)
+                            } label: {
+                                WeeklyWorkoutDayRowView(plan: plan, viewModel: viewModel)
+                            }
                         }
                     }
+
                     
                     
                 }
@@ -48,6 +52,8 @@ struct WeeklyWorkoutPlanView: View {
                     Section {
                         Button(action: {
                             viewModel.createWorkoutPlan()
+                            viewModel.workoutPlanId = workout.id
+                            viewModel.getWorkoutPlans()
                         }) {
                             HStack {
                                 Spacer()
@@ -79,7 +85,7 @@ struct WeeklyWorkoutPlanView: View {
             )
             .alert("Bilgi", isPresented: .constant(viewModel.errorMessage != nil)) {
                 Button("Tamam") {
-                    if viewModel.errorMessage == "Workout plan başarıyla gönderildi!" {
+                    if viewModel.errorMessage == "Antrenman Planı başarıyla gönderildi!" {
                         withAnimation(Animation.easeInOut(duration: 2.0)) { // 1 saniye süreyle animasyon
                             viewModel.resetFields()
                             viewModel.workoutPlanId = workout.id
@@ -93,7 +99,6 @@ struct WeeklyWorkoutPlanView: View {
             } message: {
                 Text(viewModel.errorMessage ?? "")
             }
-
             .onAppear {
                 viewModel.workoutPlanId = workout.id
                 withAnimation(Animation.easeInOut(duration: 0.5)) {

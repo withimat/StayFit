@@ -11,7 +11,7 @@ import Combine
 
 class AntrenorRegisterViewModel: ObservableObject {
     
-    // Kullanıcıdan alınacak veriler
+ 
     @Published var firstName: String = ""
     @Published var lastName: String = ""
     @Published var email: String = ""
@@ -21,8 +21,9 @@ class AntrenorRegisterViewModel: ObservableObject {
     @Published var monthlyRate: Double = 0
     @Published var gender: Gender? = nil
     @Published var bio: String = ""
+    @Published var YearsOfExperience : Int = 0
+    @Published var specializations : String = ""
 
-    // Durum yönetimi
     @Published var isLoading: Bool = false
     @Published var isRegistered: Bool = false
     @Published var errorMessage: String = ""
@@ -32,13 +33,13 @@ class AntrenorRegisterViewModel: ObservableObject {
         }
     
     
-    /// Kullanıcı kayıt fonksiyonu
+    
     func register() {
         guard validate() else { return }
         isLoading = true  
         errorMessage = ""
 
-        // JSON nesnesi oluşturma
+      
         let user = [
             "firstName": firstName,
             "lastName": lastName,
@@ -48,10 +49,12 @@ class AntrenorRegisterViewModel: ObservableObject {
             "birthDate": ISO8601DateFormatter().string(from: birthDate),
             "gender": genderAsInt as Any,
             "monthlyRate": monthlyRate,
-            "bio": bio
+            "bio": bio,
+            "YearsOfExperience" : YearsOfExperience,
+            "specializations" : specializations
         ] as [String: Any]
 
-        guard let url = URL(string: "http://localhost:5200/api/Auth/TrainerRegister") else {
+        guard let url = URL(string: "\(APIConfig.baseURL)/api/Auth/TrainerRegister") else {
             errorMessage = "Geçersiz URL"
             isLoading = false
             return
@@ -61,7 +64,7 @@ class AntrenorRegisterViewModel: ObservableObject {
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
 
-        // JSON encoding
+      
         do {
             request.httpBody = try JSONSerialization.data(withJSONObject: user, options: [])
         } catch {
@@ -70,7 +73,7 @@ class AntrenorRegisterViewModel: ObservableObject {
             return
         }
 
-        // API çağrısı
+       
         URLSession.shared.dataTask(with: request) { data, response, error in
             DispatchQueue.main.async {
                 self.isLoading = false  // Çağrı tamamlandı
@@ -83,17 +86,18 @@ class AntrenorRegisterViewModel: ObservableObject {
                 guard let httpResponse = response as? HTTPURLResponse,
                       (200...299).contains(httpResponse.statusCode) else {
                     self.errorMessage = "Sunucu hatası"
+                    
                     return
                 }
 
-                // Başarılı kayıt
+                
                 self.isRegistered = true
                 print("Kayıt başarılı")
             }
         }.resume()
     }
 
-    /// Form doğrulama fonksiyonu
+  
     func validate() -> Bool {
         errorMessage = ""
         
@@ -107,15 +111,15 @@ class AntrenorRegisterViewModel: ObservableObject {
             return false
         }
         
-        if phone.isEmpty || phone.count < 10 {
-            errorMessage = "Geçerli bir telefon numarası girin."
-            return false
-        }
+        if !isValidPhone(phone) {
+                errorMessage = "Geçerli bir telefon numarası giriniz. (Örnek: +905555555555 veya 05555555555)"
+                return false
+            }
         
-        if password.isEmpty || password.count < 6 {
-            errorMessage = "Şifre en az 6 karakter olmalıdır."
-            return false
-        }
+       
+        if !isValidPassword(password) {
+                return false
+            }
         
         if gender == nil {
             errorMessage = "Lütfen cinsiyetinizi seçin."
@@ -127,15 +131,42 @@ class AntrenorRegisterViewModel: ObservableObject {
             return false
         }
         
-        if bio.isEmpty {
-            errorMessage = "Lütfen bio bilgisi giriniz."
+        if bio.trimmingCharacters(in: .whitespacesAndNewlines).count < 31 {
+            errorMessage = "Bio en az 30 karakter olmalıdır."
+            return false
         }
+        
         
         
         return true
     }
 
-    /// E-posta doğrulama metodu
+    private func isValidPassword(_ password: String) -> Bool {
+        if password.range(of: "[A-Z]", options: .regularExpression) == nil {
+            errorMessage = "Şifre en az bir büyük harf içermelidir."
+            return false
+        }
+        
+        if password.range(of: "[a-z]", options: .regularExpression) == nil {
+            errorMessage = "Şifre en az bir küçük harf içermelidir."
+            return false
+        }
+        
+        if password.count < 6 {
+            errorMessage = "Şifre en az 6 karakter uzunluğunda olmalıdır."
+            return false
+        }
+        
+        return true
+    }
+    
+    
+    private func isValidPhone(_ phone: String) -> Bool {
+        let phoneRegex = #"^(?:\+90)?5\d{9}$|^(05\d{9})$"#
+        let phonePredicate = NSPredicate(format: "SELF MATCHES %@", phoneRegex)
+        return phonePredicate.evaluate(with: phone)
+    }
+   
     private func isValidEmail(_ email: String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         let emailPred = NSPredicate(format: "SELF MATCHES %@", emailRegEx)

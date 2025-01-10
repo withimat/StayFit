@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct DietListView: View {
-    @StateObject var viewModel = DietListModelView()
-    var workoutdays: DietDays
+    @StateObject private var viewModel = DietListModelView()
+    @State var workoutdays: DietDays
     @Environment(\.dismiss) var dismiss
     
     private func mealTypeDescription(_ mealType: Int) -> String {

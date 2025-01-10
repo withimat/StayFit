@@ -20,7 +20,7 @@ struct AddDietMealView: View {
         portion: 0.0,
         unit: "",
         calories: 0.0,
-        carbs: 0.0,
+        carbohydrate: 0.0,
         protein: 0.0,
         fat: 0.0
     )
@@ -84,9 +84,9 @@ struct AddDietMealView: View {
                 HStack {
                     Text("Karbonhidrat:")
                     Spacer()
-                    Stepper("", value: $meal.carbs, in: 0...1000, step: 10)
+                    Stepper("", value: $meal.carbohydrate, in: 0...1000, step: 10)
                         .labelsHidden()
-                    TextField("Karbonhidrat", value: $meal.carbs, format: .number)
+                    TextField("Karbonhidrat", value: $meal.carbohydrate, format: .number)
                         .keyboardType(.decimalPad)
                         .frame(width: 80)
                         .textFieldStyle(RoundedBorderTextFieldStyle())

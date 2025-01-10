@@ -8,8 +8,10 @@ import SwiftUI
 
 struct AntrenorProfil: View {
     @EnvironmentObject var authManager: AuthManager
-    @ObservedObject var viewModel = AntrenorProfilModelView()
-    @State private var shouldNavigateToLogin = false 
+    @StateObject var viewModel = AntrenorProfilModelView()
+    @State private var shouldNavigateToLogin = false
+    @ObservedObject var trainerviewmodel = TrainerLoginViewViewModel()
+    
     init() {
         let appearance = UINavigationBarAppearance()
         appearance.backgroundColor = UIColor(named: "BG")
@@ -18,6 +20,7 @@ struct AntrenorProfil: View {
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
         UINavigationBar.appearance().compactAppearance = appearance
     }
+    
     var body: some View {
         NavigationStack {
             VStack {
@@ -25,12 +28,12 @@ struct AntrenorProfil: View {
                     ScrollView {
                         VStack(alignment: .center, spacing: 10) {
                             AntrenorProfileDetailsView(profile: profile)
-                            
-                            
+
                             HStack {
                                 Button {
                                     authManager.logout()
                                     shouldNavigateToLogin = true
+                                    trainerviewmodel.logout()
                                 } label: {
                                     Text("Çıkış Yap")
                                         .foregroundColor(.white)
@@ -79,4 +82,5 @@ struct AntrenorProfil: View {
 
 #Preview {
     AntrenorProfil()
+        .environmentObject(AuthManager())
 }
