@@ -1,8 +1,7 @@
 //
 //  SecimEkrani.swift
 //  StayFit
-//  Token: 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
-//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
+//  
 //  Created by İmat Gökaslan on 13.10.2024.
 //
 
